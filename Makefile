@@ -56,6 +56,9 @@ fclean: clean
 	rm -f $(TARGET)
 	@echo "$(RED)Cleaning libft...$(RESET)"
 	@make -s -C $(LIBFT_DIR) fclean
+    @echo "$(RED)Cleaning minilibx...$(RESET)"
+    @make -s -C $(MLX_DIR) clean
+    @echo "(RED)Removing obj folder...$(RESET)"
 
 re: fclean all
 
