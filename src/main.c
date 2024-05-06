@@ -6,15 +6,22 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/06 10:59:45 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:39:25 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	usage(void)
-{`
-	printf(RED"")
+{
+	printf(RED"usage\n"RST);
+}
+
+int	cub3d(char *str)
+{
+	//init
+	//parsing
+	return (0);
 }
 
 int	main(int argc, char **argv)

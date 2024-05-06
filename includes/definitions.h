@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/06 10:38:58 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:38:17 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@
 # define PURPLE "\033[0;35m"
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
-# define RESET "\033[0m"
+# define RST "\033[0m"
 
 #endif
