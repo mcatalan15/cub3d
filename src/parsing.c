@@ -6,13 +6,13 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/07 12:29:20 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:03:02 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	checker_file(char *file)
+int	checker_file(char *file) //To-Do
 {
 	int	len;
 
@@ -27,7 +27,26 @@ int	checker_file(char *file)
 
 int	parsing(t_cube *cube)
 {
-	(void)cube;
-	printf("parsing\n");
+	int	i;
+	int	j;
+
+	i = -1;
+	while (cube->file[++i])
+	{
+		j = -1;
+		while (cube->file[i][++j])
+		{
+			while (ft_isspace(cube->file[i][j]))
+				j++;
+			if (cube->file[i][j] == "N" && cube->file[i][j++] == "O")
+				//is NO
+			if (cube->file[i][j] == "S" && cube->file[i][j++] == "O")
+				//is SO
+			if (cube->file[i][j] == "W" && cube->file[i][j++] == "E")
+				//is WE
+			if (cube->file[i][j] == "E" && cube->file[i][j++] == "A")
+				//is EA
+		}
+	}
 	return (0);
 }
