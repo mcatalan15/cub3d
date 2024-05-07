@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
+#    Updated: 2024/05/07 11:48:39 by mcatalan         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 GDBFLAG = -g
@@ -16,11 +28,16 @@ LIBFT_DIR = ./includes/libft
 MLX_DIR = ./includes/minilibx_macos
 
 # Source files and corresponding object files
-SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
+SRC_FILES =		src/main.c			\
+				src/init.c			\
+				src/parsing.c		\
+				src/utils/prints.c	\
+				
+
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # Executable name
-TARGET = so_long
+TARGET = cub3d
 
 # Libraries
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -g -framework OpenGL -framework AppKit
@@ -42,23 +59,23 @@ $(TARGET): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) -c $< -o $@
 
 clean:
 	@echo "$(RED)Cleaning up objets...$(RESET)"
 	@make -s -C $(MLX_DIR) clean
 	@make -s -C $(LIBFT_DIR) clean
-	rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "$(RED)Cleaning all...$(RESET)"
-	rm -f $(TARGET)
+	@rm -f $(TARGET)
 	@echo "$(RED)Cleaning libft...$(RESET)"
 	@make -s -C $(LIBFT_DIR) fclean
-    @echo "$(RED)Cleaning minilibx...$(RESET)"
-    @make -s -C $(MLX_DIR) clean
-    @echo "(RED)Removing obj folder...$(RESET)"
+	@echo "$(RED)Cleaning minilibx...$(RESET)"
+	@make -s -C $(MLX_DIR) clean
+	@echo "$(RED)Removing obj folder...$(RESET)"
 
 re: fclean all
 
