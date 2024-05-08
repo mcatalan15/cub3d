@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/07 13:03:02 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/08 12:59:06 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,32 @@ int	checker_file(char *file) //To-Do
 	return (0);
 }
 
-int	parsing(t_cube *cube)
+char	*clean_line(char *line, int pos)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	str = NULL;
+	i = pos + 1;
+	j = 0;
+	printf("pos primera letra: %d\n", pos);
+	while (line[++i])
+	{
+		while (ft_isspace(line[i]))
+			i++;
+	}
+	printf("pos dps de spaces: %d\n", i);
+	while (i < ft_strlen(line))
+	{
+		str[j] = line[i];
+		i++;
+		j++;
+	}
+	return (str);
+}
+
+void	get_info(t_cube *cube)
 {
 	int	i;
 	int	j;
@@ -33,20 +58,47 @@ int	parsing(t_cube *cube)
 	i = -1;
 	while (cube->file[++i])
 	{
-		j = -1;
-		while (cube->file[i][++j])
+		j = 0;
+		while (ft_isspace(cube->file[i][j]))
+			j++;
+		if (cube->file[i][j] == 'N')
 		{
-			while (ft_isspace(cube->file[i][j]))
-				j++;
-			if (cube->file[i][j] == "N" && cube->file[i][j++] == "O")
-				//is NO
-			if (cube->file[i][j] == "S" && cube->file[i][j++] == "O")
-				//is SO
-			if (cube->file[i][j] == "W" && cube->file[i][j++] == "E")
-				//is WE
-			if (cube->file[i][j] == "E" && cube->file[i][j++] == "A")
-				//is EA
+			// printf("NO: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
+			// clean_and_save(cube, i, j, 1);
+			cube->n_text = ft_strdup(clean_line(cube->file[i], j));
+		}
+		if (cube->file[i][j] == 'S')
+		{
+			// printf("SO: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
+			cube->s_text = ft_strdup(cube->file[i]);
+		}
+		if (cube->file[i][j] == 'W')
+		{
+			cube->w_text = ft_strdup(cube->file[i]);
+		}
+		if (cube->file[i][j] == 'E')
+		{
+			cube->e_text = ft_strdup(cube->file[i]);
+		}
+		if (cube->file[i][j] == 'F')
+		{
+			// printf("F: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
+			// cube->_text = ft_strdup(cube->file[i]);
+			//TO_DO
+		}
+		if (cube->file[i][j] == 'C')
+		{
+			// printf("C: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
+			// cube->n_text = ft_strdup(cube->file[i]);
+			//TO_DO
 		}
 	}
+}
+
+int	parsing(t_cube *cube)
+{
+	print_dp(cube->file);
+	get_info(cube);
+	print_struct(cube);
 	return (0);
 }

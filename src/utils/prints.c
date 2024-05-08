@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/07 11:30:42 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:34:23 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,25 @@ void	usage(void)
 	printf(RED"usage\n"RST);
 }
 
+void	print_dp(char **file)
+{
+	int	i;
+
+	i = -1;
+	while (file[++i])
+		printf("%s", file[i]);
+	printf("\n");
+}
+
 void	print_struct(t_cube *cube)
 {
 	int	i;
 
 	i = -1;
-	printf("MAP\n");
-	// while (cube->map[++i])
-	// 	printf("%s\n", cube->map[i]);
 	printf("FILE\n");
-	i = -1;
-	while (cube->file[++i])
-		printf("%s", cube->file[i]);
+	print_dp(cube->file);
+	// printf("MAP\n");
+	// print_dp(cube->map);
 	printf("n_text: %s\n", cube->n_text);
 	printf("s_text: %s\n", cube->s_text);
 	printf("w_text: %s\n", cube->w_text);
