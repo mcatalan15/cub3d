@@ -28,13 +28,13 @@ int	checker_file(char *file) //To-Do
 char	*clean_line(char *line, int pos)
 {
 	int		i;
-	int		j;
+	//int		j;
 	char	*str;
-
 	str = NULL;
-	i = pos + 1;
-	j = 0;
+	i = pos + 2;
+	//j = 0;
 	printf("pos primera letra: %d\n", pos);
+	printf("I: %c\n", line[i]);
 	while (line[++i])
 	{
 		while (ft_isspace(line[i]))
@@ -43,11 +43,13 @@ char	*clean_line(char *line, int pos)
 	printf("pos dps de spaces: %d\n", i);
 	while (i < ft_strlen(line))
 	{
-		str[j] = line[i];
+		//str[j] = line[i];
+		printf("%c",line[i]);
 		i++;
-		j++;
+	//	j++;
 	}
 	return (str);
+	//return (line);
 }
 
 void	get_info(t_cube *cube)
