@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/08 12:59:06 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:42:23 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,77 @@ int	checker_file(char *file) //To-Do
 	return (0);
 }
 
-char	*clean_line(char *line, int pos)
+char	*clean_line(char *line, int i)
 {
-	int		i;
-	//int		j;
+	int		f;
 	char	*str;
+	int		x;
+
 	str = NULL;
-	i = pos + 2;
-	//j = 0;
-	printf("pos primera letra: %d\n", pos);
-	printf("I: %c\n", line[i]);
-	while (line[++i])
-	{
-		while (ft_isspace(line[i]))
-			i++;
-	}
-	printf("pos dps de spaces: %d\n", i);
-	while (i < ft_strlen(line))
-	{
-		//str[j] = line[i];
-		printf("%c",line[i]);
+	i = i + 2;
+	x = 0;
+	while (line[i] && ft_isspace(line[i]))
 		i++;
-	//	j++;
+	f = i;
+	while (line[f])
+	{
+		if (!ft_isspace(line[f]))
+			f++;
+		else
+			break ;
 	}
+	str = malloc(sizeof(char) * (f - i + 1));
+	if (!str)
+		exit(1); //malloc error
+	while (line[i] && f > i)
+	{
+		str[x] = line[i];
+		x++;
+		i++;
+	}
+	str[x] = '\0';
 	return (str);
-	//return (line);
+}
+
+int	ft_isnum(char c)
+{
+	if (c >= 30 && c <= 39)
+		return (0);
+	return (1);
+}
+
+void	clear_line2(t_cube *cube, char *line, int pos_i)
+{
+	int		num;
+	// char	*num_s;
+	int		i;
+	int		f;
+
+	f = 0;
+	i = 0;
+	// num_s = NULL;
+	(void)cube;
+	num = 0;
+	pos_i = pos_i + 1;
+	while (line[pos_i])
+	{
+		if (ft_isspace(line[pos_i]))
+			pos_i++;
+		else
+			break ;
+	}
+	printf("pos_i 2: %d\t%c\n", pos_i, line[pos_i]);
+	while (line[pos_i])
+	{
+		if (ft_isnum(line[pos_i]) && i < 3)
+		{
+			f++;
+			i++;
+		}
+		printf("esto es f: %d\n", f);
+		pos_i++;
+	}
+	//ft_atoi
 }
 
 void	get_info(t_cube *cube)
@@ -64,32 +110,23 @@ void	get_info(t_cube *cube)
 		while (ft_isspace(cube->file[i][j]))
 			j++;
 		if (cube->file[i][j] == 'N')
-		{
-			// printf("NO: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
-			// clean_and_save(cube, i, j, 1);
-			cube->n_text = ft_strdup(clean_line(cube->file[i], j));
-		}
+			cube->n_text = clean_line(cube->file[i], j);
 		if (cube->file[i][j] == 'S')
-		{
-			// printf("SO: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
-			cube->s_text = ft_strdup(cube->file[i]);
-		}
+			cube->s_text = clean_line(cube->file[i], j);
 		if (cube->file[i][j] == 'W')
-		{
-			cube->w_text = ft_strdup(cube->file[i]);
-		}
+			cube->w_text = clean_line(cube->file[i], j);
 		if (cube->file[i][j] == 'E')
-		{
-			cube->e_text = ft_strdup(cube->file[i]);
-		}
+			cube->e_text = clean_line(cube->file[i], j);
 		if (cube->file[i][j] == 'F')
 		{
 			// printf("F: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
-			// cube->_text = ft_strdup(cube->file[i]);
+			// clear_line2(cube, cube->file[i], j); //flag for pos
+			// cube-> = ft_strdup(cube->file[i]);
 			//TO_DO
 		}
 		if (cube->file[i][j] == 'C')
 		{
+			clear_line2(cube, cube->file[i], j);
 			// printf("C: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
 			// cube->n_text = ft_strdup(cube->file[i]);
 			//TO_DO
