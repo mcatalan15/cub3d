@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/08 10:31:17 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:09:37 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <stdbool.h>
 
 //our libs
 # include "./libft/libft.h"
@@ -44,5 +45,9 @@ void	print_dp(char **file);
 
 //errors.c
 void	malloc_err(int num);
+
+// parsing
+// map.c
+int		map_parsing(t_cube *cube, int pos_map);
 
 #endif

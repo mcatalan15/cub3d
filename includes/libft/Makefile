@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
+#    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 19:10:12 by mcatalan@st       #+#    #+#              #
-#    Updated: 2024/03/06 13:27:40 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/05/14 11:16:41 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,9 @@ SRCS =	ft_add_str.c	\
 		ft_substr.c			\
 		ft_tolower.c		\
 		ft_toupper.c		\
-		get_next_line_bonus.c	\
-		get_next_line_utils_bonus.c
+		get_next_line_bonus.c		\
+		get_next_line_utils_bonus.c \
+		ft_isnum.c					\
 
 OBJS_DIR = obj
 DEPS_DIR = dep

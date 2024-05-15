@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prints.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/08 10:34:23 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:35:31 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_struct(t_cube *cube)
 	int	i;
 
 	i = -1;
-	printf("FILE\n");
+	printf(YLW"FILE\n");
 	print_dp(cube->file);
 	// printf("MAP\n");
 	// print_dp(cube->map);
@@ -46,5 +46,6 @@ void	print_struct(t_cube *cube)
 	i = -1;
 	while (++i < 3)
 		printf("c[%d]: %d\n", i, cube->c[i]);
-	printf("pos: %d\n", cube->pos);
+	printf("pos: %d\n"RST, cube->pos);
+
 }

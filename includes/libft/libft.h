@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:09:06 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2024/02/14 11:14:08 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:16:20 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,10 @@ char			*ft_strswap(char *dst, char *src, char *sub);
 int				ft_is_enter(char *str);
 int				ft_isspace(char c);
 int				ft_strcmpnks(char *s1, char *s2);
+int				ft_isnum(char c);
 
 // get_next_line.c
-char			*get_next_line(int fd);
+char *get_next_line(int fd);
 char			*readbuf(int fd, char *str);
 char			*n_line(char *str);
 char			*clean_storage(char *str);

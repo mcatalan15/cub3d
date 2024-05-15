@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:32:41 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/07 12:27:03 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:35:20 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,6 @@ void	init(t_cube *cube)
 	cube->c[1] = -1;
 	cube->c[2] = -1;
 	cube->pos = -1;
+	cube->map_height = 0;
+	cube->map_width = 0;
 }

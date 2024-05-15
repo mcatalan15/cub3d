@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/10 12:42:23 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:15:32 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,18 @@ char	*clean_line(char *line, int i)
 	return (str);
 }
 
-int	ft_isnum(char c)
+void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 {
-	if (c >= 30 && c <= 39)
-		return (0);
-	return (1);
-}
-
-void	clear_line2(t_cube *cube, char *line, int pos_i)
-{
-	int		num;
-	// char	*num_s;
+	char	*num_s;
 	int		i;
-	int		f;
+	int		x;
 
-	f = 0;
+	num_s = NULL;
+	num_s = malloc(sizeof(char) * 4);
+	if (!num_s)
+		exit(1); // malloc error
 	i = 0;
-	// num_s = NULL;
-	(void)cube;
-	num = 0;
+	x = 0;
 	pos_i = pos_i + 1;
 	while (line[pos_i])
 	{
@@ -84,60 +77,82 @@ void	clear_line2(t_cube *cube, char *line, int pos_i)
 		else
 			break ;
 	}
-	printf("pos_i 2: %d\t%c\n", pos_i, line[pos_i]);
-	while (line[pos_i])
+	while (i < 3)
 	{
-		if (ft_isnum(line[pos_i]) && i < 3)
+		while (line[pos_i] && ft_isspace(line[pos_i]))
+			pos_i++;
+		while (ft_isnum(line[pos_i]) && line[pos_i])
 		{
-			f++;
-			i++;
+			num_s[x] = line[pos_i];
+			pos_i++;
+			x++;
 		}
-		printf("esto es f: %d\n", f);
-		pos_i++;
+		if (line[pos_i] == ',')
+			pos_i++;
+		num_s[x] = '\0';
+		if (flag == 'c')
+			cube->c[i] = ft_atoi(num_s);
+		else
+			cube->f[i] = ft_atoi(num_s);
+		i++;
+		x = 0;
 	}
-	//ft_atoi
+	free(num_s);
 }
 
-void	get_info(t_cube *cube)
+int	get_info(t_cube *cube)
 {
 	int	i;
 	int	j;
+	int	x;
 
 	i = -1;
-	while (cube->file[++i])
+	x = 0;
+	while (cube->file[++i] && x <= 5)
 	{
 		j = 0;
 		while (ft_isspace(cube->file[i][j]))
 			j++;
 		if (cube->file[i][j] == 'N')
+		{
 			cube->n_text = clean_line(cube->file[i], j);
+			x++;
+		}
 		if (cube->file[i][j] == 'S')
+		{
 			cube->s_text = clean_line(cube->file[i], j);
+			x++;
+		}
 		if (cube->file[i][j] == 'W')
+		{
 			cube->w_text = clean_line(cube->file[i], j);
+			x++;
+		}
 		if (cube->file[i][j] == 'E')
+		{
 			cube->e_text = clean_line(cube->file[i], j);
+			x++;
+		}
 		if (cube->file[i][j] == 'F')
 		{
-			// printf("F: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
-			// clear_line2(cube, cube->file[i], j); //flag for pos
-			// cube-> = ft_strdup(cube->file[i]);
-			//TO_DO
+			clear_line2(cube, cube->file[i], j, 'f');
+			x++;
 		}
 		if (cube->file[i][j] == 'C')
 		{
-			clear_line2(cube, cube->file[i], j);
-			// printf("C: %sline: %d\npos: %d\n\n", cube->file[i], i, j);
-			// cube->n_text = ft_strdup(cube->file[i]);
-			//TO_DO
+			clear_line2(cube, cube->file[i], j, 'c');
+			x++;
 		}
 	}
+	return (i);
 }
 
 int	parsing(t_cube *cube)
 {
+	int	pos_map;
+
 	print_dp(cube->file);
-	get_info(cube);
-	print_struct(cube);
+	pos_map = get_info(cube);
+	map_parsing(cube, pos_map);
 	return (0);
 }
