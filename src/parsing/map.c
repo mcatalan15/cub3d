@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/14 17:19:55 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/15 11:31:52 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,31 @@ int	find_map_start(char **file, int pos_map)
 	return (i);
 }
 
-bool	check_map(t_cube *cube, int row)
-{
-	int		player_c;
-	int		col;
-	int		current_width;
-	char	current_char;
+// bool	check_map(t_cube *cube, int row)
+// {
+// 	int		player_c;
+// 	int		col;
+// 	int		current_width;
+// 	char	current_char;
 
 	
-	printf("player_c: %d\n", player_c);
-	if (player_c != 1)
-	{
-		printf("entra\n");
-		return (false);
-	}
-	return (true);
-}
+// 	printf("player_c: %d\n", player_c);
+// 	if (player_c != 1)
+// 	{
+// 		printf("entra\n");
+// 		return (false);
+// 	}
+// 	return (true);
+// }
 
 int	map_parsing(t_cube *cube, int pos_map)
 {
 	pos_map = find_map_start(cube->file, pos_map);
-	check_map(cube, pos_map);
+	// check_map(cube, pos_map);
 	// {
 	// 	printf(RED"Error:\nInvalid map\n"RST);
 	// 	exit (1); //invalid map error
 	// }
+	print_struct(cube);
 	return (0);
 }
