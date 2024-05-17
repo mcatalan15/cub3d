@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/12 10:35:31 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/17 12:29:20 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	print_struct(t_cube *cube)
 	i = -1;
 	while (++i < 3)
 		printf("c[%d]: %d\n", i, cube->c[i]);
-	printf("pos: %d\n"RST, cube->pos);
-
+	printf("pos: %d\n", cube->pos);
+	printf("map_h: %d\n", cube->map_h);
+	printf("map_w: %d\n"RST, cube->map_w);
 }

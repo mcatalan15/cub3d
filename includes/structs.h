@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/14 11:40:48 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/17 09:22:05 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ struct	s_cube
 	int		f[3]; //floor color 0,0,0 -> 255,255,255
 	int		c[3]; //ceiling color 0,0,0 -> 255,255,255
 	int		pos; //flag start position
-	int		map_height; //map max height
-	int		map_width; //map max width
+	int		map_h; //map max height
+	int		map_w; //map max width
 	int		player_y; //player pos_y
 	int		player_x; //player pos_x
 };
