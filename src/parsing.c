@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/17 12:30:01 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/19 19:31:56 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 	}
 	while (i < 3)
 	{
+		x = 0;
 		while (line[pos_i] && ft_isspace(line[pos_i]))
 			pos_i++;
-		while (ft_isnum(line[pos_i]) && line[pos_i])
+		while (ft_isnum(line[pos_i]) && line[pos_i] && x < 3)
 		{
 			num_s[x] = line[pos_i];
 			pos_i++;
@@ -95,7 +96,6 @@ void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 		else
 			cube->f[i] = ft_atoi(num_s);
 		i++;
-		x = 0;
 	}
 	free(num_s);
 }
