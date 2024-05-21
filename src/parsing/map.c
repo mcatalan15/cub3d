@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/19 19:34:09 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/19 20:45:56 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,66 +101,12 @@ bool	get_ppos(t_cube *cube, int pos_map)
 	return (false);
 }
 
-// bool	check_chars(t_cube *cube, int pos_map)
-// {
-// 	int		j;
-// 	int		i;
 
-// 	i = pos_map - 1;
-// 	while (cube->file[++i])
-// 	{
-// 		j = -1;
-// 		while (cube->file[i][++j])
-// 		{
-// 			if (!(cube->file[i][j] == '1' || cube->file[i][j] == '0'
-// 				|| cube->file[i][j] == 'N' || cube->file[i][j] == 'S'
-// 				|| cube->file[i][j] == 'W' || cube->file[i][j] == 'E'))
-// 				return (true);
-// 			else if (cube->file[i][j] == ' ' && !is_valid_space(&cube->file[i], i, j))
-// 				return (true);
-// 		}
-// 	}
-// 	return (false);
-// }
 
 bool	is_closed(t_cube *cube, int pos_map)
 {
-	// Verificar el borde superior
-	for (int col = 0; col < cube->map_w; col++)
-	{
-		if (cube->file[pos_map][col] != '1')
-		{
-			return (true);
-		}
-	}
-
-	// Verificar el borde inferior
-	for (int col = 0; col < cube->map_w; col++)
-	{
-		if (cube->file[pos_map + cube->map_h - 1][col] != '1')
-		{
-			return (true);
-		}
-	}
-
-	// Verificar el borde izquierdo
-	for (int row = 1; row < cube->map_h - 1; row++)
-	{
-		if (cube->file[pos_map + row][0] != '1')
-		{
-			return (false);
-		}
-	}
-
-	// Verificar el borde derecho
-	for (int row = 1; row < cube->map_h - 1; row++)
-	{
-		if (cube->file[pos_map + row][cube->map_w - 1] != '1')
-		{
-			return (false);
-		}
-	}
-
+	//verificar linea por linea que el borde esté cerrado
+	
 	return (true); // El borde está completamente cerrado
 }
 
