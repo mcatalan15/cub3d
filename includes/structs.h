@@ -6,15 +6,18 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/07 11:59:01 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:12:27 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_cube	t_cube;
+typedef struct s_cube		t_cube;
 typedef struct s_mlx_data	t_mlx_data;
+typedef struct s_img		t_img;
+typedef struct s_vec		t_vec;
+typedef struct s_player		t_player;
 // typedef struct s_map	t_map;
 
 // struct s_map
@@ -36,12 +39,37 @@ struct	s_cube
 	int		pos; //flag start position
 };
 
-struct	s_mlx_data
+struct s_img
 {
-	void	*mlx_ptr;
-	void	*mlx_win;
-	int		color;
+	void	*img;
+	char	*pixels;
+	int		bytes_per_p;
+	int		endian;
+	int		line_len;
 };
 
+struct s_vec
+{
+	int	x;
+	int	y;
+};
+
+struct s_player
+{
+	t_vec	pos;
+	t_vec	dir;
+	t_vec	plane;
+	int		uod;
+	int		lor;
+};
+
+struct	s_mlx_data
+{
+	void		*mlx;
+	void		*win;
+	int			color;
+	t_player	p;
+	t_img		img;
+};
 
 #endif

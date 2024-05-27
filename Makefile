@@ -6,12 +6,12 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/05/07 12:25:45 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/05/14 12:39:25 by jpaul-kr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 GDBFLAG = -g
 
 # Colors
@@ -56,7 +56,7 @@ subsystems:
 
 
 $(TARGET): $(OBJ_FILES)
-	@echo "$(GREEN)Bulding libs and objets...$(RESET)"
+	@echo "$(GREEN)Building libs and objects...$(RESET)"
 	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
