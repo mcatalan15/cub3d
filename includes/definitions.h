@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   definitions.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/12 10:35:03 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/27 13:03:28 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,9 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 # define RST "\033[0m"
+
+//
+# define FAILURE 1
+# define SUCCESS 0
 
 #endif

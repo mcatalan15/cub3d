@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/19 20:45:56 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/27 11:09:20 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,21 +103,21 @@ bool	get_ppos(t_cube *cube, int pos_map)
 
 
 
-bool	is_closed(t_cube *cube, int pos_map)
-{
-	//verificar linea por linea que el borde esté cerrado
+// bool	is_closed(t_cube *cube, int pos_map)
+// {
+// 	//verificar linea por linea que el borde esté cerrado
 	
-	return (true); // El borde está completamente cerrado
-}
+// 	return (true); // El borde está completamente cerrado
+// }
 
-int	map_parsing(t_cube *cube, int pos_map)
-{
-	pos_map = find_map_start(cube->file, pos_map);
-	if (get_ppos(cube, pos_map)) //|| check_chars(cube, pos_map)) -> TO-DO check spaces and invalid chars
-		printf(RED"Error map\n"RST);
-	get_map_limits(cube, pos_map);
-	if (!is_closed(cube, pos_map))
-		printf(RED"Error map\n"RST);
-	print_struct(cube);
-	return (0);
-}
+// int	map_parsing(t_cube *cube, int pos_map)
+// {
+// 	pos_map = find_map_start(cube->file, pos_map);
+// 	if (get_ppos(cube, pos_map)) //|| check_chars(cube, pos_map)) -> TO-DO check spaces and invalid chars
+// 		printf(RED"Error map\n"RST);
+// 	get_map_limits(cube, pos_map);
+// 	if (!is_closed(cube, pos_map))
+// 		printf(RED"Error map\n"RST);
+// 	print_struct(cube);
+// 	return (0);
+// }

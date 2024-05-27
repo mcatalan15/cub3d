@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/19 19:31:56 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/27 12:40:07 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	checker_file(char *file) //To-Do
-{
-	int	len;
-
-	len = ft_strlen(file);
-	if (ft_strncmp(file + len - 4, ".cub", 4))
-	{
-		printf(RED "Error:\nInvalid file.\tNeeds .cub file\n" RST);
-		return (1);
-	}
-	return (0);
-}
 
 char	*clean_line(char *line, int i)
 {
@@ -152,6 +139,8 @@ int	parsing(t_cube *cube)
 	int	pos_map;
 
 	pos_map = get_info(cube);
-	map_parsing(cube, pos_map);
+	checker_vals(cube);
+	print_struct(cube);
+	// map_parsing(cube, pos_map);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/14 11:09:37 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/27 12:59:38 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@
 void	init(t_cube *cube);
 int		open_file(char *file, t_cube *cube);
 
-//parsing.c
-int		checker_file(char *file);
-int		parsing(t_cube *cube);
-
 //utils
 //prints.c
 void	usage(void);
@@ -47,6 +43,13 @@ void	print_dp(char **file);
 void	malloc_err(int num);
 
 // parsing
+//parsing.c
+int		parsing(t_cube *cube);
+
+//checker.c
+int		checker_map_extension(char *file);
+int		checker_vals(t_cube *cube);
+
 // map.c
 int		map_parsing(t_cube *cube, int pos_map);
 
