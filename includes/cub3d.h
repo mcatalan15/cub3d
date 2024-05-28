@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/27 12:59:38 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/28 12:25:31 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_dp(char **file);
 
 //errors.c
 void	malloc_err(int num);
+void	generic_exit(char *str);
 
 // parsing
 //parsing.c
@@ -49,6 +50,7 @@ int		parsing(t_cube *cube);
 //checker.c
 int		checker_map_extension(char *file);
 int		checker_vals(t_cube *cube);
+int		checker_map_extension(char *path);
 
 // map.c
 int		map_parsing(t_cube *cube, int pos_map);

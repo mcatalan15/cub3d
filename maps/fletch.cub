@@ -1,7 +1,7 @@
-NO textures/blue.xpm
-SO textures/green.xpm
-WE textures/pink.xpm
-EA textures/purple.xpm
+NO graphic/textures/blue.xpm
+SO graphic/textures/green.xpm
+WE graphic/textures/pink.xpm
+EA graphic/textures/purple.xpm
 
 F 255,229,211
 C 211,252,255
