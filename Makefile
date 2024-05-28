@@ -6,7 +6,7 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/05/27 11:22:12 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/05/28 13:00:51 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ SRC_FILES =		src/main.c					\
 				src/utils/prints.c			\
 				src/utils/errors.c			\
 				src/parsing/parsing.c		\
+				src/parsing/get_info.c		\
 				src/parsing/checker.c		\
+				src/parsing/checker_utils.c	\
 				src/parsing/map.c			\
 
 

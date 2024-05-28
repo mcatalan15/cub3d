@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/28 12:55:36 by mcatalan         ###   ########.fr       */
+/*   Created: 2024/05/28 12:59:17 by mcatalan          #+#    #+#             */
+/*   Updated: 2024/05/28 13:02:08 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "./../../includes/cub3d.h"
 
-
-
-int	parsing(t_cube *cube)
+int	check_is_xpm_2(char *path)
 {
-	int	pos_map;
+	size_t		path_len;
+	size_t		ext_len;
+	const char	*file_ext;
 
-	pos_map = get_info(cube);
-	checker_vals(cube);
-	print_struct(cube);
-	// map_parsing(cube, pos_map);
-	return (0);
+	path_len = 0;
+	ext_len = 0;
+	file_ext = NULL;
+	path_len = ft_strlen(path);
+	ext_len = ft_strlen(".xpm");
+	if (path_len >= ext_len)
+	{
+		file_ext = path + path_len - ext_len;
+		if (ft_strcmp(file_ext, ".xpm") == 0)
+			return (SUCCESS);
+	}
+	return (FAILURE);
 }
