@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/14 13:08:47 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:39:50 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Params
 #define HEIGHT 1000
 #define LENGTH 1500
+#define PI	3.1416
 
 // Colors
 # define RED "\033[0;31m"
