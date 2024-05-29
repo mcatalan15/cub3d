@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 11:52:58 by mcatalan         ###   ########.fr       */
+/*   Created: 2024/05/29 12:22:31 by mcatalan          #+#    #+#             */
+/*   Updated: 2024/05/29 12:23:32 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "./../../includes/cub3d.h"
 
-int	parsing(t_cube *cube)
+void	skip_sapaces(char *line, int *pos_i)
 {
-	int	pos_map;
+	while (line[*pos_i] && ft_isspace(line[*pos_i]))
+		(*pos_i)++;
+}
 
-	pos_map = get_info(cube);
-	checker_vals(cube);
-	print_struct(cube);
-	// map_parsing(cube, pos_map);
-	return (0);
+void	store_c_f_value(t_cube *cube, char *num_s, int i, int flag)
+{
+	if (flag == 'c')
+		cube->c[i] = ft_atoi(num_s);
+	else
+		cube->f[i] = ft_atoi(num_s);
 }

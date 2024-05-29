@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:18:28 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/28 13:02:03 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:50:56 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,16 +98,15 @@ int	check_total_vals(t_cube *cube)
 }
 
 /*
+	Check-totals + check if file ends .xpm and if the file exist
 */
 
 int	checker_vals(t_cube *cube)
 {
-	//All vars has value + f & c are 
 	if (check_total_vals(cube) != 6)
-		generic_exit("Mapa no valores corrector o faltan. Floor o c"); //Eror msg
-	//File ends .xpm && exists?
+		generic_exit("Mapa no valores corrector o faltan. Floor o c");
 	if (check_xpm(cube))
-		generic_exit("Files deben ser formato .xpm or wrong path"); //Err msg
+		generic_exit("Files deben ser formato .xpm or wrong path");
 	return (0);
 }
 
