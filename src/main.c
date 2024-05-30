@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 15:07:28 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:20:32 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	print_player(t_mlx_data *data, int x, int y)
 	int	j;
 
 	i = -5;
-	//printf("x: %d, y: %d\n", data->p.pos.x, data->p.pos.y);
 	while (++i < 5)
 	{
 		j = -5;
@@ -57,29 +56,31 @@ int	reset_buttons(int key, t_mlx_data *data)
 		data->p.uod = 0;
 	if (key == 0 || key == 2)
 		data->p.lor = 0;
-	if (key == 123 || key == 124)
-		data->p.angle = 0;
 	return (0);
 }
 
-// arreglar rotacion
 void	rotate(t_mlx_data *data, int key)
 {
-	int	x;
-	int	y;
-	int	angle;
+	float		x;
+	float		y;
+	float	angle;
 
-	angle = data->p.angle;
-	x = data->p.dir.x - data->p.pos.x;
-	y = data->p.dir.y - data->p.pos.y;
-	if (key == 123)
+	//printf("before-> x: %f, y: %f\n", data->p.dir.x, data->p.dir.y);
+	angle = PI / 10;
+	x = data->p.dir.x;
+	y = data->p.dir.y;
+	if (key == 124)
 		angle *= -1;
-	data->p.dir.x = x * cos(angle) - y * sin(angle);
-	data->p.dir.y = x * sin(angle) + y * cos(angle);
-	x = data->p.plane.x - data->p.pos.x;
-	y = data->p.plane.y - data->p.pos.y ;
-	data->p.plane.x = x * cos(angle) - y * sin(angle);
-	data->p.plane.y = x * sin(angle) + y * cos(angle);
+	my_pixel_put(&data->img, data->p.dir.y + data->p.pos.y, data->p.dir.x + data->p.pos.x, 0x0);
+	my_pixel_put(&data->img, data->p.dir.y + data->p.pos.y + data->p.plane.y, data->p.dir.x + data->p.pos.x + data->p.plane.x, 0x0);
+	my_pixel_put(&data->img, data->p.dir.y + data->p.pos.y - data->p.plane.y, data->p.dir.x + data->p.pos.x - data->p.plane.x, 0x0);
+	data->p.dir.x = (x * cos(angle) - y * sin(angle));
+	data->p.dir.y = (x * sin(angle) + y * cos(angle));
+	//printf("after-> x: %f, y: %f\n", data->p.dir.x, data->p.dir.y);
+	x = data->p.plane.x;
+	y = data->p.plane.y;
+	data->p.plane.x = (x * cos(angle) - y * sin(angle));
+	data->p.plane.y = (x * sin(angle) + y * cos(angle));
 }
 
 int	move(int key, t_mlx_data *data)
@@ -94,14 +95,11 @@ int	move(int key, t_mlx_data *data)
 		data->p.uod = 7;
 	if (key == 2)
 		data->p.lor = 7;
-	if (key == 123)
-		data->p.angle = -PI / 10;	
-	if (key == 124)
-		data->p.angle = PI / 10;
-	rotate(data, key);
+	if (key == 123 || key == 124)
+		rotate(data, key);
 	print_player(data, data->p.pos.x + data->p.uod, data->p.pos.y + data->p.lor);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
-	printf(" %d \n", key);
+	//printf(" %d \n", key);
 	return (0);
 }
 
@@ -121,7 +119,6 @@ int	cub3d(char *str)
 	data.p.plane.y = 40;
 	data.p.uod = 0;
 	data.p.lor = 0;
-	data.p.angle = 0;
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, LENGTH, HEIGHT, "juan");
 	data.img.img = mlx_new_image(data.mlx, LENGTH, HEIGHT);

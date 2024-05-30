@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 15:07:30 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:20:34 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ struct s_img
 
 struct s_vec
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 };
 
 struct s_player
@@ -61,7 +61,6 @@ struct s_player
 	t_vec	plane;
 	int		uod;
 	int		lor;
-	int		angle;
 };
 
 struct	s_mlx_data
