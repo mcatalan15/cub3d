@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 12:23:43 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:04:03 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ int		check_is_xpm_2(char *path);
 //parsing_utils.c
 void	skip_sapaces(char *line, int *pos_i);
 void	store_c_f_value(t_cube *cube, char *num_s, int i, int flag);
+int		skip_init_spaces(char *line, int i);
+int		find_word_end(char *line, int s);
+char	*allocate_substring(char *line, int s, int f);
 
 // map.c
 int		map_parsing(t_cube *cube, int pos_map);

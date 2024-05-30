@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:55:48 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 12:26:37 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:02:53 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,16 @@
 
 char	*clean_line(char *line, int i)
 {
-	int		f;
 	char	*str;
-	int		x;
+	int		s;
+	int		f;
 
-	str = NULL;
-	i = i + 2;
-	x = 0;
-	while (line[i] && ft_isspace(line[i]))
-		i++;
-	f = i;
-	while (line[f])
-	{
-		if (!ft_isspace(line[f]))
-			f++;
-		else
-			break ;
-	}
-	str = malloc(sizeof(char) * (f - i + 1));
+	i += 2;
+	s = skip_init_spaces(line, i);
+	f = find_word_end(line, s);
+	str = allocate_substring(line, s, f);
 	if (!str)
 		malloc_err(1);
-	while (line[i] && f > i)
-	{
-		str[x] = line[i];
-		x++;
-		i++;
-	}
-	str[x] = '\0';
 	return (str);
 }
 
