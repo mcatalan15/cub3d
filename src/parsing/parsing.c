@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 11:52:58 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:36:21 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	parsing(t_cube *cube)
 	pos_map = get_info(cube);
 	checker_vals(cube);
 	print_struct(cube);
+	(void)pos_map;
 	// map_parsing(cube, pos_map);
 	return (0);
 }

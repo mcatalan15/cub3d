@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:32:41 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/17 09:37:41 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/05/31 11:31:26 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ void	init(t_cube *cube)
 	cube->c[1] = -1;
 	cube->c[2] = -1;
 	cube->pos = -1;
+	cube->player_x = -1;
+	cube->player_y = -1;
 	cube->map_h = 0;
 	cube->map_w = 0;
 }
