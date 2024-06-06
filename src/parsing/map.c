@@ -3,119 +3,184 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 11:51:57 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:48:14 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// bool	is_empty_line(char *line)
+bool	is_empty_line(char *line)
+{
+	while (*line)
+	{
+		if (!ft_isspace(*line))
+			return (false);
+		line++;
+	}
+	return (true);
+}
+
+int	find_map_start(char **file, int pos_map)
+{
+	int		i;
+
+	i = pos_map + 1;
+	while (file[i] && is_empty_line(file[i]))
+		i++;
+	return (i);
+}
+
+int	dir_player(char dir)
+{
+	if (dir == 'N')
+		return (1);
+	else if (dir == 'S')
+		return (2);
+	else if (dir == 'W')
+		return (3);
+	else if (dir == 'E')
+		return (4);
+	return (-1);
+}
+
+bool	get_ppos(t_cube *cube, int pos_map)
+{
+	int	i;
+	int	j;
+	int	pc;
+
+	pc = 0;
+	i = pos_map - 1;
+	while (cube->file[++i])
+	{
+		j = -1;
+		while (cube->file[i][++j])
+		{
+			if (cube->file[i][j] == 'N' || cube->file[i][j] == 'S' || cube->file[i][j] == 'W' || cube->file[i][j] == 'E')
+			{
+				pc++;
+				cube->player_x = i - pos_map;
+				cube->player_y = j;
+				cube->pos = dir_player(cube->file[i][j]);
+				printf("pc = %d\tplayer_x = %d\tplayer_y = %d\n", pc, i - pos_map, j);
+			}
+		}
+	}
+	if (pc == 1)
+		return (true);
+	return (false);
+}
+
+// bool	check_one(char *line)
 // {
 // 	while (*line)
 // 	{
-// 		if (!ft_isspace(*line))
-// 			return (false);
+// 		if (*line == '1')
+// 			return (true);
 // 		line++;
-// 	}
-// 	return (true);
-// }
-
-// int	find_map_start(char **file, int pos_map)
-// {
-// 	int		i;
-
-// 	i = pos_map + 1;
-// 	while (file[i] && is_empty_line(file[i]))
-// 		i++;
-// 	return (i);
-// }
-
-// void	get_map_limits(t_cube *cube, int pos_map)
-// {
-// 	int		height;
-// 	int		width;
-// 	bool	in_map;
-// 	int		i;
-
-// 	height = 0;
-// 	width = 0;
-// 	in_map = false;
-// 	i = pos_map - 1;
-// 	while (cube->file[++i])
-// 	{
-// 		if (is_empty_line(cube->file[i]) && in_map)
-// 			break ;
-// 		if (!is_empty_line(cube->file[i]))
-// 		{
-// 			in_map = true;
-// 			height++;
-// 			width = ft_strlen(cube->file[i]);
-// 			if (width > cube->map_w)
-// 				cube->map_w = width;
-// 		}
-// 	}
-// 	cube->map_h = height;
-// }
-
-// // bool	check_map(t_cube *cube, int row)
-// // {
-// // 	int		player_c;
-// // 	int		col;
-// // 	int		current_width;
-// // 	char	current_char;
-
-// // 	printf("player_c: %d\n", player_c);
-// // 	if (player_c != 1)
-// // 	{
-// // 		printf("entra\n");
-// // 		return (false);
-// // 	}
-// // 	return (true);
-// // }
-
-// bool	get_ppos(t_cube *cube, int pos_map)
-// {
-// 	int		i;
-// 	int		j;
-
-// 	i = pos_map - 1;
-// 	while (cube->file[++i])
-// 	{
-// 		j = -1;
-// 		while (cube->file[i][++j])
-// 		{
-// 			if (cube->file[i][j] == 'N' || cube->file[i][j] == 'S'
-// 				|| cube->file[i][j] == 'W' || cube->file[i][j] == 'E')
-// 			{
-// 				if (cube->pos != -1)
-// 					return (true);
-// 				cube->pos = cube->file[i][j];
-// 				cube->player_y = i - pos_map;
-// 				cube->player_x = j;
-// 			}
-// 		}
 // 	}
 // 	return (false);
 // }
 
-// // bool	is_closed(t_cube *cube, int pos_map)
-// // {
-// // 	//verificar linea por linea que el borde esté cerrado
-// // 	return (true); // El borde está completamente cerrado
-// // }
+int	check_one(char *str)
+{
+	int	flag;
+	int	i;
 
-// // int	map_parsing(t_cube *cube, int pos_map)
-// // {
-// // 	pos_map = find_map_start(cube->file, pos_map);
-// // 	if (get_ppos(cube, pos_map)) //|| check_chars(cube, pos_map))
-// -> TO-DO check spaces and invalid chars
-// // 		printf(RED"Error map\n"RST);
-// // 	get_map_limits(cube, pos_map);
-// // 	if (!is_closed(cube, pos_map))
-// // 		printf(RED"Error map\n"RST);
-// // 	print_struct(cube);
-// // 	return (0);
-// // }
+	flag = 0;
+	i = 0;
+	printf("HOla3\n");
+	while (str[i])
+	{
+		if (str[i] != '1')
+			flag = 1;
+		i++;
+	}
+	return (flag);
+}
+
+int	check_char(char c)
+{
+	if (c == '1')
+		return (0);
+	return (1);
+}
+
+void	invalid_map(t_cube *cube)
+{
+	printf("Error: invalid map\n");
+	free_all(cube);
+	exit(1);
+}
+
+void	check_margin(t_cube *cube, int pos_map)
+{
+	int	i;
+	int	j;
+
+	i = pos_map;
+	printf("i: %d\n", i);
+	printf("cube->map_h = %d\n", cube->map_h);
+	printf("cube->map_w = %d\n", cube->map_w);
+	while (i < cube->map_h)
+	{
+		j = 0;
+		while (cube->file[i][j])
+		{
+			printf("j: %d\n", j);
+			if (i == pos_map || i == (cube->map_w - 1))
+			{
+				printf("Entra\n");
+				if (check_one(cube->file[i]))
+				{
+					printf("Entra2\n");
+					invalid_map(cube);
+				}
+			}
+			if (i == (cube->map_w - 1))
+				if (check_one(cube->file[i]))
+					invalid_map(cube);
+			if (j == 0 || (j + 1) == ft_strlen(cube->map[i]))
+				if (check_char(cube->map[i][j]))
+					invalid_map(cube);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	get_map_limits(t_cube *cube, int pos_map)
+{
+	int	i;
+	int	j;
+
+	i = pos_map;
+	while (cube->file[++i])
+	{
+		j = -1;
+		while (cube->file[i][++j])
+		{
+			if (j > cube->map_w)
+				cube->map_w = j;
+		}
+	}
+	cube->map_h = i - pos_map;
+}
+
+void	map_parsing(t_cube *cube, int pos_map)
+{
+	pos_map = find_map_start(cube->file, pos_map);
+	if (!get_ppos(cube, pos_map))
+		generic_exit("Check player on map. Not found or more than one.");
+	get_map_limits(cube, pos_map);
+	////  if (!is_closed(cube, pos_map))
+	////   printf(RED"Error map\n"RST);
+	////  get_dplayer(cube); // ultimo. get player direction.
+	/// Julia repo
+	check_margin(cube, pos_map);
+	// check_playable(cube);
+	print_struct(cube);
+}

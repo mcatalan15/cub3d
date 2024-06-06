@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
+#    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/05/30 11:06:38 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/06/03 10:02:40 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC_FILES =		src/main.c					\
 				src/init.c					\
 				src/utils/prints.c			\
 				src/utils/errors.c			\
+				src/utils/frees.c			\
 				src/parsing/parsing.c		\
 				src/parsing/get_info.c		\
 				src/parsing/checker.c		\

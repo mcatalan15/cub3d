@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/30 11:04:03 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:04:03 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	print_dp(char **file);
 void	malloc_err(int num);
 void	generic_exit(char *str);
 
+//frees.c
+int		free_dp(char **dp);
+int		free_all(t_cube *cube);
+
 // parsing
 //parsing.c
 int		parsing(t_cube *cube);
@@ -66,6 +70,6 @@ int		find_word_end(char *line, int s);
 char	*allocate_substring(char *line, int s, int f);
 
 // map.c
-int		map_parsing(t_cube *cube, int pos_map);
+void	map_parsing(t_cube *cube, int pos_map);
 
 #endif

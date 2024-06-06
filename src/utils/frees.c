@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 10:37:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/05 11:07:13 by mcatalan@st      ###   ########.fr       */
+/*   Created: 2024/06/03 10:00:50 by mcatalan@st       #+#    #+#             */
+/*   Updated: 2024/06/05 11:12:49 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
-int	cub3d(char *str)
+int	free_dp(char **dp)
 {
-	t_cube	cube;
+	int	i;
 
-	if (checker_map_extension(str))
+	i = 0;
+	while (dp[i])
 	{
-		printf(RED"ERROR:\n\tMap not valid. must be .cub\n"RST);
-		exit(1);
+		free(dp[i]);
+		i++;
 	}
-	init(&cube);
-	open_file(str, &cube);
-	parsing(&cube);
-	free_all(&cube);
+	free(dp);
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	free_all(t_cube *cube)
 {
-	if (argc == 2)
-		cub3d(argv[1]);
-	else
-	{
-		usage();
-		return (1);
-	}
+	free_dp(cube->file);
+	// free_dp(cube->map);
+	free(cube->n_text);
+	free(cube->s_text);
+	free(cube->e_text);
+	free(cube->w_text);
 	return (0);
 }
