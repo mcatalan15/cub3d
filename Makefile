@@ -6,7 +6,7 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/06/05 13:18:44 by jpaul-kr         ###   ########.fr        #
+#    Updated: 2024/06/06 13:13:20 by jpaul-kr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_DIR = ./includes/libft
 #MLX_DIR = ./includes/minilibx_macos
-MLX_DIR = ./includes/minilibx_opengl
+MLX_DIR = ./includes/minilibx_opengl/minilibx-linux
 
 # Source files and corresponding object files
 SRC_FILES =		src/main.c			\
@@ -42,7 +42,7 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 TARGET = cub3d
 
 # Libraries
-LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -g -framework OpenGL -framework AppKit
+LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 
 # Include directories
 INC_DIRS = -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I$(SRC_DIR)
@@ -53,12 +53,12 @@ all: subsystems $(TARGET)
 
 subsystems:
 	@make -s -C $(LIBFT_DIR)
-	@make -s -C $(MLX_DIR)
+	@make -C $(MLX_DIR)
 
 
 $(TARGET): $(OBJ_FILES)
 	@echo "$(GREEN)Building libs and objects...$(RESET)"
-	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ -fPIE $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)

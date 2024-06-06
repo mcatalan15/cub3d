@@ -6,7 +6,7 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/04 19:10:12 by mcatalan@st       #+#    #+#              #
-#    Updated: 2024/03/06 13:27:40 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/06/06 13:16:07 by jpaul-kr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ RM = rm -rf
 $(OBJS_DIR)/%.o: %.c libft.h
 #	@echo "$(YELLOW)Compiling libft...$(RESET)"
 	@mkdir -p $(OBJS_DIR) $(DEPS_DIR)
-	@$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@ -fPIE
 
 all: $(NAME)
 
