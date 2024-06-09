@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/19 19:35:32 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/09 13:59:52 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	print_struct(t_cube *cube)
 	i = -1;
 	printf(YLW"FILE\n");
 	print_dp(cube->file);
-	// printf("MAP\n");
-	// print_dp(cube->map);
+	printf("MAP\n");
+	print_dp(cube->map);
 	printf("n_text: %s\n", cube->n_text);
 	printf("s_text: %s\n", cube->s_text);
 	printf("w_text: %s\n", cube->w_text);
