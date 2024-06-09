@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/09 14:49:02 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/09 15:59:17 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	generic_exit(char *str);
 //frees.c
 int		free_dp(char **dp);
 int		free_all(t_cube *cube);
+int		free_dp_int(int **dp);
 
 // parsing
 //parsing.c
@@ -72,5 +73,12 @@ char	*allocate_substring(char *line, int s, int f);
 
 // map.c
 void	map_parsing(t_cube *cube, int pos_map);
+
+//map_utils.c
+bool	get_ppos(t_cube *cube, int pos_map);
+int		dir_player(char dir);
+int		find_map_start(char **file, int pos_map);
+bool	is_empty_line(char *line);
+void	invalid_map(t_cube *cube);
 
 #endif

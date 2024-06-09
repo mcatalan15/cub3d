@@ -6,7 +6,7 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/06/03 10:02:40 by mcatalan@st      ###   ########.fr        #
+#    Updated: 2024/06/09 15:48:56 by mcatalan@st      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_FILES =		src/main.c					\
 				src/parsing/checker_utils.c	\
 				src/parsing/parsing_utils.c	\
 				src/parsing/map.c			\
+				src/parsing/map_utils.c		\
 
 
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
