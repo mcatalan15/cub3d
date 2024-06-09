@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/09 14:26:39 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/09 14:41:38 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,32 @@ bool	get_ppos(t_cube *cube, int pos_map)
 	return (false);
 }
 
+// // Función DFS para verificar que el mapa esté cerrado
+// int is_closed_dfs(t_cube *cube, int i, int j, int **visited)
+// {
+// 	// Verificar límites del mapa
+// 	if (i < 0 || i >= cube->map_h || j < 0 || j >= cube->map_w)
+// 		return 0; // Fuera de los límites (mapa abierto)
+// 	if (cube->map[i][j] == '1')
+// 		return 1; // Borde encontrado
+// 	if (cube->map[i][j] == ' ' || visited[i][j])
+// 		return 1; // Espacio o ya visitado
+
+// 	visited[i][j] = 1; // Marcar celda como visitada
+
+// 	// Recorrer las cuatro direcciones
+// 	int up = is_closed_dfs(cube, i - 1, j, visited);
+// 	int down = is_closed_dfs(cube, i + 1, j, visited);
+// 	int left = is_closed_dfs(cube, i, j - 1, visited);
+// 	int right = is_closed_dfs(cube, i, j + 1, visited);
+
+// 	return up && down && left && right;
+// }
 // Función DFS para verificar que el mapa esté cerrado
 int is_closed_dfs(t_cube *cube, int i, int j, int **visited)
 {
 	// Verificar límites del mapa
-	if (i < 0 || i >= cube->map_h || j < 0 || j >= cube->map_w)
+	if (i < 0 || i >= cube->map_h || j < 0 || j >= ft_strlen(cube->map[i]))
 		return 0; // Fuera de los límites (mapa abierto)
 	if (cube->map[i][j] == '1')
 		return 1; // Borde encontrado
@@ -102,13 +123,13 @@ int is_valid_map(t_cube *cube)
 	int **visited = (int **)malloc(cube->map_h * sizeof(int *));
 	for (int i = 0; i < cube->map_h; i++)
 	{
-		visited[i] = (int *)calloc(cube->map_w, sizeof(int));
+		visited[i] = (int *)calloc(strlen(cube->map[i]), sizeof(int));
 	}
 
 	int valid = 1;
 	for (int i = 0; i < cube->map_h && valid; i++)
 	{
-		for (int j = 0; j < cube->map_w && valid; j++)
+		for (int j = 0; j < ft_strlen(cube->map[i]) && valid; j++)
 		{
 			if (cube->map[i][j] != '1' && cube->map[i][j] != ' ' && !visited[i][j])
 			{
@@ -129,6 +150,39 @@ int is_valid_map(t_cube *cube)
 	return valid;
 }
 
+// // Verificar que el mapa esté cerrado por '1's
+// int is_valid_map(t_cube *cube)
+// {
+// 	int **visited = (int **)malloc(cube->map_h * sizeof(int *));
+// 	for (int i = 0; i < cube->map_h; i++)
+// 	{
+// 		visited[i] = (int *)calloc(cube->map_w, sizeof(int));
+// 	}
+
+// 	int valid = 1;
+// 	for (int i = 0; i < cube->map_h && valid; i++)
+// 	{
+// 		for (int j = 0; j < cube->map_w && valid; j++)
+// 		{
+// 			if (cube->map[i][j] != '1' && cube->map[i][j] != ' ' && !visited[i][j])
+// 			{
+// 				valid = is_closed_dfs(cube, i, j, visited);
+// 				if (!valid)
+// 					break;
+// 			}
+// 		}
+// 	}
+
+// 	// Liberar memoria
+// 	for (int i = 0; i < cube->map_h; i++)
+// 	{
+// 		free(visited[i]);
+// 	}
+// 	free(visited);
+
+// 	return valid;
+// }
+
 void	invalid_map(t_cube *cube)
 {
 	free_all(cube);
@@ -139,16 +193,10 @@ void	store_map(t_cube *cube, int pos_map)
 {
 	int	i;
 
-	i = pos_map + cube->map_h - 1;
-	while (i >= pos_map && is_empty_line(cube->file[i]))
-	{
-		cube->map_h--;
-		i--;
-	}
+	i = pos_map;
 	cube->map = (char **)malloc(sizeof(char *) * cube->map_h);
 	if (!cube->map)
 		generic_exit("Memory allocation failed.");
-	i = pos_map;
 	while (i < pos_map + cube->map_h)
 	{
 		cube->map[i - pos_map] = ft_strdup(cube->file[i]);
