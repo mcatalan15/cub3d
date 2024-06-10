@@ -6,11 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/06/09 15:59:17 by mcatalan@st      ###   ########.fr       */
-=======
-/*   Updated: 2024/06/10 12:45:40 by jpaul-kr         ###   ########.fr       */
->>>>>>> origin/Raycasting
+/*   Updated: 2024/06/10 13:11:26 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +18,9 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-<<<<<<< HEAD
 # include <stdbool.h>
 # include <string.h>
-=======
 # include <math.h>
->>>>>>> origin/Raycasting
 
 //our libs
 # include "./libft/libft.h"
