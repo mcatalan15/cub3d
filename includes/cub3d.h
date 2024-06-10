@@ -6,7 +6,11 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/09 15:59:17 by mcatalan@st      ###   ########.fr       */
+=======
+/*   Updated: 2024/06/10 12:45:40 by jpaul-kr         ###   ########.fr       */
+>>>>>>> origin/Raycasting
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +22,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+<<<<<<< HEAD
 # include <stdbool.h>
 # include <string.h>
+=======
+# include <math.h>
+>>>>>>> origin/Raycasting
 
 //our libs
 # include "./libft/libft.h"
@@ -33,6 +41,18 @@
 //init.c
 void	init(t_cube *cube);
 int		open_file(char *file, t_cube *cube);
+
+//movement.c
+void    my_pixel_put(t_img *img, int x, int y, int color);
+int     print_player(t_mlx_data *data, int x, int y);
+int     reset_buttons(int key, t_mlx_data *data);
+void    rotate(t_mlx_data *data);
+int     move(int key, t_mlx_data *data);
+int     my_loop(t_mlx_data *data);
+
+//parsing.c
+int		checker_file(char *file);
+int		parsing(t_cube *cube);
 
 //utils
 //prints.c

@@ -6,7 +6,11 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/07 11:40:44 by mcatalan@st      ###   ########.fr       */
+=======
+/*   Updated: 2024/06/10 12:40:44 by jpaul-kr         ###   ########.fr       */
+>>>>>>> origin/Raycasting
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +19,10 @@
 
 typedef struct s_cube		t_cube;
 typedef struct s_mlx_data	t_mlx_data;
+typedef struct s_img		t_img;
+typedef struct s_vec		t_vec;
+typedef struct s_player		t_player;
 // typedef struct s_map	t_map;
-
-// struct s_map
-// {
-// 	char **map;
-//
-// };
 
 struct	s_cube
 {
@@ -40,12 +41,38 @@ struct	s_cube
 	int		player_x; //player pos_x
 };
 
-struct	s_mlx_data
+struct s_img
 {
-	void	*mlx_ptr;
-	void	*mlx_win;
-	int		color;
+	void	*img;
+	char	*pixels;
+	int	bytes_per_p;
+	int	endian;
+	int	line_len;
 };
 
+struct s_vec
+{
+	float	x;
+	float	y;
+};
+
+struct s_player
+{
+	t_vec	pos;
+	t_vec	dir;
+	t_vec	plane;
+	float	uod;
+	float	lor;
+	float	angle;
+};
+
+struct	s_mlx_data
+{
+	void		*mlx;
+	void		*win;
+	int		color;
+	t_player	p;
+	t_img		img;
+};
 
 #endif

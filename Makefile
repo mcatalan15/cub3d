@@ -6,13 +6,22 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2024/06/10 12:13:27 by mcatalan@st      ###   ########.fr        #
+=======
+#    Updated: 2024/06/10 12:47:52 by jpaul-kr         ###   ########.fr        #
+>>>>>>> origin/Raycasting
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
+<<<<<<< HEAD
 CFLAGS = -Wall -Wextra -Werror
 GDBFLAG = -fsanitize=address -g
+=======
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+GDBFLAG = -g
+>>>>>>> origin/Raycasting
 
 # Colors
 RED = \033[0;31m
@@ -25,7 +34,8 @@ RESET = \033[0m
 SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_DIR = ./includes/libft
-MLX_DIR = ./includes/minilibx_macos
+#MLX_DIR = ./includes/minilibx_macos
+MLX_DIR = ./includes/minilibx_opengl/minilibx-linux
 
 # Source files and corresponding object files
 SRC_FILES =		src/main.c					\
@@ -41,7 +51,7 @@ SRC_FILES =		src/main.c					\
 				src/parsing/parsing_utils.c	\
 				src/parsing/map.c			\
 				src/parsing/map_utils.c		\
-
+				src/game/movement.c	\
 
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
@@ -49,7 +59,7 @@ OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 TARGET = cub3d
 
 # Libraries
-LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -g -framework OpenGL -framework AppKit
+LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz
 
 # Include directories
 INC_DIRS = -I$(LIBFT_DIR)/includes -I$(MLX_DIR) -I$(SRC_DIR)
@@ -60,12 +70,12 @@ all: subsystems $(TARGET)
 
 subsystems:
 	@make -s -C $(LIBFT_DIR)
-	@make -s -C $(MLX_DIR)
+	@make -C $(MLX_DIR)
 
 
 $(TARGET): $(OBJ_FILES)
-	@echo "$(GREEN)Bulding libs and objets...$(RESET)"
-	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ $(LIBS)
+	@echo "$(GREEN)Building libs and objects...$(RESET)"
+	$(CC) $(CFLAGS) $(GDBFLAG) $(INC_DIRS) $^ -o $@ -fPIE $(LIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)

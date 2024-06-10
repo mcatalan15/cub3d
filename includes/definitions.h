@@ -6,12 +6,17 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/27 13:03:28 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/10 13:00:34 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINITIONS_H
 # define DEFINITIONS_H
+
+// Params
+#define HEIGHT 2000
+#define LENGTH 3000
+#define PI	3.1416
 
 // Colors
 # define RED "\033[0;31m"

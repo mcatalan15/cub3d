@@ -6,9 +6,13 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:09:06 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2024/05/14 11:16:20 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/10 13:03:02 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifdef __linux__
+# define OPEN_MAX	FOPEN_MAX
+#endif
 
 #ifndef LIBFT_H
 # define LIBFT_H
