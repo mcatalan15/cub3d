@@ -6,22 +6,13 @@
 #    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2024/06/10 12:13:27 by mcatalan@st      ###   ########.fr        #
-=======
-#    Updated: 2024/06/10 12:47:52 by jpaul-kr         ###   ########.fr        #
->>>>>>> origin/Raycasting
+#    Updated: 2024/06/10 13:10:16 by jpaul-kr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-<<<<<<< HEAD
 CFLAGS = -Wall -Wextra -Werror
 GDBFLAG = -fsanitize=address -g
-=======
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
-GDBFLAG = -g
->>>>>>> origin/Raycasting
 
 # Colors
 RED = \033[0;31m
