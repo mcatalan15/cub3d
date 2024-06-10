@@ -6,7 +6,7 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/06/06 13:13:20 by jpaul-kr         ###   ########.fr        #
+#    Updated: 2024/06/10 12:47:52 by jpaul-kr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC_FILES =		src/main.c			\
 				src/parsing.c		\
 				src/utils/prints.c	\
 				src/utils/errors.c	\
-				
+				src/game/movement.c	\
 
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 

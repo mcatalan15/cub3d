@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/29 14:39:50 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:32:19 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define DEFINITIONS_H
 
 // Params
-#define HEIGHT 1000
-#define LENGTH 1500
+#define HEIGHT 2000
+#define LENGTH 3000
 #define PI	3.1416
 
 // Colors

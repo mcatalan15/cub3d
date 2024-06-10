@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/07 12:41:23 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:40:44 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ struct	s_cube
 	char	*s_text; //south path texture
 	char	*w_text; //west path texture
 	char	*e_text; //east path texture
-	int		f[3]; //floor color 0,0,0 -> 255,255,255
-	int		c[3]; //ceiling color 0,0,0 -> 255,255,255
-	int		pos; //flag start position
+	int	f[3]; //floor color 0,0,0 -> 255,255,255
+	int	c[3]; //ceiling color 0,0,0 -> 255,255,255
+	int	posX;	//flag start position
 };
 
 struct s_img
 {
 	void	*img;
 	char	*pixels;
-	int		bytes_per_p;
-	int		endian;
-	int		line_len;
+	int	bytes_per_p;
+	int	endian;
+	int	line_len;
 };
 
 struct s_vec
@@ -59,8 +59,8 @@ struct s_player
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
-	int	uod;
-	int	lor;
+	float	uod;
+	float	lor;
 	float	angle;
 };
 
@@ -68,7 +68,7 @@ struct	s_mlx_data
 {
 	void		*mlx;
 	void		*win;
-	int			color;
+	int		color;
 	t_player	p;
 	t_img		img;
 };
