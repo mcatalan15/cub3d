@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/09 16:07:45 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/10 11:59:19 by mcatalan@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_closed_dfs(t_cube *cube, int i, int j, int **visited)
 	int	right;
 
 	// Verificar límites del mapa
-	if (i < 0 || i >= cube->map_h || j < 0 || j >= cube->map_w)
+	if (i < 0 || i >= cube->map_h || j < 0 || j >= ft_strlen(cube->map[i]))
 		return (0); // Fuera de los límites (mapa abierto)
 	if (cube->map[i][j] == '1')
 		return (1); // Borde encontrado
