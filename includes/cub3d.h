@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:11:26 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:05:34 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 //init.c
 void	init(t_cube *cube);
 int		open_file(char *file, t_cube *cube);
+
+//game
+//game.c
+void	game(t_mlx_data *data);
 
 //movement.c
 void    my_pixel_put(t_img *img, int x, int y, int color);

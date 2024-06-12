@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:20:10 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:03:41 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	cub3d(char *str)
 	init(&cube);
 	open_file(str, &cube);
 	parsing(&cube);
+	game(&data);
 	free_all(&cube);
+	/*
 	data.color = 0x00FF00;
 	data.p.pos.x = 500;
 	data.p.pos.y = 500;
@@ -47,7 +49,7 @@ int	cub3d(char *str)
 	mlx_loop_hook(data.mlx, my_loop, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_window(data.mlx, data.win);
-	free(data.mlx);
+	free(data.mlx);*/
 	return (0);
 }
 
