@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+         #
+#    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/06/10 13:10:16 by jpaul-kr         ###   ########.fr        #
+#    Updated: 2024/06/12 12:23:21 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-GDBFLAG = -fsanitize=address -g
+GDBFLAG = -g
+# GDBFLAG = -fsanitize=address -g
 
 # Colors
 RED = \033[0;31m
@@ -25,7 +26,7 @@ RESET = \033[0m
 SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_DIR = ./includes/libft
-#MLX_DIR = ./includes/minilibx_macos
+# MLX_DIR = ./includes/minilibx_macos
 MLX_DIR = ./includes/minilibx_opengl/minilibx-linux
 
 # Source files and corresponding object files
@@ -42,7 +43,7 @@ SRC_FILES =		src/main.c					\
 				src/parsing/parsing_utils.c	\
 				src/parsing/map.c			\
 				src/parsing/map_utils.c		\
-				src/game/movement.c	\
+				src/game/movement.c			\
 
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
