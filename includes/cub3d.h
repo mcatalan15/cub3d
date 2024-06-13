@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:11:26 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:22:59 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@
 void	init(t_cube *cube);
 int		open_file(char *file, t_cube *cube);
 
+//game
+//game.c
+void	game(t_mlx_data *data, t_cube *cube);
 //movement.c
 void    my_pixel_put(t_img *img, int x, int y, int color);
 int     print_player(t_mlx_data *data, int x, int y);
