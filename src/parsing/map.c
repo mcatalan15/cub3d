@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 11:59:19 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/12 12:23:46 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,28 @@ int	is_valid_map(t_cube *cube)
 void	store_map(t_cube *cube, int pos_map)
 {
 	int	i;
+	int	j;
 
-	i = pos_map;
-	cube->map = (char **)malloc(sizeof(char *) * cube->map_h);
+	j = 0;
+	i = pos_map - 1;
+	cube->map = malloc(sizeof(char *) * (cube->map_h + 1));
 	if (!cube->map)
-		generic_exit("Memory allocation failed.");
-	while (i < pos_map + cube->map_h)
+		generic_exit("Memory allocation failed."); //erro malloc
+	while ((++i - pos_map) < cube->map_h)
 	{
-		cube->map[i - pos_map] = ft_strdup(cube->file[i]);
+		printf("str; %s\ti: %d\n", cube->file[i] ,i);
+		j = -1;
+		cube->map[i - pos_map] = malloc(sizeof(char) * (cube->map_w + 1));
 		if (!cube->map[i - pos_map])
+			generic_exit("Memory allocation failed."); //erro malloc
+		while (++j < cube->map_w)
 		{
-			generic_exit("Memory allocation failed.");
+			if (cube->file[i][j])
+				cube->map[i - pos_map][j] = cube->file[i][j];
+			else
+				cube->map[i - pos_map][j] = ' ';
 		}
-		i++;
+		cube->map[i - pos_map][j] = '\0';
 	}
 	cube->map[i - pos_map] = NULL;
 }
@@ -118,9 +127,8 @@ void	map_parsing(t_cube *cube, int pos_map)
 		generic_exit("Check player on map. Not found or more than one.");
 	get_map_limits(cube, pos_map);
 	store_map(cube, pos_map);
-	if (!is_valid_map(cube))
-		invalid_map(cube);
+	// if (!is_valid_map(cube))
+	// 	invalid_map(cube);
 	// check_playable(cube);
 	print_struct(cube);
-	printf("valid map\n");
 }

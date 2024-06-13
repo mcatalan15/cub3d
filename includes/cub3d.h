@@ -38,6 +38,7 @@ int		open_file(char *file, t_cube *cube);
 //game
 //game.c
 void	game(t_mlx_data *data, t_cube *cube);
+
 //movement.c
 void    my_pixel_put(t_img *img, int x, int y, int color);
 int     print_player(t_mlx_data *data, int x, int y);

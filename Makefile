@@ -12,7 +12,8 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-GDBFLAG = -fsanitize=address -g
+GDBFLAG = -g
+# GDBFLAG = -fsanitize=address -g
 
 # Colors
 RED = \033[0;31m
@@ -25,8 +26,8 @@ RESET = \033[0m
 SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_DIR = ./includes/libft
-#MLX_DIR = ./includes/minilibx_macos
-MLX_DIR = ./includes/minilibx_opengl/minilibx-linux
+# MLX_DIR = ./includes/minilibx_macos
+MLX_DIR = ./includes/minilibx-linux
 
 # Source files and corresponding object files
 SRC_FILES =		src/main.c					\
