@@ -24,7 +24,7 @@ int	cub3d(char *str)
 	}
 	init(&cube);
 	open_file(str, &cube);
-	parsing(&cube);
+//	parsing(&cube);
 	free_all(&cube);
 	data.color = 0x00FF00;
 	data.p.pos.x = 500;
