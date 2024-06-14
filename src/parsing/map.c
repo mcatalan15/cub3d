@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/12 12:23:46 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:14:01 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	store_map(t_cube *cube, int pos_map)
 		generic_exit("Memory allocation failed."); //erro malloc
 	while ((++i - pos_map) < cube->map_h)
 	{
-		printf("str; %s\ti: %d\n", cube->file[i] ,i);
+		// printf("str; %s\ti: %d\n", cube->file[i] ,i);
 		j = -1;
 		cube->map[i - pos_map] = malloc(sizeof(char) * (cube->map_w + 1));
 		if (!cube->map[i - pos_map])
@@ -130,5 +130,5 @@ void	map_parsing(t_cube *cube, int pos_map)
 	// if (!is_valid_map(cube))
 	// 	invalid_map(cube);
 	// check_playable(cube);
-	print_struct(cube);
+	// print_struct(cube);
 }

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/13 18:35:31 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:44:57 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	cub3d(char *str)
 	}
 	init(&cube);
 	open_file(str, &cube);
-	// parsing(&cube);
+	parsing(&cube);
 	game(&data, &cube);
 	free_all(&cube);
 	return (0);
