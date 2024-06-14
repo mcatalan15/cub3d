@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/12 11:18:57 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:57:49 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_dp(char **file)
 
 	i = -1;
 	while (file[++i])
-		printf("%s\n", file[i]);
+		printf("%s", file[i]);
 	printf("\n");
 }
 
