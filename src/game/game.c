@@ -6,7 +6,7 @@
 /*   By: jpaul-kr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/13 18:32:43 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:19:29 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void game(t_mlx_data *data, t_cube *cube)
 {
-    (void)cube;
+    print_struct(cube);
     data->color = 0x00FF00;
     data->p.pos.x = 500;
     data->p.pos.y = 500;
