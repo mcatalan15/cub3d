@@ -6,7 +6,7 @@
 /*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:14:58 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:21:20 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ struct s_player
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
-	float	uod;
-	float	lor;
+	t_vec	move;
 	float	angle;
 };
 

@@ -6,7 +6,7 @@
 /*   By: jpaul-kr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/14 15:28:19 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:23:21 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/cub3d.h"
@@ -91,8 +91,8 @@ void	game(t_mlx_data *data, t_cube *cube)
 	//print_struct(cube);
 	data->color = 0x00FF00;
 	
-	data->p.uod = 0;
-	data->p.lor = 0;
+	data->p.move.x = 0;
+	data->p.move.y = 0;
 	data->p.angle = 0;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, LENGTH, HEIGHT, "juan");
