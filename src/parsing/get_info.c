@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:55:48 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 12:05:07 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:50:43 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,62 +27,36 @@ char	*clean_line(char *line, int i)
 	return (str);
 }
 
-void	extract_num(char *line, int pos_i, char *num_s)
+void	parse_number(char *line, int *pos_i, char *num_s)
 {
 	int	x;
 
 	x = 0;
-	while (line[pos_i] && ft_isspace(line[pos_i]))
-		pos_i++;
-	while (ft_isnum(line[pos_i]) && line[pos_i] && x < 3)
+	*pos_i = update_pos_i(line, *pos_i, 0);
+	while (ft_isnum(line[*pos_i]) && line[*pos_i] && x < 3)
 	{
-		num_s[x] = line[pos_i];
-		pos_i++;
+		num_s[x] = line[*pos_i];
+		(*pos_i)++;
 		x++;
 	}
-	if (line[pos_i] == ',')
-		pos_i++;
 	num_s[x] = '\0';
+	*pos_i = update_pos_i(line, *pos_i, 2);
 }
 
 void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 {
 	char	*num_s;
 	int		i;
-	int		x;
 
-	num_s = NULL;
 	num_s = malloc(sizeof(char) * 4);
 	if (!num_s)
 		malloc_err(1);
 	i = 0;
-	x = 0;
-	pos_i = pos_i + 1;
-	while (line[pos_i])
-	{
-		if (ft_isspace(line[pos_i]))
-			pos_i++;
-		else
-			break ;
-	}
+	pos_i = update_pos_i(line, pos_i + 1, 1);
 	while (i < 3)
 	{
-		x = 0;
-		while (line[pos_i] && ft_isspace(line[pos_i]))
-			pos_i++;
-		while (ft_isnum(line[pos_i]) && line[pos_i] && x < 3)
-		{
-			num_s[x] = line[pos_i];
-			pos_i++;
-			x++;
-		}
-		if (line[pos_i] == ',')
-			pos_i++;
-		num_s[x] = '\0';
-		if (flag == 'c')
-			cube->f[i] = ft_atoi(num_s);
-		else
-			cube->c[i] = ft_atoi(num_s);
+		parse_number(line, &pos_i, num_s);
+		flags(cube, flag, i, num_s);
 		i++;
 	}
 	free(num_s);

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 12:51:39 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:50:05 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ int		checker_map_extension(char *path);
 
 //checker_utils.c
 int		check_is_xpm_2(char *path);
+int		update_pos_i(char *line, int pos_i, int flag);
+void	extract_num(char *line, int pos_i, char *num_s);
+void	flags(t_cube *cube, char flag, int i, char *num_s);
 
 //parsing_utils.c
 void	skip_sapaces(char *line, int *pos_i);
