@@ -13,8 +13,8 @@
 
 void	add_player(t_mlx_data *data, int x, int y, char flag)
 {	
-	data->p.pos.x = x + 15;
-	data->p.pos.y = y + 15;
+	data->p.pos.x = x + BLOCK / 2;
+	data->p.pos.y = y + BLOCK / 2;
 	if (flag == 'N')
 	{
 		data->p.dir.y = 0;
@@ -51,10 +51,10 @@ void	print_block(t_mlx_data *data, int x, int y)
 	int	j;
 
 	i = -1;
-	while (++i < 30)
+	while (++i < BLOCK)
 	{
 		j = -1;
-		while (++j < 30)
+		while (++j < BLOCK)
 			my_pixel_put(&data->img, j + y, i + x, 0xffffff);
 	}
 }
@@ -76,12 +76,12 @@ void	print_map(t_mlx_data *data, t_cube *cube)
 		{
 			if (cube->map[i][j] == '1')
 				print_block(data, x, y);
-			else if (cube->map[i][j] == 'N' || cube->map[i][j] == 'S'
+			else if (cube->map[i][j] == 'N' || cube->map[i][j] == 'S'\
 					|| cube->map[i][j] == 'E' || cube->map[i][j] == 'W')
 				add_player(data, x, y, cube->map[i][j]);
-			y += 30;
+			y += BLOCK;
 		}
-		x += 30;
+		x += BLOCK;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }
@@ -90,13 +90,13 @@ void	game(t_mlx_data *data, t_cube *cube)
 {
 	//print_struct(cube);
 	data->color = 0x00FF00;
-	
 	data->p.move.x = 0;
 	data->p.move.y = 0;
+	data->p.wasd = 0;
 	data->p.angle = 0;
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, LENGTH, HEIGHT, "juan");
-	data->img.img = mlx_new_image(data->mlx, LENGTH, HEIGHT);
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "juan");
+	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img.pixels = mlx_get_data_addr(data->img.img,
 			&(data->img.bytes_per_p), &(data->img.line_len), &(data->img.endian));
 	data->img.bytes_per_p /= 8;

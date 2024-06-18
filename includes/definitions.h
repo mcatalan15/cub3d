@@ -15,8 +15,8 @@
 
 // Params
 #define HEIGHT 2000
-#define LENGTH 3000
-#define PI	3.1416
+#define WIDTH 3000
+#define BLOCK 50
 
 // Colors
 # define RED "\033[0;31m"
@@ -27,6 +27,15 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 # define RST "\033[0m"
+
+//Keys
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define ESC_KEY 65307
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
 
 //
 # define FAILURE 1

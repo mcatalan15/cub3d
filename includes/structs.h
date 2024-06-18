@@ -48,8 +48,8 @@ struct s_img
 
 struct s_vec
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 };
 
 struct s_player
@@ -58,7 +58,13 @@ struct s_player
 	t_vec	dir;
 	t_vec	plane;
 	t_vec	move;
-	float	angle;
+	double	angle;
+	double	angle_dir;
+	int	wasd;
+	t_vec	map;
+	double	camerax;
+	t_vec	sidedist;
+	t_vec	deltadist;
 };
 
 struct	s_mlx_data
