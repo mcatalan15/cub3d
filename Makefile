@@ -6,14 +6,14 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/06/15 11:49:01 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/06/18 19:33:01 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-GDBFLAG = -g
-# GDBFLAG = -fsanitize=address -g
+# GDBFLAG = -g
+GDBFLAG = -fsanitize=address -g
 
 # Colors
 RED = \033[0;31m
