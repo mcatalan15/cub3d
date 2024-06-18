@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/15 18:13:30 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:10:42 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		parsing(t_cube *cube);
 void	usage(void);
 void	print_struct(t_cube *cube);
 void	print_dp(char **file);
+void	print_dp_no_enter(char **file);
 
 //errors.c
 void	malloc_err(int num);

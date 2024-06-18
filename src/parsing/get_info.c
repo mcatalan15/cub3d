@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:55:48 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/31 12:25:59 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/17 22:07:51 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,6 @@ void	extract_num(char *line, int pos_i, char *num_s)
 		pos_i++;
 	num_s[x] = '\0';
 }
-
-// int	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
-// {
-// 	char	*num_s;
-// 	int		i;
-
-// 	num_s = NULL;
-// 	num_s = malloc(sizeof(char) * 4);
-// 	if (!num_s)
-// 		malloc_err(1);
-// 	i = 0;
-// 	pos_i = pos_i + 1;
-// 	skip_sapaces(line, &pos_i);
-// 	while (i < 3)
-// 	{
-// 		extract_num(line, pos_i, num_s);
-// 		store_c_f_value(cube, num_s, i, flag);
-// 		i++;
-// 	}
-// 	free(num_s);
-// 	return (0);
-// }
 
 void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 {
