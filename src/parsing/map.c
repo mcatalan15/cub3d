@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 12:48:30 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:41:28 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,6 @@ bool	check_ones(char *str)
 		return (false);
 	return (true);
 }
-
-// int	checker_0(t_cube *cube, int i, int j)
-// {
-// 	if (cube->map[i][j + 1] == ' ')
-// 		return (1);
-// 	else if (cube->map[i][j - 1] == ' ')
-// 		return (1);
-// 	else if (cube->map[i + 1][j] == ' ')
-// 		return (1);
-// 	else if (cube->map[i - 1][j] == ' ')
-// 		return (1);
-// 	else if (j == (cube->map_w - 1) || j == 0)
-// 		return (1);
-// 	return (0);
-// }
 
 bool	is_valid_map(t_cube *cube)
 {

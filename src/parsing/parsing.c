@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 16:42:03 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:39:19 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,20 @@ char	*ft_strdup_fill_1(const char *s1, int width)
 	char	*str;
 
 	i = 0;
-	str = (char *)malloc(sizeof(char) * (width + 1));
+	str = malloc(sizeof(char) * (width + 1));
 	if (!str)
 		malloc_err(1);
-	while (i < width)
+	while (i < width && s1[i])
 	{
 		if (s1[i] != '1' && s1[i] != '0')
 			str[i] = '1';
 		else
 			str[i] = s1[i];
+		i++;
+	}
+	while (i < width)
+	{
+		str[i] = '1';
 		i++;
 	}
 	str[i] = '\0';
