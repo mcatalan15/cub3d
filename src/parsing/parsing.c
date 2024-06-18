@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 11:12:09 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:41:36 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ char	*ft_strdup_fill_1(const char *s1, int width)
 
 	i = 0;
 	str = (char *)malloc(sizeof(char) * (width + 1));
-	if (str == NULL)
-		return (NULL);
+	if (!str)
+		malloc_err(1);
 	while (i < width)
 	{
 		if (s1[i] != '1' && s1[i] != '0')
@@ -57,7 +57,7 @@ char	*ft_strdup_fill_1(const char *s1, int width)
 			str[i] = s1[i];
 		i++;
 	}
-	str[i + 1] = '\0';
+	str[i] = '\0';
 	return (str);
 }
 
@@ -70,14 +70,14 @@ void	copy_map(t_cube *cube)
 	map_cpy = NULL;
 	map_cpy = malloc(sizeof(char *) * (cube->map_h + 1));
 	if (!map_cpy)
-		generic_exit("Error malloc");
+		malloc_err(1);
 	while (cube->map[++i])
 	{
 		map_cpy[i] = ft_strdup_fill_1(cube->map[i], cube->map_w);
 		if (!map_cpy[i])
 		{
 			free(map_cpy);
-			generic_exit("Error malloc");
+			malloc_err(1);
 		}
 	}
 	map_cpy[i] = NULL;

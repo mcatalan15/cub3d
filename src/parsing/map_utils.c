@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 15:41:30 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2024/06/09 15:48:50 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/18 12:46:44 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ bool	get_ppos(t_cube *cube, int pos_map)
 void	invalid_map(t_cube *cube)
 {
 	free_all(cube);
-	generic_exit("Invalid map.");
+	generic_exit(MAP_ERR);
 }

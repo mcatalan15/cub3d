@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 12:20:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 10:14:23 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:48:30 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,16 @@ void	store_map(t_cube *cube, int pos_map)
 	i = -1;
 	cube->map = malloc(sizeof(char *) * (cube->map_h + 1));
 	if (!cube->map)
-		generic_exit("Error malloc"); //erro malloc
+		malloc_err(1);
 	while (++i < cube->map_h)
 	{
 		cube->map[i] = ft_strdup(cube->file[i + pos_map]);
 		if (!cube->map[i])
 		{
 			free(cube->map);
-			generic_exit("Error malloc"); //error malloc		
+			malloc_err(1);
 		}
 	}
-	
 	cube->map[i] = NULL;
 }
 
@@ -68,21 +67,20 @@ bool	check_ones(char *str)
 	return (true);
 }
 
-int	checker_0(t_cube *cube, int i, int j)
-{
-
-	if (cube->map[i][j + 1] == ' ')
-		return (1);
-	else if (cube->map[i][j - 1] == ' ')
-		return (1);
-	else if (cube->map[i + 1][j] == ' ')
-		return (1);
-	else if (cube->map[i - 1][j] == ' ')
-		return (1);
-	else if (j == (cube->map_w - 1) || j == 0)
-		return (1);
-	return (0);
-}
+// int	checker_0(t_cube *cube, int i, int j)
+// {
+// 	if (cube->map[i][j + 1] == ' ')
+// 		return (1);
+// 	else if (cube->map[i][j - 1] == ' ')
+// 		return (1);
+// 	else if (cube->map[i + 1][j] == ' ')
+// 		return (1);
+// 	else if (cube->map[i - 1][j] == ' ')
+// 		return (1);
+// 	else if (j == (cube->map_w - 1) || j == 0)
+// 		return (1);
+// 	return (0);
+// }
 
 bool	is_valid_map(t_cube *cube)
 {
@@ -92,7 +90,7 @@ bool	is_valid_map(t_cube *cube)
 	i = 0;
 	j = 0;
 	if (!check_ones(cube->map[0]) || !check_ones(cube->map[cube->map_h - 1]))
-		generic_exit("Error map"); //check errors
+		generic_exit(MAP_ERR);
 	while (++i < (cube->map_h - 1))
 	{
 		j = 0;
@@ -101,7 +99,7 @@ bool	is_valid_map(t_cube *cube)
 			if (cube->map[i][j] == '0')
 			{
 				if (checker_0(cube, i, j) == 1)
-					generic_exit("map invalid"); // check errors
+					generic_exit(MAP_ERR);
 				j++;
 			}
 			else
@@ -115,7 +113,7 @@ void	map_parsing(t_cube *cube, int pos_map)
 {
 	pos_map = find_map_start(cube->file, pos_map);
 	if (!get_ppos(cube, pos_map))
-		generic_exit("Check player on map. Not found or more than one."); //check error
+		generic_exit("Check player on map. Not found or more than one.");
 	get_map_limits(cube, pos_map);
 	store_map(cube, pos_map);
 	if (!is_valid_map(cube))

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 11:10:42 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:51:39 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,11 @@ int		parsing(t_cube *cube);
 //get_info.c
 int		get_info(t_cube *cube);
 
-//checker.c
+//checker_map.c
 int		checker_map_extension(char *file);
+int		checker_0(t_cube *cube, int i, int j);
+
+//checker.c
 int		checker_vals(t_cube *cube);
 int		checker_map_extension(char *path);
 

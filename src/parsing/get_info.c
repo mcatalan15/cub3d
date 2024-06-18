@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:55:48 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/17 22:07:51 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:05:07 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 	num_s = NULL;
 	num_s = malloc(sizeof(char) * 4);
 	if (!num_s)
-		exit(1); // malloc error
+		malloc_err(1);
 	i = 0;
 	x = 0;
 	pos_i = pos_i + 1;

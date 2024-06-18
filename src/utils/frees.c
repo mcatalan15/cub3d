@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frees.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 10:00:50 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2024/06/09 15:56:37 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/18 11:27:11 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	free_dp_int(int **dp)
 int	free_all(t_cube *cube)
 {
 	free_dp(cube->file);
-	// free_dp(cube->map);
+	free_dp(cube->map);
 	free(cube->n_text);
 	free(cube->s_text);
 	free(cube->e_text);
