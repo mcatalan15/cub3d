@@ -12,8 +12,8 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-# GDBFLAG = -g
-GDBFLAG = -fsanitize=address -g
+GDBFLAG = -g
+# GDBFLAG = -fsanitize=address -g
 
 # Colors
 RED = \033[0;31m
