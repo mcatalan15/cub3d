@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:22:31 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/05/31 12:25:35 by mcatalan@st      ###   ########.fr       */
+/*   Updated: 2024/06/18 12:07:40 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*allocate_substring(char *line, int s, int f)
 	x = 0;
 	str = malloc(sizeof(char) * (f - s + 1));
 	if (!str)
-		return (NULL);
+		malloc_err(1);
 	while (line[s] && f > s)
 	{
 		str[x] = line[s];

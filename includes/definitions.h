@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:00:34 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:46:32 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@
 //
 # define FAILURE 1
 # define SUCCESS 0
-
+# define MAP_ERR "Map not invalid."
 #endif

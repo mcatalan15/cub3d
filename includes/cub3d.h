@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/13 18:22:59 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:50:05 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		parsing(t_cube *cube);
 void	usage(void);
 void	print_struct(t_cube *cube);
 void	print_dp(char **file);
+void	print_dp_no_enter(char **file);
 
 //errors.c
 void	malloc_err(int num);
@@ -73,13 +74,19 @@ int		parsing(t_cube *cube);
 //get_info.c
 int		get_info(t_cube *cube);
 
-//checker.c
+//checker_map.c
 int		checker_map_extension(char *file);
+int		checker_0(t_cube *cube, int i, int j);
+
+//checker.c
 int		checker_vals(t_cube *cube);
 int		checker_map_extension(char *path);
 
 //checker_utils.c
 int		check_is_xpm_2(char *path);
+int		update_pos_i(char *line, int pos_i, int flag);
+void	extract_num(char *line, int pos_i, char *num_s);
+void	flags(t_cube *cube, char flag, int i, char *num_s);
 
 //parsing_utils.c
 void	skip_sapaces(char *line, int *pos_i);
