@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/14 13:22:03 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:09:43 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	usage(void)
 }
 
 void	print_dp(char **file)
+{
+	int	i;
+
+	i = -1;
+	while (file[++i])
+		printf("%s", file[i]);
+	printf("\n");
+}
+
+void	print_dp_no_enter(char **file)
 {
 	int	i;
 

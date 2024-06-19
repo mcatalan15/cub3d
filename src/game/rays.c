@@ -16,7 +16,7 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 {
 	double	x;
 	
-	x = 
+	x = 0;
 }
 
 void	create_rays(t_mlx_data *data, t_cube *cube)
