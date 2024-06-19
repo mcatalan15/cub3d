@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 13:09:54 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:58:41 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 {
-	double	x;
-	
-	x = 0;
+	float	atan;
+
+	atan = -1/tan(data->p.angle);
 }
 
 void	create_rays(t_mlx_data *data, t_cube *cube)

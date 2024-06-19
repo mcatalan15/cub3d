@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 10:05:17 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:18:14 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,5 @@ int	parsing(t_cube *cube)
 	map_parsing(cube, pos_map);
 	checker_map(cube);
 	copy_map(cube);
-	print_struct(cube);
 	return (0);
 }

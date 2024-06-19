@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 12:34:26 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:36:46 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ struct s_vec
 struct s_player
 {
 	t_vec	pos;
+	t_vec	old_pos;
 	t_vec	dir;
 	t_vec	plane;
 	t_vec	move;
