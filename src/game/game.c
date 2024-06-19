@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul-kr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/17 16:23:21 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:50:50 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	add_player(t_mlx_data *data, int x, int y, char flag)
-{	
+{
 	data->p.pos.x = x + BLOCK / 2;
 	data->p.pos.y = y + BLOCK / 2;
 	if (flag == 'N')
@@ -23,21 +24,21 @@ void	add_player(t_mlx_data *data, int x, int y, char flag)
 		data->p.plane.y = 40;
 	}
 	else if (flag == 'S')
-	{	
+	{
 		data->p.dir.y = 0;
 		data->p.dir.x = 40;
 		data->p.plane.x = 0;
 		data->p.plane.y = -40;
 	}
 	else if (flag == 'E')
-	{	
+	{
 		data->p.dir.y = 40;
 		data->p.dir.x = 0;
 		data->p.plane.x = -40;
 		data->p.plane.y = 0;
 	}
 	else if (flag == 'W')
-	{	
+	{
 		data->p.dir.y = -40;
 		data->p.dir.x = 0;
 		data->p.plane.x = 40;
