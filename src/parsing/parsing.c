@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 20:39:19 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:05:17 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ void	checker_map(t_cube *cube)
 	}
 }
 
+bool	ft_pos(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (true);
+	else
+		return (false);
+}
+
 char	*ft_strdup_fill_1(const char *s1, int width)
 {
 	int		i;
@@ -51,8 +59,10 @@ char	*ft_strdup_fill_1(const char *s1, int width)
 		malloc_err(1);
 	while (i < width && s1[i])
 	{
-		if (s1[i] != '1' && s1[i] != '0')
+		if ((s1[i] != '1' && s1[i] != '0') && ft_pos(s1[i]) == false)
 			str[i] = '1';
+		else if (ft_pos(s1[i]) == true)
+			str[i] = '0';
 		else
 			str[i] = s1[i];
 		i++;
