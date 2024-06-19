@@ -6,11 +6,11 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 14:05:29 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/19 13:09:54 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-jpu-krjpu-kr.f>      9jpu-krjpu-krjpu-kr.f>      6jpu-krjpu-krjpu-kr.f>   
+#include "../../includes/cub3d.h"
 
 void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 {

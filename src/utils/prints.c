@@ -44,8 +44,13 @@ void	print_struct(t_cube *cube)
 	i = -1;
 	printf(YLW"FILE\n");
 	print_dp(cube->file);
-	printf("MAP\n");
-	print_dp_no_enter(cube->map);
+	if (cube->map)
+	{
+		printf("MAP\n");
+		print_dp(cube->map);
+	}
+	else
+		printf("NO map\n ");
 	printf("n_text: %s\n", cube->n_text);
 	printf("s_text: %s\n", cube->s_text);
 	printf("w_text: %s\n", cube->w_text);

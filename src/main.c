@@ -25,7 +25,7 @@ int	cub3d(char *str)
 	init(&cube);
 	open_file(str, &cube);
 	parsing(&cube);
-	// game(&data, &cube);
+	game(&data, &cube);
 	free_all(&cube);
 	return (0);
 }

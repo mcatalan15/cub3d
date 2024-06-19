@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:14:58 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:34:26 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ struct s_img
 {
 	void	*img;
 	char	*pixels;
-	int	bytes_per_p;
-	int	endian;
-	int	line_len;
+	int		bytes_per_p;
+	int		endian;
+	int		line_len;
 };
 
 struct s_vec
 {
-	float	x;
-	float	y;
+	double	x;
+	double	y;
 };
 
 struct s_player
@@ -57,9 +57,14 @@ struct s_player
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
-	float	uod;
-	float	lor;
-	float	angle;
+	t_vec	move;
+	double	angle;
+	double	angle_dir;
+	int		wasd;
+	t_vec	map;
+	double	camerax;
+	t_vec	sidedist;
+	t_vec	deltadist;
 };
 
 struct	s_mlx_data
