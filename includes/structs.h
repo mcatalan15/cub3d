@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 15:36:46 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:32:51 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ struct	s_cube
 
 struct s_img
 {
-	void	*img;
+	void	*ptr;
 	char	*pixels;
 	int		bytes_per_p;
 	int		endian;

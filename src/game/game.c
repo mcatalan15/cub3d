@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/19 15:38:02 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:33:11 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	add_player(t_mlx_data *data, t_cube *cube)
 	data->p.pos.y = (cube->player_y * BLOCK + 100) + BLOCK / 2;
 	data->p.old_pos.x = data->p.pos.x;
 	data->p.old_pos.y = data->p.pos.y;
+	data->p.angle =  3 * M_PI / 2;
 	if (cube->pos == 1)
 	{
 		data->p.dir.y = 0;
@@ -84,27 +85,27 @@ void	print_map(t_mlx_data *data, t_cube *cube)
 		}
 		x += BLOCK;
 	}
-	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
+	printf("posx: %d, posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
 }
 
 void	game(t_mlx_data *data, t_cube *cube)
 {
 	data->color = 0x00FF00;
-	data->p.move.x = 0;
-	data->p.move.y = 0;
+	// data->p.move.x = 0;
+	// data->p.move.y = 0;
 	data->p.wasd = 0;
 	data->p.angle = 0;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
-	data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->img.pixels = mlx_get_data_addr(data->img.img,
+	data->img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->img.pixels = mlx_get_data_addr(data->img.ptr,
 			&(data->img.bytes_per_p), &(data->img.line_len),
 			&(data->img.endian));
 	data->img.bytes_per_p /= 8;
 	print_map(data, cube);
 	//printf("posx: %d  posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
-	mlx_hook(data->win, 3, 1L<<1, reset_buttons, data);
-	mlx_hook(data->win, 2, 1L<<0, move, data);
+	// mlx_hook(data->win, 3, 1L<<1, reset_buttons, data);
+	// mlx_hook(data->win, 2, 1L<<0, move, data);
 	mlx_loop_hook(data->mlx, my_loop, data);
 	mlx_loop(data->mlx);
 	mlx_destroy_window(data->mlx, data->win);
