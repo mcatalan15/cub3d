@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:37:36 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/21 13:02:29 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:31:16 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int	move(int key, t_mlx_data *data)
 		exit(0);
 	if (key == LEFT_KEY)
 	{
+		print_palo(data, 0);
 		my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y), (int)(data->p.pos.x + data->p.dir.x), 0x000000);
 		data->p.angle += angle;
 		rotate_vector(data, angle);
@@ -157,6 +158,7 @@ int	move(int key, t_mlx_data *data)
 	}
 	if (key == RIGHT_KEY)
 	{
+		print_palo(data, 0);
 		my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y), (int)(data->p.pos.x + data->p.dir.x), 0x000000);
 		data->p.angle -= angle;
 		rotate_vector(data, -angle);
@@ -202,7 +204,7 @@ int	my_loop(t_mlx_data *data)
 	// printf("posx: %d, posy: %d\n", (int)data->p.dir.x, (int)data->p.dir.y);
 	remove_player(data);
 	print_player(data, data->p.pos.x, data->p.pos.y);
-	//print_palo(data, 0xff0000);
+	print_palo(data, 0xff0000);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	return (0);
 }

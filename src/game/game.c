@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/21 13:11:46 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:43:54 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	print_map(t_mlx_data *data, t_cube *cube)
 		}
 		x += BLOCK;
 	}
-	printf("posx: %d, posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
+	//printf("posx: %d, posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
 }
 
 void	game(t_mlx_data *data, t_cube *cube)
@@ -111,3 +111,27 @@ void	game(t_mlx_data *data, t_cube *cube)
 	mlx_destroy_window(data->mlx, data->win);
 	free(data->mlx);
 }
+
+/*
+	STEPS:
+	1. Game 2D------------
+		1.1 Print map-----OK
+		1.2 Print player--OK
+		1.3 Rotate player---OK
+		1.4 Move player (with direction)-----
+		1.5 Print Rays (FOV)-----
+			1.5.1 Print one ray-----
+			1.5.2 Print ray with vertical colision-----
+			1.5.3 Print ray with horizontal coliision-----
+			1.5.4 Print rays in FOV-----
+	2. Game 3D-----
+		2.1 Raycasting-----
+		2.2 Print 3D walls-----
+		2.3 Print floor & ceiling-----
+		2.4 Print sprites & textures-----
+	3. Correct & test-----
+		3.1 Correct leaks-----
+		3.2 Test Norminette-----
+		3.3 Change textures-----
+		3.4 Change sprites------
+*/
