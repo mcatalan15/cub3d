@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/20 13:33:11 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:11:46 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_player(t_mlx_data *data, t_cube *cube)
 	data->p.pos.y = (cube->player_y * BLOCK + 100) + BLOCK / 2;
 	data->p.old_pos.x = data->p.pos.x;
 	data->p.old_pos.y = data->p.pos.y;
-	data->p.angle =  3 * M_PI / 2;
+	//data->p.angle =  3 * M_PI / 2;
 	if (cube->pos == 1)
 	{
 		data->p.dir.y = 0;
@@ -105,7 +105,7 @@ void	game(t_mlx_data *data, t_cube *cube)
 	print_map(data, cube);
 	//printf("posx: %d  posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
 	// mlx_hook(data->win, 3, 1L<<1, reset_buttons, data);
-	// mlx_hook(data->win, 2, 1L<<0, move, data);
+	mlx_hook(data->win, 2, 1L<<0, move, data);
 	mlx_loop_hook(data->mlx, my_loop, data);
 	mlx_loop(data->mlx);
 	mlx_destroy_window(data->mlx, data->win);
