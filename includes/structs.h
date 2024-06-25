@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/20 13:32:51 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:43:10 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct s_mlx_data	t_mlx_data;
 typedef struct s_img		t_img;
 typedef struct s_vec		t_vec;
 typedef struct s_player		t_player;
+typedef struct s_ray		t_ray;
 // typedef struct s_map	t_map;
 
 struct	s_cube
@@ -60,7 +61,7 @@ struct s_player
 	t_vec	plane;
 	t_vec	move;
 	double	angle;
-	double	angle_dir;
+	double	old_angle;
 	int		wasd;
 	t_vec	map;
 	double	camerax;
@@ -72,9 +73,25 @@ struct	s_mlx_data
 {
 	void		*mlx;
 	void		*win;
-	int		color;
+	int			color;
 	t_player	p;
 	t_img		img;
+	t_cube		*cube;
 };
+
+struct s_ray
+{
+	t_vec	sidedist;
+	t_vec	deltadist;
+	t_vec	pos;
+	int		prepwalldist;
+	int		mapX;
+	int		mapY;
+	int		stepX;
+	int		stepY;
+	int		side;
+	int		hit;
+};
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:37:36 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/21 19:31:16 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:55:30 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,55 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 
 }
 
-
-void	print_palo(t_mlx_data *data, int color)
-{
-	double	y;
-	double	x;
-	double	j;
-	double	i;
-
-	x = 0;
-	y = 0;
-	if (!data->p.dir.x)
-		j = data->p.dir.y / abs((int)data->p.dir.y);
-	else
-		j = data->p.dir.y / data->p.dir.x;
-	if (!data->p.dir.y)
-		i = data->p.dir.x / abs((int)data->p.dir.x);
-	else
-		i = data->p.dir.x / data->p.dir.y;
-	while (abs((int)x) < abs((int)data->p.dir.x) || abs((int)y) < abs((int)data->p.dir.y))
-	{
-		// printf("limit x: %f\tlimit y: %f", x, y);
-		my_pixel_put(&data->img, (int)data->p.pos.y + y, (int)data->p.pos.x + x, color);
-		y += j;
-		x += i;
-	}
-}
-
 void	normalize_vector(double *x, double *y)
 {
-	double	magnitude = sqrt((*x) * (*x) + (*y) * (*y));
+	double	magnitude;
+
+	magnitude = sqrt((*x) * (*x) + (*y) * (*y));
 	if (!magnitude)
 	{
 		*x /= magnitude;
 		*y /= magnitude;
+	}
+}
+
+void	print_stick(t_mlx_data *data, double line_len, int color)
+{
+	//Algoritmo de Bresenham
+	int x = data->p.pos.x;
+	int y = data->p.pos.y;
+	// double line_len = 14.0; //longitud de la linea
+	double end_x = x - line_len * cos(data->p.angle); // Calcula coordenada final en x (proyeccion de la linea(cos) * longitud + coordenada inicial en x)
+	double end_y = y - line_len * sin(data->p.angle); // Calcula coordenada final en y (proyeccion de la linea(sin) * longitud + coordenada inicial en y)
+	int dx = abs((int)end_x - (int)x); // Calcula la diferencia absoluta del eje x
+	int dy = abs((int)end_y - (int)y); // Calcula la diferencia absoluta del eje y
+	int sx, sy; // Variables para almacenar direccion
+	
+	if (x < end_x) // Si la coordenada x es menor que la final, la direccion es positiva
+		sx = 1;
+	else
+		sx = -1; // Si no, la direccion es negativa
+	if (y < end_y) // Si la coordenada y es menor que la final, la direccion es positiva
+		sy = 1;
+	else
+		sy = -1; // Si no, la direccion es negativa
+	int err = dx - dy; // Calcula el error para el algoritmo de Bresenham
+	while (1) // Loop para dibujar la linea
+	{
+		my_pixel_put(&data->img, y, x, color); // Dibuja el pixel
+		if ((int)x == (int)end_x && (int)y == (int)end_y) // Si llega al final de la linea, termina
+			break ;
+		int e2 = err * 2; // Calcula el error multiplicado por 2
+		if (e2 > -dx) // Si el error multiplicado por 2 es mayor que la diferencia en x
+		{
+			err -= dy; // Resta la diferencia en y al error
+			x += sx; // Suma la direccion en x
+		}
+		if (e2 < dy) // Si el error multiplicado por 2 es menor que la diferencia en y
+		{
+			err += dx; // Suma la diferencia en x al error
+			y += sy; // Suma la direccion en y
+		}
 	}
 }
 
@@ -147,9 +162,9 @@ int	move(int key, t_mlx_data *data)
 	angle = 0.1;
 	if (key == ESC_KEY)
 		exit(0);
+	// print_stick(data, 20.0, 0x000000);
 	if (key == LEFT_KEY)
 	{
-		print_palo(data, 0);
 		my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y), (int)(data->p.pos.x + data->p.dir.x), 0x000000);
 		data->p.angle += angle;
 		rotate_vector(data, angle);
@@ -158,7 +173,6 @@ int	move(int key, t_mlx_data *data)
 	}
 	if (key == RIGHT_KEY)
 	{
-		print_palo(data, 0);
 		my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y), (int)(data->p.pos.x + data->p.dir.x), 0x000000);
 		data->p.angle -= angle;
 		rotate_vector(data, -angle);
@@ -202,9 +216,10 @@ int	move(int key, t_mlx_data *data)
 int	my_loop(t_mlx_data *data)
 {
 	// printf("posx: %d, posy: %d\n", (int)data->p.dir.x, (int)data->p.dir.y);
+	// print_stick(data, 20.0, 0xff0000);
 	remove_player(data);
 	print_player(data, data->p.pos.x, data->p.pos.y);
-	print_palo(data, 0xff0000);
+	create_rays(data, data->cube);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	return (0);
 }

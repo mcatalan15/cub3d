@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 17:50:05 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:56:10 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,18 @@ int		open_file(char *file, t_cube *cube);
 void	game(t_mlx_data *data, t_cube *cube);
 
 //movement.c
-void    my_pixel_put(t_img *img, int x, int y, int color);
-int     print_player(t_mlx_data *data, int x, int y);
-int     reset_buttons(int key, t_mlx_data *data);
-void    rotate(t_mlx_data *data);
-int     move(int key, t_mlx_data *data);
-int     my_loop(t_mlx_data *data);
+void	print_stick(t_mlx_data *data, double line_len, int color);
+void	my_pixel_put(t_img *img, int x, int y, int color);
+int		print_player(t_mlx_data *data, int x, int y);
+int		reset_buttons(int key, t_mlx_data *data);
+void	rotate(t_mlx_data *data);
+int		move(int key, t_mlx_data *data);
+int		my_loop(t_mlx_data *data);
 
+//rays.c
+void	create_rays(t_mlx_data *data, t_cube *cube);
+
+//parsing
 //parsing.c
 int		checker_file(char *file);
 int		parsing(t_cube *cube);

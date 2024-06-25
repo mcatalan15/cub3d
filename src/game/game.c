@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/21 19:43:54 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:53:48 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	game(t_mlx_data *data, t_cube *cube)
 	// data->p.move.y = 0;
 	data->p.wasd = 0;
 	data->p.angle = 0;
+	data->cube = cube;
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
 	data->img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
