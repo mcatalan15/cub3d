@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/25 12:53:48 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:45:09 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,12 @@ void	print_block(t_mlx_data *data, int x, int y)
 	{
 		j = -1;
 		while (++j < BLOCK)
-			my_pixel_put(&data->img, j + y, i + x, 0xffffff);
+		{
+			if (!i || i == BLOCK - 1 || !j || j == BLOCK - 1)
+				my_pixel_put(&data->img, j + y, i + x, 0xffff00);
+			else
+				my_pixel_put(&data->img, j + y, i + x, 0xffffff);
+		}
 	}
 }
 

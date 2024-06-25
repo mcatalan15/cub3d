@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/25 13:25:27 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:19:27 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,15 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 	r.pos.y = (data->p.pos.y - 100) / BLOCK;
 	r.mapX = (int)r.pos.x;
 	r.mapY = (int)r.pos.y;
+	
 	if (!raydir.x)
 		r.deltadist.x = 1e30;
 	else
-		r.deltadist.x = abs((int)(1 / raydir.x));
+		r.deltadist.x = fabs((1 / raydir.x));
 	if (!raydir.y)
 		r.deltadist.y = 1e30;
 	else
-		r.deltadist.y = abs((int)(1 / raydir.y));
+		r.deltadist.y = fabs((1 / raydir.y));
 	if (raydir.x < 0)
 	{
 		r.stepX = -1;
@@ -98,19 +99,30 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 		if (cube->map[r.mapX][r.mapY] == '1')
 			r.hit = 1;
 	}
-	printf("map[%d][%d]\n", r.mapX, r.mapY);
+	printf("map x:%d\t map y:%d]\n", r.mapX, r.mapY);
 	if (r.side == 0)
 		r.prepwalldist = r.sidedist.x - r.deltadist.x;
 	else
 		r.prepwalldist = r.sidedist.y - r.deltadist.y;
-	// printf("sidedistX: %d\tsidedistY: %d\n", (int)r.sidedist.x, (int)r.sidedist.y);
-	// printf("deltadistX: %d\tdeltadistY: %d\n", (int)r.deltadist.x, (int)r.deltadist.y);
-	double i = (r.mapX * BLOCK) + 100;
-	double j = (r.mapY * BLOCK) + 100;
-	double raylen = sqrt(i * i + j * j);
+	
+	printf("sidedist x: %f\t sidedist y: %f\n", r.sidedist.x, r.sidedist.y);
+    // Calcular la posición de la colisión en coordenadas del mundo real
+    double collisionX = r.mapX * BLOCK;
+    double collisionY = r.mapY * BLOCK;
+    if (r.side == 0) {
+        collisionX += (raydir.x < 0) ? BLOCK : 0;
+    } else {
+        collisionY += (raydir.y < 0) ? BLOCK : 0;
+    }
+    // Calcular la longitud del rayo usando el teorema de Pitágoras
+    double dx = collisionX - data->p.pos.x;
+    double dy = collisionY - data->p.pos.y;
+    double raylen = sqrt(dx * dx + dy * dy);
+
 	printf("len: %d\n", (int)raylen);
 	print_stick(data, raylen, 0xff0000);
 }
+
 
 void	create_rays(t_mlx_data *data, t_cube *cube)
 {
