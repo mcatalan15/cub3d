@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/26 11:49:28 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:54:40 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ struct s_ray
 	t_vec	sidedist;
 	t_vec	deltadist;
 	t_vec	pos;
-	int		prepwalldist;
+	double	prepwalldist;
 	int		mapX;
 	int		mapY;
 	int		stepX;

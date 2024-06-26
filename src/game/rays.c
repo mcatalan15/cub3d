@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/26 13:12:12 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:59:35 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_r(t_ray *r)
 	r->hit = 0;
 }
 
-void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
+void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, int color)
 {
 	t_ray	r;
 	double mag;
@@ -85,20 +85,16 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 		if (cube->map[r.mapX][r.mapY] == '1')
 			r.hit = 1;
 	}
-	printf("map x:%d\t map y:%d]\n", r.mapX, r.mapY);
 	if (r.side == 0)
 		r.prepwalldist = r.sidedist.x - r.deltadist.x;
 	else
 		r.prepwalldist = r.sidedist.y - r.deltadist.y;
-	printf("sidedist x: %f\t sidedist y: %f\n", r.sidedist.x, r.sidedist.y);
-
 	double raylen = r.prepwalldist * BLOCK;
-	printf("len: %d\n", (int)raylen);
-	print_stick(data, raylen, 0xff0000);
+	print_stick(data, raylen, color);
 }
 
 
-void	create_rays(t_mlx_data *data, t_cube *cube)
+void	create_rays(t_mlx_data *data, t_cube *cube, int color)
 {
 	// int		i;
 	// double	camerax;
@@ -109,7 +105,7 @@ void	create_rays(t_mlx_data *data, t_cube *cube)
 	data->p.map.y = (data->p.pos.y - 100) / BLOCK;
 	raydir.x = data->p.dir.x;
 	raydir.y = data->p.dir.y;
-	one_ray(data, cube, raydir);
+	one_ray(data, cube, raydir, color);
 	/*while (++i < WIDTH)
 	{
 		camerax = 2 * i / (double)WIDTH - 1;

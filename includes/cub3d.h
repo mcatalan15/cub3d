@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/25 12:56:10 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:59:15 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		move(int key, t_mlx_data *data);
 int		my_loop(t_mlx_data *data);
 
 //rays.c
-void	create_rays(t_mlx_data *data, t_cube *cube);
+void	create_rays(t_mlx_data *data, t_cube *cube, int color);
 
 //parsing
 //parsing.c
