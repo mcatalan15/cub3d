@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:37:36 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/26 18:58:46 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:19:34 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,10 @@ void	rotate_vector(t_mlx_data *data, double theta)
 	new_y = data->p.dir.x * sin_theta + data->p.dir.y * cos_theta;
 	data->p.dir.x = new_x;
 	data->p.dir.y = new_y;
+	new_x = data->p.plane.x * cos_theta - data->p.plane.y * sin_theta;
+	new_y = data->p.plane.x * sin_theta + data->p.plane.y * cos_theta;
+	data->p.plane.x = new_x;
+	data->p.plane.y = new_y;
 }
 
 int	move(int key, t_mlx_data *data)
@@ -135,16 +139,21 @@ int	move(int key, t_mlx_data *data)
 	create_rays(data, data->cube, 0);
 	if (key == LEFT_KEY)
 	{
+		// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y + data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x + data->p.plane.x), 0x000000);
+		// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y - data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x - data->p.plane.x), 0x000000);
 		data->p.angle += angle;
 		rotate_vector(data, angle);
 		normalize_vector(&data->p.dir.x, &data->p.dir.y);
+		normalize_vector(&data->p.plane.x, &data->p.plane.y);
 	}
 	if (key == RIGHT_KEY)
 	{
-		//my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y), (int)(data->p.pos.x + data->p.dir.x), 0x000000);
+		// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y + data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x + data->p.plane.x), 0x000000);
+		// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y - data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x - data->p.plane.x), 0x000000);
 		data->p.angle -= angle;
 		rotate_vector(data, -angle);
 		normalize_vector(&data->p.dir.x, &data->p.dir.y);
+		normalize_vector(&data->p.plane.x, &data->p.plane.y);
 	}
 	if (key == W_KEY)
 	{
@@ -184,6 +193,8 @@ int	my_loop(t_mlx_data *data)
 	// print_stick(data, 20.0, 0xff0000);
 	remove_player(data);
 	print_player(data, data->p.pos.x, data->p.pos.y);
+	// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y + data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x + data->p.plane.x), 0x00ff00);	
+	// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y - data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x - data->p.plane.x), 0x00ff00);
 	create_rays(data, data->cube, 0xff0000);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	return (0);
