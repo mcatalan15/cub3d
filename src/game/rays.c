@@ -6,62 +6,48 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/25 19:19:27 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:12:12 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// void	draw_line(t_mlx_data *data, t_vec st, t_vec end, int color)
-// {
-// 	t_ray   r;
-
-// 	r.dx = abs(r.x1 - r.x0);
-// 	r.sx = r.x0 < r.x1 ? 1 : -1;
-// 	r.dy = -abs(r.y1 - r.y0);
-// 	r.sy = r.y0 < r.y1 ? 1 : -1;
-// 	r.err = r.dx + r.dy;
-// 	r.y0 = (int)st.y;
-// 	r.x0 = (int)st.x;
-// 	r.y1 = (int)end.y;
-// 	r.x1 = (int)end.x;
-// 	while (1)
-// 	{
-// 		//printf("x: %d y: %d\n", x0, y0);
-// 		my_pixel_put(&data->img, r.y0, r.x0, color);
-// 		if (r.x0 == r.x1 && r.y0 == r.y1) break;
-// 			r.e2 = 2 * r.err;
-// 		if (r.e2 >= r.dy)
-// 		{
-// 			r.err += r.dy;
-// 			r.x0 += r.sx;
-//  		}
-// 		if (r.e2 <= r.dx)
-// 		{
-// 			r.err += r.dx;
-// 			r.y0 += r.sy;
-// 		}
-// 	}
-// }
+void	init_r(t_ray *r)
+{
+	r->sidedist.x = 0;
+	r->sidedist.y = 0;
+	r->deltadist.x = 0;
+	r->deltadist.y = 0;
+	r->pos.x = 0;
+	r->pos.y = 0;
+	r->prepwalldist = 0;
+	r->mapX = 0;
+	r->mapY = 0;
+	r->stepX = 0;
+	r->stepY = 0;
+	r->side = 0;
+	r->hit = 0;
+}
 
 void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 {
 	t_ray	r;
+	double mag;
 
 	r.hit = 0;
 	r.pos.x = (data->p.pos.x - 100) / BLOCK;
 	r.pos.y = (data->p.pos.y - 100) / BLOCK;
 	r.mapX = (int)r.pos.x;
 	r.mapY = (int)r.pos.y;
-	
+	mag = sqrt(raydir.x * raydir.x + raydir.y * raydir.y);
 	if (!raydir.x)
 		r.deltadist.x = 1e30;
 	else
-		r.deltadist.x = fabs((1 / raydir.x));
+		r.deltadist.x = fabs((mag / raydir.x));
 	if (!raydir.y)
 		r.deltadist.y = 1e30;
 	else
-		r.deltadist.y = fabs((1 / raydir.y));
+		r.deltadist.y = fabs((mag / raydir.y));
 	if (raydir.x < 0)
 	{
 		r.stepX = -1;
@@ -104,21 +90,9 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir)
 		r.prepwalldist = r.sidedist.x - r.deltadist.x;
 	else
 		r.prepwalldist = r.sidedist.y - r.deltadist.y;
-	
 	printf("sidedist x: %f\t sidedist y: %f\n", r.sidedist.x, r.sidedist.y);
-    // Calcular la posición de la colisión en coordenadas del mundo real
-    double collisionX = r.mapX * BLOCK;
-    double collisionY = r.mapY * BLOCK;
-    if (r.side == 0) {
-        collisionX += (raydir.x < 0) ? BLOCK : 0;
-    } else {
-        collisionY += (raydir.y < 0) ? BLOCK : 0;
-    }
-    // Calcular la longitud del rayo usando el teorema de Pitágoras
-    double dx = collisionX - data->p.pos.x;
-    double dy = collisionY - data->p.pos.y;
-    double raylen = sqrt(dx * dx + dy * dy);
 
+	double raylen = r.prepwalldist * BLOCK;
 	printf("len: %d\n", (int)raylen);
 	print_stick(data, raylen, 0xff0000);
 }
@@ -136,7 +110,6 @@ void	create_rays(t_mlx_data *data, t_cube *cube)
 	raydir.x = data->p.dir.x;
 	raydir.y = data->p.dir.y;
 	one_ray(data, cube, raydir);
-	printf(GREEN"RAYO\n"RST);
 	/*while (++i < WIDTH)
 	{
 		camerax = 2 * i / (double)WIDTH - 1;

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/25 17:45:09 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:00:02 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,41 @@ void	print_map(t_mlx_data *data, t_cube *cube)
 	//printf("posx: %d, posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
 }
 
+void	init_game(t_mlx_data *data)
+{
+	data->color = 0;
+	//player
+	data->p.pos.x = 0;
+	data->p.pos.y = 0;
+	data->p.old_pos.x = 0;
+	data->p.old_pos.y = 0;
+	data->p.dir.x = 0;
+	data->p.dir.y = 0;
+	data->p.plane.x = 0;
+	data->p.plane.y = 0;
+	data->p.move.x = 0;
+	data->p.move.y = 0;
+	data->p.angle = 0;
+	data->p.old_angle = 0;
+	data->p.wasd = 0;
+	data->p.map.x = 0;
+	data->p.map.y = 0;
+	data->p.camerax = 0;
+	data->p.sidedist.x = 0;
+	data->p.sidedist.y = 0;
+	data->p.deltadist.x = 0;
+	data->p.deltadist.y = 0;
+	//img
+	data->img.ptr = NULL;
+	data->img.pixels = NULL;
+	data->img.bytes_per_p = 0;
+	data->img.endian = 0;
+	data->img.line_len = 0;
+}
+
 void	game(t_mlx_data *data, t_cube *cube)
 {
+	init_game(data);
 	data->color = 0x00FF00;
 	// data->p.move.x = 0;
 	// data->p.move.y = 0;
