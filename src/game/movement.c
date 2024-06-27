@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/10 12:37:36 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/26 19:19:34 by mcatalan         ###   ########.fr       */
+/*   Created: 2024/06/27 11:16:37 by mcatalan          #+#    #+#             */
+/*   Updated: 2024/06/27 13:35:40 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	print_stick(t_mlx_data *data, double line_len, int color)
 	//Algoritmo de Bresenham
 	int x = data->p.pos.x;
 	int y = data->p.pos.y;
-	// double line_len = 14.0; //longitud de la linea
 	double end_x = x - line_len * cos(data->p.angle); // Calcula coordenada final en x (proyeccion de la linea(cos) * longitud + coordenada inicial en x)
 	double end_y = y - line_len * sin(data->p.angle); // Calcula coordenada final en y (proyeccion de la linea(sin) * longitud + coordenada inicial en y)
 	int dx = abs((int)end_x - (int)x); // Calcula la diferencia absoluta del eje x
@@ -127,10 +126,51 @@ void	rotate_vector(t_mlx_data *data, double theta)
 	data->p.plane.y = new_y;
 }
 
+bool	check_collision(t_mlx_data *data, int key, int flag, double sum)
+{
+	double	y;
+	double	x;
+	(void)key;
+
+	x = data->p.pos.x;
+	y = data->p.pos.y;
+	if (!flag)
+		x += sum;
+	else
+		y += sum;
+	// if (key == W_KEY)
+	// {
+	// 	x = ((x - 100) / BLOCK) - 0.5;
+	// 	y = ((y - 100) / BLOCK) - 0.5;
+	// }
+	// else if (key == S_KEY)
+	// {
+	// 	x = ((x - 100) / BLOCK) + 0.5;
+	// 	y = ((y - 100) / BLOCK) + 0.5;
+	// }
+	// else if (key == A_KEY)
+	// {
+	// 	x = ((x - 100) / BLOCK) + 0.5;
+	// 	y = ((y - 100) / BLOCK) - 0.5;
+	// }
+	// else if (key == D_KEY)
+	// {
+	// 	x = ((x - 100) / BLOCK) - 0.5;
+	// 	y = ((y- 100) / BLOCK) + 0.5;
+	// }
+	x = (x - 100) / BLOCK;
+	y = (y - 100) / BLOCK;
+	if (data->cube->map[(int)x][(int)y] == '1')
+		return (true);
+	return (false);
+}
+
 int	move(int key, t_mlx_data *data)
 {
 	double	speed;
 	double	angle;
+	// double	sumX;
+	// double	sumY;
 
 	speed = 0.1;
 	angle = 0.1;
@@ -157,23 +197,32 @@ int	move(int key, t_mlx_data *data)
 	}
 	if (key == W_KEY)
 	{
-		data->p.pos.x += data->p.dir.x * speed;
-		data->p.pos.y += data->p.dir.y * speed;
+		if (!check_collision(data, key, 0, data->p.dir.x * speed))
+			data->p.pos.x += data->p.dir.x * speed;
+		if (!check_collision(data, key, 1, data->p.dir.y * speed))
+			data->p.pos.y += data->p.dir.y * speed;
+
 	}
 	if (key == S_KEY)
 	{
-		data->p.pos.x -= data->p.dir.x * speed;
-		data->p.pos.y -= data->p.dir.y * speed;
+		if (!check_collision(data, key, 0, -data->p.dir.x * speed))
+			data->p.pos.x -= data->p.dir.x * speed;
+		if (!check_collision(data, key, 1, -data->p.dir.y * speed))
+			data->p.pos.y -= data->p.dir.y * speed;
 	}
 	if (key == A_KEY)
 	{
-		data->p.pos.x -= data->p.dir.y * speed;
-		data->p.pos.y += data->p.dir.x * speed;
+		if (!check_collision(data, key, 0, -data->p.dir.x * speed))
+			data->p.pos.x -= data->p.dir.y * speed;
+		if (!check_collision(data, key, 1, data->p.dir.y * speed))
+			data->p.pos.y += data->p.dir.x * speed;
 	}
 	if (key == D_KEY)
 	{
-		data->p.pos.x += data->p.dir.y * speed;
-        data->p.pos.y -= data->p.dir.x * speed;
+		if (!check_collision(data, key, 0, data->p.dir.x * speed))
+			data->p.pos.x += data->p.dir.y * speed;
+		if (!check_collision(data, key, 1, -data->p.dir.y * speed))
+			data->p.pos.y -= data->p.dir.x * speed;
 	}
 	return (0);
 }
@@ -208,4 +257,5 @@ int	my_loop(t_mlx_data *data)
 		-Mover punto con direccion---------------------------OK
 	-Mover a la direccion de la posicion.--------------------OK
 	-Normalizar posicion-------------------------------------OK
+	-Colisiones----------------------------------------------
 */
