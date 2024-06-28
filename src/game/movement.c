@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:16:37 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/28 11:46:20 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:14:52 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ int	move(int key, t_mlx_data *data)
 	angle = 0.1;
 	if (key == ESC_KEY)
 		exit(0);
-	create_rays(data, data->cube, 0);
+	create_rays(data, data->cube);
 	if (key == LEFT_KEY)
 	{
 		// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y + data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x + data->p.plane.x), 0x000000);
@@ -219,11 +219,11 @@ int	my_loop(t_mlx_data *data)
 {
 	// printf("posx: %d, posy: %d\n", (int)data->p.dir.x, (int)data->p.dir.y);
 	// print_stick(data, 20.0, 0xff0000);
-	remove_player(data);
-	print_player(data, data->p.pos.x, data->p.pos.y);
+	// remove_player(data);
+	// print_player(data, data->p.pos.x, data->p.pos.y);
 	// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y + data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x + data->p.plane.x), 0x00ff00);	
 	// my_pixel_put(&data->img, (int)(data->p.pos.y + data->p.dir.y - data->p.plane.y), (int)(data->p.pos.x + data->p.dir.x - data->p.plane.x), 0x00ff00);
-	create_rays(data, data->cube, 0xff0000);
+	create_rays(data, data->cube);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	return (0);
 }

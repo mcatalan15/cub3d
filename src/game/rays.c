@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/28 11:50:48 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:20:10 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,68 +29,67 @@ void	init_r(t_ray *r)
 	r->hit = 0;
 }
 
-void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, int color)
+void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 {
-	t_ray	r;
 	double	mag;
 
-	r.hit = 0;
-	r.pos.x = (data->p.pos.x - 100) / BLOCK;
-	r.pos.y = (data->p.pos.y - 100) / BLOCK;
-	r.mapX = (int)r.pos.x;
-	r.mapY = (int)r.pos.y;
+	r->hit = 0;
+	r->pos.x = (data->p.pos.x - 100) / BLOCK;
+	r->pos.y = (data->p.pos.y - 100) / BLOCK;
+	r->mapX = (int)r->pos.x;
+	r->mapY = (int)r->pos.y;
 	mag = sqrt(raydir.x * raydir.x + raydir.y * raydir.y);
 	if (!raydir.x)
-		r.deltadist.x = 1e30;
+		r->deltadist.x = 1e30;
 	else
-		r.deltadist.x = fabs((mag / raydir.x));
+		r->deltadist.x = fabs((mag / raydir.x));
 	if (!raydir.y)
-		r.deltadist.y = 1e30;
+		r->deltadist.y = 1e30;
 	else
-		r.deltadist.y = fabs((mag / raydir.y));
+		r->deltadist.y = fabs((mag / raydir.y));
 	if (raydir.x < 0)
 	{
-		r.stepX = -1;
-		r.sidedist.x = (r.pos.x - r.mapX) * r.deltadist.x;
+		r->stepX = -1;
+		r->sidedist.x = (r->pos.x - r->mapX) * r->deltadist.x;
 	}
 	else
 	{
-		r.stepX = 1;
-		r.sidedist.x = (r.mapX + 1.0 - r.pos.x) * r.deltadist.x;
+		r->stepX = 1;
+		r->sidedist.x = (r->mapX + 1.0 - r->pos.x) * r->deltadist.x;
 	}
 	if (raydir.y < 0)
 	{
-		r.stepY = -1;
-		r.sidedist.y = (r.pos.y - r.mapY) * r.deltadist.y;
+		r->stepY = -1;
+		r->sidedist.y = (r->pos.y - r->mapY) * r->deltadist.y;
 	}
 	else
 	{
-		r.stepY = 1;
-		r.sidedist.y = (r.mapY + 1.0 - r.pos.y) * r.deltadist.y;
+		r->stepY = 1;
+		r->sidedist.y = (r->mapY + 1.0 - r->pos.y) * r->deltadist.y;
 	}
-	while (!r.hit)
+	while (!r->hit)
 	{
-		if (r.sidedist.x < r.sidedist.y)
+		if (r->sidedist.x < r->sidedist.y)
 		{
-			r.sidedist.x += r.deltadist.x;
-			r.mapX += r.stepX;
-			r.side = 0;
+			r->sidedist.x += r->deltadist.x;
+			r->mapX += r->stepX;
+			r->side = 0;
 		}
 		else
 		{
-			r.sidedist.y += r.deltadist.y;
-			r.mapY += r.stepY;
-			r.side = 1;
+			r->sidedist.y += r->deltadist.y;
+			r->mapY += r->stepY;
+			r->side = 1;
 		}
-		if (cube->map[r.mapX][r.mapY] == '1')
-			r.hit = 1;
+		if (cube->map[r->mapX][r->mapY] == '1')
+			r->hit = 1;
 	}
-	if (r.side == 0)
-		r.prepwalldist = r.sidedist.x - r.deltadist.x;
+	if (r->side == 0)
+		r->prepwalldist = r->sidedist.x - r->deltadist.x;
 	else
-		r.prepwalldist = r.sidedist.y - r.deltadist.y;
-	double raylen = r.prepwalldist * BLOCK;
-	print_stick(data, raydir, raylen, color);
+		r->prepwalldist = r->sidedist.y - r->deltadist.y;
+	r->raylen = r->prepwalldist * BLOCK;
+	// print_stick(data, raydir, raylen, color);
 }
 
 // void create_rays(t_mlx_data *data, t_cube *cube, int color)
@@ -102,20 +101,24 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, int color)
 //     while (i < WIDTH)
 //     {
 //         camerax = 2 * i / (double)WIDTH - 1; // Normaliza el índice del rayo
-//         raydir.x = data->p.dir.x + data->p.plane.x * camerax;
-//         raydir.y = data->p.dir.y + data->p.plane.y * camerax;
+//         raydir.x = data->p.dir->x + data->p.plane.x * camerax;
+//         raydir.y = data->p.dir->y + data->p.plane.y * camerax;
 //         one_ray(data, cube, raydir, color);
 //         i++;
 //     }
 // }
 
+// void	print_pixel_column(t_mlx_data *data, t_ray r)
+// {
+// 	int	j;
+// }
 
-
-void	create_rays(t_mlx_data *data, t_cube *cube, int color)
+void	create_rays(t_mlx_data *data, t_cube *cube)
 {
 	int		i;
 	double	camerax;
 	t_vec	raydir;
+	t_ray	r;
 
 	i = -1;
 	data->p.map.x = (data->p.pos.x - 100) / BLOCK;
@@ -127,7 +130,7 @@ void	create_rays(t_mlx_data *data, t_cube *cube, int color)
 		camerax = 2 * i / (double)WIDTH - 1;
 		raydir.x = data->p.dir.x + data->p.plane.x * camerax;
 		raydir.y = data->p.dir.y + data->p.plane.y * camerax;
-		one_ray(data, cube, raydir, color);
+		one_ray(data, cube, raydir, &r);
 	}
 }
 

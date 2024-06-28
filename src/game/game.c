@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/06/27 11:02:57 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:04:57 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ void	game(t_mlx_data *data, t_cube *cube)
 			&(data->img.bytes_per_p), &(data->img.line_len),
 			&(data->img.endian));
 	data->img.bytes_per_p /= 8;
-	print_map(data, cube);
+	add_player(data, cube);
+	//print_map(data, cube);
 	//printf("posx: %d  posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
 	// mlx_hook(data->win, 3, 1L<<1, reset_buttons, data);
 	mlx_hook(data->win, 2, 1L<<0, move, data);
@@ -153,19 +154,19 @@ void	game(t_mlx_data *data, t_cube *cube)
 
 /*
 	STEPS:
-	1. Game 2D------------
+	1. Game 2D------------OK
 		1.1 Print map---------------------------------OK
 		1.2 Print player------------------------------OK
-		1.3 Player movements--------------------------
+		1.3 Player movements--------------------------OK
 			1.3.1 Rotate player---------------------------------OK
 			1.3.2 Move player (with direction)------------------OK
-			1.3.3 Map colision----------------------------------
+			1.3.3 Map colision----------------------------------Ok
 		1.4 Move player (with direction)--------------OK
-		1.5 Print Rays (FOV)--------------------------
+		1.5 Print Rays (FOV)--------------------------OK
 			1.5.1 Print one ray---------------------------------OK
 			1.5.2 Print ray with vertical colision--------------OK
 			1.5.3 Print ray with horizontal coliision-----------OK
-			1.5.4 Print rays in FOV-----------------------------
+			1.5.4 Print rays in FOV-----------------------------OK
 	2. Game 3D------------
 		2.1 Raycasting--------------------------------
 		2.2 Print 3D walls----------------------------

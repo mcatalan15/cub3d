@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 14:33:00 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/28 12:19:43 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define DEFINITIONS_H
 
 // Params
-#define HEIGHT 2000
-#define WIDTH 3000
+#define HEIGHT 1080
+#define WIDTH 1920
 #define BLOCK 50
 
 // Colors
