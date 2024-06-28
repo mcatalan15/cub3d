@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:16:37 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/27 13:35:40 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:46:20 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,14 @@ void	normalize_vector(double *x, double *y)
 	}
 }
 
-void	print_stick(t_mlx_data *data, double line_len, int color)
+void	print_stick(t_mlx_data *data, t_vec raydir, double line_len, int color)
 {
 	//Algoritmo de Bresenham
-	int x = data->p.pos.x;
-	int y = data->p.pos.y;
-	double end_x = x - line_len * cos(data->p.angle); // Calcula coordenada final en x (proyeccion de la linea(cos) * longitud + coordenada inicial en x)
-	double end_y = y - line_len * sin(data->p.angle); // Calcula coordenada final en y (proyeccion de la linea(sin) * longitud + coordenada inicial en y)
+	int	x = data->p.pos.x;
+	int	y = data->p.pos.y;
+	double mag = sqrt(raydir.x * raydir.x + raydir.y * raydir.y); // Calcula la magnitud del vector
+	double end_x = x + line_len * raydir.x / mag; // Calcula coordenada final en x (proyeccion de la linea(cos) * longitud + coordenada inicial en x)
+	double end_y = y + line_len * raydir.y / mag; // Calcula coordenada final en y (proyeccion de la linea(sin) * longitud + coordenada inicial en y)
 	int dx = abs((int)end_x - (int)x); // Calcula la diferencia absoluta del eje x
 	int dy = abs((int)end_y - (int)y); // Calcula la diferencia absoluta del eje y
 	int sx, sy; // Variables para almacenar direccion
@@ -126,11 +127,10 @@ void	rotate_vector(t_mlx_data *data, double theta)
 	data->p.plane.y = new_y;
 }
 
-bool	check_collision(t_mlx_data *data, int key, int flag, double sum)
+bool	check_collision(t_mlx_data *data, int flag, double sum)
 {
 	double	y;
 	double	x;
-	(void)key;
 
 	x = data->p.pos.x;
 	y = data->p.pos.y;
@@ -138,26 +138,6 @@ bool	check_collision(t_mlx_data *data, int key, int flag, double sum)
 		x += sum;
 	else
 		y += sum;
-	// if (key == W_KEY)
-	// {
-	// 	x = ((x - 100) / BLOCK) - 0.5;
-	// 	y = ((y - 100) / BLOCK) - 0.5;
-	// }
-	// else if (key == S_KEY)
-	// {
-	// 	x = ((x - 100) / BLOCK) + 0.5;
-	// 	y = ((y - 100) / BLOCK) + 0.5;
-	// }
-	// else if (key == A_KEY)
-	// {
-	// 	x = ((x - 100) / BLOCK) + 0.5;
-	// 	y = ((y - 100) / BLOCK) - 0.5;
-	// }
-	// else if (key == D_KEY)
-	// {
-	// 	x = ((x - 100) / BLOCK) - 0.5;
-	// 	y = ((y- 100) / BLOCK) + 0.5;
-	// }
 	x = (x - 100) / BLOCK;
 	y = (y - 100) / BLOCK;
 	if (data->cube->map[(int)x][(int)y] == '1')
@@ -197,31 +177,30 @@ int	move(int key, t_mlx_data *data)
 	}
 	if (key == W_KEY)
 	{
-		if (!check_collision(data, key, 0, data->p.dir.x * speed))
+		if (!check_collision(data, 0, data->p.dir.x * speed))
 			data->p.pos.x += data->p.dir.x * speed;
-		if (!check_collision(data, key, 1, data->p.dir.y * speed))
+		if (!check_collision(data, 1, data->p.dir.y * speed))
 			data->p.pos.y += data->p.dir.y * speed;
-
 	}
 	if (key == S_KEY)
 	{
-		if (!check_collision(data, key, 0, -data->p.dir.x * speed))
+		if (!check_collision(data, 0, -data->p.dir.x * speed))
 			data->p.pos.x -= data->p.dir.x * speed;
-		if (!check_collision(data, key, 1, -data->p.dir.y * speed))
+		if (!check_collision(data, 1, -data->p.dir.y * speed))
 			data->p.pos.y -= data->p.dir.y * speed;
 	}
 	if (key == A_KEY)
 	{
-		if (!check_collision(data, key, 0, -data->p.dir.x * speed))
+		if (!check_collision(data, 0, -data->p.dir.y * speed))
 			data->p.pos.x -= data->p.dir.y * speed;
-		if (!check_collision(data, key, 1, data->p.dir.y * speed))
+		if (!check_collision(data, 1, data->p.dir.x * speed))
 			data->p.pos.y += data->p.dir.x * speed;
 	}
 	if (key == D_KEY)
 	{
-		if (!check_collision(data, key, 0, data->p.dir.x * speed))
+		if (!check_collision(data, 0, data->p.dir.y * speed))
 			data->p.pos.x += data->p.dir.y * speed;
-		if (!check_collision(data, key, 1, -data->p.dir.y * speed))
+		if (!check_collision(data, 1, -data->p.dir.x * speed))
 			data->p.pos.y -= data->p.dir.x * speed;
 	}
 	return (0);
@@ -257,5 +236,5 @@ int	my_loop(t_mlx_data *data)
 		-Mover punto con direccion---------------------------OK
 	-Mover a la direccion de la posicion.--------------------OK
 	-Normalizar posicion-------------------------------------OK
-	-Colisiones----------------------------------------------
+	-Colisiones----------------------------------------------OK
 */

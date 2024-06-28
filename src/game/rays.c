@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/27 12:17:45 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:50:48 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,30 +90,45 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, int color)
 	else
 		r.prepwalldist = r.sidedist.y - r.deltadist.y;
 	double raylen = r.prepwalldist * BLOCK;
-	print_stick(data, raylen, color);
+	print_stick(data, raydir, raylen, color);
 }
+
+// void create_rays(t_mlx_data *data, t_cube *cube, int color)
+// {
+//     int i = 0;
+//     double camerax;
+//     t_vec raydir;
+
+//     while (i < WIDTH)
+//     {
+//         camerax = 2 * i / (double)WIDTH - 1; // Normaliza el índice del rayo
+//         raydir.x = data->p.dir.x + data->p.plane.x * camerax;
+//         raydir.y = data->p.dir.y + data->p.plane.y * camerax;
+//         one_ray(data, cube, raydir, color);
+//         i++;
+//     }
+// }
+
 
 
 void	create_rays(t_mlx_data *data, t_cube *cube, int color)
 {
-	// int		i;
-	// double	camerax;
+	int		i;
+	double	camerax;
 	t_vec	raydir;
 
-	// i = -1;
+	i = -1;
 	data->p.map.x = (data->p.pos.x - 100) / BLOCK;
 	data->p.map.y = (data->p.pos.y - 100) / BLOCK;
 	raydir.x = data->p.dir.x;
 	raydir.y = data->p.dir.y;
-	// while (++i < WIDTH)
-	// {
-	// 	//PRINTF PLANE Y X
-
-	// 	camerax = 2 * i / (double)WIDTH - 1;
-	// 	raydir.x = data->p.dir.x + data->p.plane.x * camerax;
-	// 	raydir.y = data->p.dir.y + data->p.plane.y * camerax;
+	while (++i < WIDTH)
+	{
+		camerax = 2 * i / (double)WIDTH - 1;
+		raydir.x = data->p.dir.x + data->p.plane.x * camerax;
+		raydir.y = data->p.dir.y + data->p.plane.y * camerax;
 		one_ray(data, cube, raydir, color);
-	// }
+	}
 }
 
 /*
@@ -121,5 +136,5 @@ void	create_rays(t_mlx_data *data, t_cube *cube, int color)
 	1. Calculate the ray's direction-----------------------OK
 	2. Calculate the distance to the next x or y side------OK
 	3. Draw the ray----------------------------------------OK
-	4. Draw the rays in FOV (Field of View)----------------
+	4. Draw the rays in FOV (Field of View)----------------OK
 */
