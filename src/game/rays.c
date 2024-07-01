@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/28 12:20:10 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:25:45 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,31 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 // 	int	j;
 // }
 
+void	wall(t_mlx_data *data, t_ray *r, int i)
+{
+	int lineHeight = (int)(HEIGHT / r->prepwalldist);
+
+    //calculate lowest and highest pixel to fill in current stripe
+    int drawStart = -lineHeight / 2 + HEIGHT / 2;
+    if(drawStart < 0)drawStart = 0;
+    int drawEnd = lineHeight / 2 + HEIGHT / 2;
+    if(drawEnd >= HEIGHT)drawEnd = HEIGHT - 1;
+
+	//print_wall
+	int j = -1;
+	while (++j < HEIGHT)
+	{
+		if (j < drawStart)
+			my_pixel_put(&data->img, i, j, *(data->cube->c));
+			// my_pixel_put(&data->img, i, j, 0x0000ff);
+		else if (j >= drawStart && j <= drawEnd)
+			my_pixel_put(&data->img, i, j, 0xff0000);
+		else
+			my_pixel_put(&data->img, i, j, *(data->cube->f));
+			// my_pixel_put(&data->img, i, j, 0x00ff00);
+	}
+}
+
 void	create_rays(t_mlx_data *data, t_cube *cube)
 {
 	int		i;
@@ -131,6 +156,9 @@ void	create_rays(t_mlx_data *data, t_cube *cube)
 		raydir.x = data->p.dir.x + data->p.plane.x * camerax;
 		raydir.y = data->p.dir.y + data->p.plane.y * camerax;
 		one_ray(data, cube, raydir, &r);
+		wall(data, &r, i);
+		// int lineHeight = (int)(HEIGHT / r.prepwalldist);
+		// printf("lineHeight: %d\n", lineHeight);
 	}
 }
 
