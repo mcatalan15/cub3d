@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/28 12:13:14 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:50:50 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_vec		t_vec;
 typedef struct s_veci		t_veci;
 typedef struct s_player		t_player;
 typedef struct s_ray		t_ray;
+typedef struct s_texture	t_texture;
 // typedef struct s_map	t_map;
 
 struct	s_cube
@@ -43,7 +44,7 @@ struct s_img
 {
 	void	*ptr;
 	char	*pixels;
-	int		bytes_per_p;
+	int		bpp;
 	int		endian;
 	int		line_len;
 };
@@ -84,6 +85,10 @@ struct	s_mlx_data
 	t_player	p;
 	t_img		img;
 	t_cube		*cube;
+	t_texture	*n_tex;
+	t_texture	*s_tex;
+	t_texture	*e_tex;
+	t_texture	*w_tex;
 	// t_ray		*r;
 };
 
@@ -102,5 +107,15 @@ struct s_ray
 	int		hit;
 };
 
+struct s_texture
+{
+	void	*img;
+	int		*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+};
 
 #endif

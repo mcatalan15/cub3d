@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:22:31 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 12:07:40 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:33:47 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,11 @@ char	*allocate_substring(char *line, int s, int f)
 	int		x;
 
 	x = 0;
-	str = malloc(sizeof(char) * (f - s + 1));
+	str = malloc(sizeof(char) * (f - s + 3));
 	if (!str)
 		malloc_err(1);
 	while (line[s] && f > s)
-	{
-		str[x] = line[s];
-		x++;
-		s++;
-	}
+		str[x++] = line[s++];
 	str[x] = '\0';
 	return (str);
 }

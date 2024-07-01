@@ -6,11 +6,12 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/07/01 11:51:07 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:16:04 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <unistd.h>
 
 void	add_player(t_mlx_data *data, t_cube *cube)
 {
@@ -93,6 +94,28 @@ void	print_map(t_mlx_data *data, t_cube *cube)
 	//printf("posx: %d, posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);
 }
 
+// void	init_textures(t_mlx_data *data)
+// {
+// 	printf("n_text: %s\n", data->cube->n_text);
+// 	data->n_tex = mlx_xpm_file_to_image(data->mlx, data->cube->n_text, &data->n_tex->width, &data->n_tex->height);
+// 	data->n_tex->addr = mlx_get_data_addr(data->n_tex, &data->n_tex->bpp, &data->n_tex->line_len, &data->n_tex->endian);
+// }
+
+void init_texture(void *mlx_ptr, t_texture *texture, char *path)
+{
+    texture->img = mlx_xpm_file_to_image(mlx_ptr, path, &texture->width, &texture->height);
+    texture->addr = (int *)mlx_get_data_addr(texture->img, &texture->bpp, &texture->line_len, &texture->endian);
+}
+
+void init_textures(t_mlx_data *data)
+{
+    init_texture(data->mlx, data->n_tex, data->cube->n_text);
+    init_texture(data->mlx, data->s_tex, data->cube->s_text);
+    init_texture(data->mlx, data->e_tex, data->cube->e_text);
+    init_texture(data->mlx, data->w_tex, data->cube->w_text);
+}
+
+
 void	init_game(t_mlx_data *data)
 {
 	data->color = 0;
@@ -120,27 +143,43 @@ void	init_game(t_mlx_data *data)
 	//img
 	data->img.ptr = NULL;
 	data->img.pixels = NULL;
-	data->img.bytes_per_p = 0;
+	data->img.bpp = 0;
 	data->img.endian = 0;
 	data->img.line_len = 0;
+	
+	//textures
+	data->n_tex = malloc(sizeof(t_texture));
+	data->s_tex = malloc(sizeof(t_texture));
+	data->e_tex = malloc(sizeof(t_texture));
+	data->w_tex = malloc(sizeof(t_texture));
+	// init_textures(data);
+}
+
+void	path_corrector(t_mlx_data *data)
+{
+	data->cube->n_text = ft_strjoin("./", data->cube->n_text);
+	data->cube->s_text = ft_strjoin("./", data->cube->s_text);
+	data->cube->e_text = ft_strjoin("./", data->cube->e_text);
+	data->cube->w_text = ft_strjoin("./", data->cube->w_text);
 }
 
 void	game(t_mlx_data *data, t_cube *cube)
 {
+	data->cube = cube;
+	path_corrector(data);
 	init_game(data);
 	data->color = 0x00FF00;
 	// data->p.move.x = 0;
 	// data->p.move.y = 0;
-	data->p.wasd = 0;
 	data->p.angle = 0;
-	data->cube = cube;
 	data->mlx = mlx_init();
+	init_textures(data);
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
 	data->img.ptr = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->img.pixels = mlx_get_data_addr(data->img.ptr,
-			&(data->img.bytes_per_p), &(data->img.line_len),
+			&(data->img.bpp), &(data->img.line_len),
 			&(data->img.endian));
-	data->img.bytes_per_p /= 8;
+	data->img.bpp /= 8;
 	add_player(data, cube);
 	//print_map(data, cube);
 	//printf("posx: %d  posy: %d\n", (int)data->p.pos.x, (int)data->p.pos.y);

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/01 13:13:16 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:46:39 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 // 	int	j;
 // }
 
-void	wall(t_mlx_data *data, t_ray *r, int i)
+void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
 {
 	int lineHeight = (int)(HEIGHT / r->prepwalldist);
 
@@ -131,11 +131,27 @@ void	wall(t_mlx_data *data, t_ray *r, int i)
 			my_pixel_put(&data->img, i, j, *(data->cube->f));
 			// my_pixel_put(&data->img, i, j, 0x0000ff);
 		else if (j >= drawStart && j <= drawEnd)
-			my_pixel_put(&data->img, i, j, 0xff0000);
+		{
+			if (r->side == 0)//E-W
+			{
+				if (raydir.x > 0) //E
+					my_pixel_put(&data->img, i, j, G);
+				else //W
+					my_pixel_put(&data->img, i, j, R);
+			}
+			else//N-S
+			{
+				if (raydir.y > 0) //N
+					my_pixel_put(&data->img, i, j, M);
+				else //S
+					my_pixel_put(&data->img, i, j, Y);
+			}
+		}
 		else
 			my_pixel_put(&data->img, i, j, *(data->cube->c));
-			// my_pixel_put(&data->img, i, j, 0x00ff00);
 	}
+	//print_textura
+	
 }
 
 void	create_rays(t_mlx_data *data, t_cube *cube)
@@ -156,7 +172,7 @@ void	create_rays(t_mlx_data *data, t_cube *cube)
 		raydir.x = data->p.dir.x + data->p.plane.x * camerax;
 		raydir.y = data->p.dir.y + data->p.plane.y * camerax;
 		one_ray(data, cube, raydir, &r);
-		wall(data, &r, i);
+		wall(data, &r, raydir, i);
 		// int lineHeight = (int)(HEIGHT / r.prepwalldist);
 		// printf("lineHeight: %d\n", lineHeight);
 	}

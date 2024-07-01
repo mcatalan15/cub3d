@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/28 12:19:43 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 19:32:03 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 # define RST "\033[0m"
+
+// RGB COLORS
+# define R 0xFF0000
+# define G 0x00FF00
+# define M 0xFF00FF
+# define Y 0xFFFF00
 
 //Keys
 # define W_KEY 119
