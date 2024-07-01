@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/01 12:25:45 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/01 13:13:16 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,22 +118,22 @@ void	wall(t_mlx_data *data, t_ray *r, int i)
 	int lineHeight = (int)(HEIGHT / r->prepwalldist);
 
     //calculate lowest and highest pixel to fill in current stripe
-    int drawStart = -lineHeight / 2 + HEIGHT / 2;
-    if(drawStart < 0)drawStart = 0;
-    int drawEnd = lineHeight / 2 + HEIGHT / 2;
-    if(drawEnd >= HEIGHT)drawEnd = HEIGHT - 1;
+	int drawStart = -lineHeight / 2 + HEIGHT / 2;
+	if(drawStart < 0)drawStart = 0;
+	int drawEnd = lineHeight / 2 + HEIGHT / 2;
+	if(drawEnd >= HEIGHT)drawEnd = HEIGHT - 1;
 
 	//print_wall
 	int j = -1;
 	while (++j < HEIGHT)
-	{
+	{		
 		if (j < drawStart)
-			my_pixel_put(&data->img, i, j, *(data->cube->c));
+			my_pixel_put(&data->img, i, j, *(data->cube->f));
 			// my_pixel_put(&data->img, i, j, 0x0000ff);
 		else if (j >= drawStart && j <= drawEnd)
 			my_pixel_put(&data->img, i, j, 0xff0000);
 		else
-			my_pixel_put(&data->img, i, j, *(data->cube->f));
+			my_pixel_put(&data->img, i, j, *(data->cube->c));
 			// my_pixel_put(&data->img, i, j, 0x00ff00);
 	}
 }
@@ -168,4 +168,12 @@ void	create_rays(t_mlx_data *data, t_cube *cube)
 	2. Calculate the distance to the next x or y side------OK
 	3. Draw the ray----------------------------------------OK
 	4. Draw the rays in FOV (Field of View)----------------OK
+*/
+
+/*
+2. Game 3D------------
+		2.1 Print 3D walls----------------------------OK
+		2.2 Print floor & ceiling---------------------OK
+		2.3 Print without fish eye effect-------------
+		2.3 Print sprites & textures------------------
 */
