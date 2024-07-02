@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/02 12:39:11 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:15:59 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,14 @@ struct s_texture
 
 struct s_draw
 {
-	int drawStart;
-	int	drawEnd;
-	int	auxStart;
-	int	auxEnd;
-	int	lineHeight;
+	int 	drawStart;
+	int		drawEnd;
+	int		auxStart;
+	int		auxEnd;
+	int		lineHeight;
+	double	texPos;
+	int		texX;
+	int		wallX;
 };
 
 #endif
