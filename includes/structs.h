@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/01 18:50:50 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/02 12:39:11 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_veci		t_veci;
 typedef struct s_player		t_player;
 typedef struct s_ray		t_ray;
 typedef struct s_texture	t_texture;
+typedef struct s_draw		t_draw;
 // typedef struct s_map	t_map;
 
 struct	s_cube
@@ -116,6 +117,15 @@ struct s_texture
 	int		endian;
 	int		width;
 	int		height;
+};
+
+struct s_draw
+{
+	int drawStart;
+	int	drawEnd;
+	int	auxStart;
+	int	auxEnd;
+	int	lineHeight;
 };
 
 #endif

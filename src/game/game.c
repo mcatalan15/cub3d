@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/07/01 19:16:04 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:57:08 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@ void	add_player(t_mlx_data *data, t_cube *cube)
 		data->p.dir.y = 0;
 		data->p.dir.x = -40;
 		data->p.plane.x = 0;
-		data->p.plane.y = 40;
+		data->p.plane.y = 30;
 	}
 	else if (cube->pos == 2)
 	{
 		data->p.dir.y = 0;
 		data->p.dir.x = 40;
 		data->p.plane.x = 0;
-		data->p.plane.y = -40;
+		data->p.plane.y = -30;
 	}
 	else if (cube->pos == 4)
 	{
 		data->p.dir.y = 40;
 		data->p.dir.x = 0;
-		data->p.plane.x = -40;
+		data->p.plane.x = -30;
 		data->p.plane.y = 0;
 	}
 	else if (cube->pos == 3)
 	{
 		data->p.dir.y = -40;
 		data->p.dir.x = 0;
-		data->p.plane.x = 40;
+		data->p.plane.x = 30;
 		data->p.plane.y = 0;
 	}
 }
