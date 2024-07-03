@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:16:37 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/01 18:17:09 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:20:02 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ int	move(int key, t_mlx_data *data)
 	// double	sumX;
 	// double	sumY;
 
-	speed = 0.1;
+	speed = 4;
 	angle = 0.1;
 	if (key == ESC_KEY)
 		exit(0);
@@ -203,6 +203,7 @@ int	move(int key, t_mlx_data *data)
 		if (!check_collision(data, 1, -data->p.dir.x * speed))
 			data->p.pos.y -= data->p.dir.x * speed;
 	}
+	mlx_put_image_to_window(data->mlx, data->win, data->img.ptr, 0, 0);
 	return (0);
 }
 

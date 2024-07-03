@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/02 20:15:59 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:11:20 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ struct	s_cube
 	char	*e_text; //east path texture
 	int		f[3]; //floor color 0,0,0 -> 255,255,255
 	int		c[3]; //ceiling color 0,0,0 -> 255,255,255
-	int		pos; //flag start position 1 = N,2 = S,3 = ,4
+	int		pos; //flag start position 1 = N,2 = S,3 = W, 4=E
 	int		map_h; //map max height
 	int		map_w; //map max width
 	int		player_y; //player pos_y

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/07/03 11:39:01 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:41:26 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,30 @@ void	add_player(t_mlx_data *data, t_cube *cube)
 	if (cube->pos == 1)
 	{
 		data->p.dir.y = 0;
-		data->p.dir.x = -40;
+		data->p.dir.x = -1;
 		data->p.plane.x = 0;
-		data->p.plane.y = 30;
+		data->p.plane.y = -0.66;
 	}
 	else if (cube->pos == 2)
 	{
 		data->p.dir.y = 0;
-		data->p.dir.x = 40;
+		data->p.dir.x = 1;
 		data->p.plane.x = 0;
-		data->p.plane.y = -30;
+		data->p.plane.y = 0.66;
 	}
 	else if (cube->pos == 4)
 	{
-		data->p.dir.y = 40;
+		printf("entra 4\n");
+		data->p.dir.y = 1;
 		data->p.dir.x = 0;
-		data->p.plane.x = -30;
+		data->p.plane.x = -0.66;
 		data->p.plane.y = 0;
 	}
 	else if (cube->pos == 3)
 	{
-		data->p.dir.y = -40;
+		data->p.dir.y = -1;
 		data->p.dir.x = 0;
-		data->p.plane.x = 30;
+		data->p.plane.x = 0.66;
 		data->p.plane.y = 0;
 	}
 }
@@ -146,7 +147,6 @@ void	init_game(t_mlx_data *data)
 	data->img.bpp = 0;
 	data->img.endian = 0;
 	data->img.line_len = 0;
-	
 	//textures
 	data->n_tex = malloc(sizeof(t_texture));
 	data->s_tex = malloc(sizeof(t_texture));
@@ -157,10 +157,21 @@ void	init_game(t_mlx_data *data)
 
 void	path_corrector(t_mlx_data *data)
 {
+	char	*aux;
+
+	aux = data->cube->n_text;
 	data->cube->n_text = ft_strjoin("./", data->cube->n_text);
+	free(aux);
+	aux = data->cube->s_text;
 	data->cube->s_text = ft_strjoin("./", data->cube->s_text);
+	free(aux);
+	aux = data->cube->e_text;
 	data->cube->e_text = ft_strjoin("./", data->cube->e_text);
+	free(aux);
+	aux = data->cube->w_text;
 	data->cube->w_text = ft_strjoin("./", data->cube->w_text);
+	free(aux);
+
 }
 
 void	game(t_mlx_data *data, t_cube *cube)
