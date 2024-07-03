@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/02 20:49:35 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:38:49 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,18 +125,6 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 //     }
 // }
 
-// void	print_pixel_column(t_mlx_data *data, t_ray r)
-// {
-// 	int	j;
-// }
-
-
-// pixel->y = ross->texture->height * (((float)(y - ross->drawstart - (ross->calculated_drawstart - ross->drawstart))) / (ross->calculated_drawend - ross->calculated_drawstart));
-// 		ross->color = (*(int *)(ross->texture->addr + (pixel->y
-// 						* ross->texture->line_len + pixel->x
-// 						* (ross->texture->bits_pxl / 8)))) & 0x00ffffff;
-// 		my_mlx_pixel_put(&map->img, ray->i, y++, ross->color);
-
 // int	calculate_color(t_texture *texture, t_ray *r, int j, t_draw d)
 // {
 // 	int	y;
@@ -170,31 +158,29 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 // 	return (color);
 // }
 
-
-
 void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
 {
-    t_draw d;
-	double mag;
+	t_draw	d;
+	double	mag;
 
 	mag = sqrt(raydir.x * raydir.x + raydir.y * raydir.y);
 	d.lineHeight = (int)(HEIGHT / r->prepwalldist);
-    d.auxStart = -d.lineHeight / 2 + HEIGHT / 2;
-    d.auxEnd = d.lineHeight / 2 + HEIGHT / 2;
+	d.auxStart = -d.lineHeight / 2 + HEIGHT / 2;
+	d.auxEnd = d.lineHeight / 2 + HEIGHT / 2;
 
-    if(d.auxStart < 0)
-        d.drawStart = 0;
-    else
-        d.drawStart = d.auxStart;
-    if(d.auxEnd >= HEIGHT)
-        d.drawEnd = HEIGHT - 1;
-    else
-        d.drawEnd = d.auxEnd;
+	if (d.auxStart < 0)
+		d.drawStart = 0;
+	else
+		d.drawStart = d.auxStart;
+	if (d.auxEnd >= HEIGHT)
+		d.drawEnd = HEIGHT - 1;
+	else
+		d.drawEnd = d.auxEnd;
 
     // Coordenadas de la textura
-    double wallX;
-    if (r->side == 0) // E-W
-        wallX = data->p.pos.y + r->prepwalldist * raydir.y / mag;
+	double	wallX;
+	if (r->side == 0) // E-W
+		wallX = data->p.pos.y + r->prepwalldist * raydir.y / mag;
     else // N-S
         wallX = data->p.pos.x + r->prepwalldist * raydir.x / mag;
     wallX -= floor((wallX));
@@ -210,7 +196,7 @@ void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
     while (++j < HEIGHT)
     {
         if (j < d.drawStart)
-            my_pixel_put(&data->img, i, j, *(data->cube->f));
+            my_pixel_put(&data->img, i, j, data->cube->f[0] << 16 | data->cube->f[1] << 8 | data->cube->f[2]);
         else if (j >= d.drawStart && j <= d.drawEnd)
         {
             int d_y = j * 256 - HEIGHT * 128 + d.lineHeight * 128;
@@ -234,100 +220,8 @@ void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
             my_pixel_put(&data->img, i, j, color);
         }
         else
-            my_pixel_put(&data->img, i, j, *(data->cube->c));
+            my_pixel_put(&data->img, i, j, data->cube->c[0] << 16 | data->cube->c[1] << 8 | data->cube->c[2]);
     }
-
-	
-	// d.lineHeight = (int)(HEIGHT / r->prepwalldist);
-	// d.auxStart = -d.lineHeight / 2 + HEIGHT / 2;
-	// d.auxEnd = d.lineHeight / 2 + HEIGHT / 2;
-    // //calculate lowest and highest pixel to fill in current stripe
-	// if(d.auxStart < 0)
-	// 	d.drawStart = 0;
-	// else
-	// 	d.drawStart = d.auxStart;
-	// if(d.auxEnd >= HEIGHT)
-	// 	d.drawEnd = HEIGHT - 1;
-	// else
-	// 	d.drawEnd = d.auxEnd;
-	// double wallX;
-	// double	mag = sqrt(raydir.x * raydir.x  + raydir.y * raydir.y);
-	//  //where exactly the wall was hit
-	// // int		texNum = data->cube->map[r->mapX][r->mapY] - 1 - '0';
-	// if (r->side == 0)
-	// 	wallX = r->pos.y + r->prepwalldist * raydir.y / mag;
-	// else
-	// 	wallX = r->pos.x + r->prepwalldist * raydir.x / mag;
-	// wallX -= floor((wallX));
-	// d.wallX = wallX;
-	
-	
-	
-	//print_wall
-	// double wallX; //where exactly the wall was hit
-	// // int		texNum = data->cube->map[r->mapX][r->mapY] - 1 - '0';
-	// if (r->side == 0)
-	// 	wallX = r->pos.y + r->prepwalldist * raydir.y;
-	// else
-	// 	wallX = r->pos.x + r->prepwalldist * raydir.x;
-	// wallX -= floor((wallX));
-	
-	// int texX = (int)(wallX * (double)data->n_tex->width);
-	
-	// if (r->side == 0 && raydir.x > 0)
-	// 	texX = data->n_tex->width - texX - 1;
-	// if (r->side == 1 && raydir.y < 0)
-	// 	texX = data->n_tex->width - texX - 1;
-	// double step = 1.0 * data->n_tex->height / d.lineHeight;
-	// d.texPos = (d.drawStart - HEIGHT / 2 + d.lineHeight / 2) * step;
-	// int	y = -1;
-	// while (++y < data)
-	// {
-	// 	/* code */
-	// }
-	
-	// for (int y = d.drawStart; y < d.drawEnd; y++)
-	// {
-	// 	int texY = (int)d.texPos & (data->n_tex->height - 1);
-	// 	d.texPos += step;
-	// 	int	color = data->n_tex->addr[data->n_tex->height * texY + texX];
-	// 	// int color = calculate_color(data->n_tex, r, y, d);
-	// 	my_pixel_put(&data->img, i, y, color);
-	// }
-	// int j = -1;
-	// //calculate_color(data->e_tex, r, j, d)
-	// printf("map: x: %d, y: %d  |  pos: x: %f, y: %f\n", r->mapX, r->mapY, r->pos.x, r->pos.y);
-	// while (++j < HEIGHT)
-	// {		
-	// 	if (j < d.drawStart)
-	// 		my_pixel_put(&data->img, i, j, *(data->cube->f));
-	// 		// my_pixel_put(&data->img, i, j, 0x0000ff);
-	// 	else if (j >= d.drawStart && j <= d.drawEnd)
-	// 	{
-	// 		// int texY = (int)d.texPos & (data->n_tex->height - 1);
-	// 		// d.texPos += step;
-	// 		// int	color = data->n_tex->addr[data->n_tex->height * texY + texX];
-	// 		// my_pixel_put(&data->img, i, j, color);
-	// 		if (r->side == 0)//E-W
-	// 		{
-	// 			if (raydir.x > 0) //E
-	// 				my_pixel_put(&data->img, i, j, get_color(data->e_tex, r, d, raydir, j - d.drawStart));
-	// 			else //W
-	// 				my_pixel_put(&data->img, i, j, *data->w_tex->addr);
-	// 		}
-	// 		else//N-S
-	// 		{
-	// 			if (raydir.y > 0) //N
-	// 				my_pixel_put(&data->img, i, j, *data->n_tex->addr);
-	// 			else //S
-	// 				my_pixel_put(&data->img, i, j, *data->s_tex->addr);
-	// 		}
-	// 	}
-	// 	else
-	// 		my_pixel_put(&data->img, i, j, *(data->cube->c));
-	// }
-	//print_textura
-
 }
 
 void	create_rays(t_mlx_data *data, t_cube *cube)
