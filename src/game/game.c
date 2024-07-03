@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/07/03 17:54:25 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:05:15 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,6 @@ void	path_corrector(t_mlx_data *data)
 	aux = data->cube->w_text;
 	data->cube->w_text = ft_strjoin("./", data->cube->w_text);
 	free(aux);
-}
-
-int	close_window(void *param)
-{
-	(void)param;
-	exit(0);
-	return (0);
 }
 
 void	game(t_mlx_data *data, t_cube *cube)

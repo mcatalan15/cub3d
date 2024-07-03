@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 17:58:44 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:28:23 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,70 +23,48 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 		r->deltadist.x = 1e30;
 	else
 		r->deltadist.x = fabs((1 / raydir.x));
-	if (!raydir.y)
-		r->deltadist.y = 1e30;
-	else
-		r->deltadist.y = fabs((1 / raydir.y));
-	if (raydir.x < 0)
-	{
-		r->step_x = -1;
-		r->sidedist.x = (r->pos.x - r->map_x) * r->deltadist.x;
-	}
-	else
-	{
-		r->step_x = 1;
-		r->sidedist.x = (r->map_x + 1.0 - r->pos.x) * r->deltadist.x;
-	}
-	if (raydir.y < 0)
-	{
-		r->step_y = -1;
-		r->sidedist.y = (r->pos.y - r->map_y) * r->deltadist.y;
-	}
-	else
-	{
-		r->step_y = 1;
-		r->sidedist.y = (r->map_y + 1.0 - r->pos.y) * r->deltadist.y;
-	}
-	while (!r->hit)
-	{
-		if (r->sidedist.x < r->sidedist.y)
-		{
-			r->sidedist.x += r->deltadist.x;
-			r->map_x += r->step_x;
-			r->side = 0;
-		}
-		else
-		{
-			r->sidedist.y += r->deltadist.y;
-			r->map_y += r->step_y;
-			r->side = 1;
-		}
-		if (cube->map[r->map_x][r->map_y] == '1')
-			r->hit = 1;
-	}
-	if (r->side == 0)
-		r->prepwalldist = r->sidedist.x - r->deltadist.x;
-	else
-		r->prepwalldist = r->sidedist.y - r->deltadist.y;
+	init_ray_vars(r, raydir);
+	loop_ray(cube, r);
 }
 
-void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
+void	create_wall(t_mlx_data *data, t_ray *r, t_vec raydir, t_draw d)
 {
-	t_draw	d;
-	double	wall_x;
-	int		j;
+	r->tex_y = ((r->d_y * data->n_tex->height) / d.line_height) / 256;
+	if (r->side == 0)
+	{
+		if (raydir.x > 0)
+			r->color = data->e_tex->addr[r->tex_y
+				* data->e_tex->line_len / 4 + r->tex_x];
+		else
+			r->color = data->w_tex->addr[r->tex_y
+				* data->w_tex->line_len / 4 + r->tex_x];
+	}
+	else
+	{
+		if (raydir.y > 0)
+			r->color = data->n_tex->addr[r->tex_y
+				* data->n_tex->line_len / 4 + r->tex_x];
+		else
+			r->color = data->s_tex->addr[r->tex_y
+				* data->s_tex->line_len / 4 + r->tex_x];
+	}
+}
 
-	d.line_height = (int)(HEIGHT / r->prepwalldist);
-	d.aux_start = -d.line_height / 2 + HEIGHT / 2;
-	d.aux_end = d.line_height / 2 + HEIGHT / 2;
-	if (d.aux_start < 0)
-		d.draw_start = 0;
+void	wall_maths(t_mlx_data *data, t_draw *d, t_ray *r, t_vec raydir)
+{
+	double	wall_x;
+
+	d->line_height = (int)(HEIGHT / r->prepwalldist);
+	d->aux_start = -d->line_height / 2 + HEIGHT / 2;
+	d->aux_end = d->line_height / 2 + HEIGHT / 2;
+	if (d->aux_start < 0)
+		d->draw_start = 0;
 	else
-		d.draw_start = d.aux_start;
-	if (d.aux_end >= HEIGHT)
-		d.draw_end = HEIGHT - 1;
+		d->draw_start = d->aux_start;
+	if (d->aux_end >= HEIGHT)
+		d->draw_end = HEIGHT - 1;
 	else
-		d.draw_end = d.aux_end;
+		d->draw_end = d->aux_end;
 	if (r->side == 0)
 		wall_x = r->pos.y + r->prepwalldist * raydir.y;
 	else
@@ -97,6 +75,14 @@ void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
 		r->tex_x = data->n_tex->width - r->tex_x - 1;
 	if (r->side == 1 && raydir.y < 0)
 		r->tex_x = data->n_tex->width - r->tex_x - 1;
+}
+
+void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
+{
+	t_draw	d;
+	int		j;
+
+	wall_maths(data, &d, r, raydir);
 	j = -1;
 	while (++j < HEIGHT)
 	{
@@ -107,25 +93,7 @@ void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
 		else if (j >= d.draw_start && j <= d.draw_end)
 		{
 			r->d_y = j * 256 - HEIGHT * 128 + d.line_height * 128;
-			r->tex_y = ((r->d_y * data->n_tex->height) / d.line_height) / 256;
-			if (r->side == 0)
-			{
-				if (raydir.x > 0)
-					r->color = data->e_tex->addr[r->tex_y
-						* data->e_tex->line_len / 4 + r->tex_x];
-				else
-					r->color = data->w_tex->addr[r->tex_y
-						* data->w_tex->line_len / 4 + r->tex_x];
-			}
-			else
-			{
-				if (raydir.y > 0)
-					r->color = data->n_tex->addr[r->tex_y
-						* data->n_tex->line_len / 4 + r->tex_x];
-				else
-					r->color = data->s_tex->addr[r->tex_y
-						* data->s_tex->line_len / 4 + r->tex_x];
-			}
+			create_wall(data, r, raydir, d);
 			my_pixel_put(&data->img, i, j, r->color);
 		}
 		else

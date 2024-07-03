@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 17:55:11 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:28:29 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	init_game(t_mlx_data *data);
 void	init_player(t_mlx_data *data);
 void	init_textures(t_mlx_data *data);
 void	init_r(t_ray *r);
+
+//game_utils.c
+int		close_window(void *param);
+void	init_ray_vars(t_ray *r, t_vec raydir);
+void	loop_ray(t_cube *cube, t_ray *r);
 
 //movement.c
 void	print_stick(t_mlx_data *data, t_vec raydir, double line_len, int color);
