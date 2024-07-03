@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 12:28:45 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 12:55:31 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,9 +180,9 @@ void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
     // Coordenadas de la textura
 	double	wallX;
 	if (r->side == 0) // E-W
-		wallX = data->p.pos.y + r->prepwalldist * raydir.y;
+		wallX = r->pos.y + r->prepwalldist * raydir.y;
     else // N-S
-		wallX = data->p.pos.x + r->prepwalldist * raydir.x;
+		wallX = r->pos.x + r->prepwalldist * raydir.x;
 	wallX -= floor((wallX));
 
     // Coordenada X en la textura
