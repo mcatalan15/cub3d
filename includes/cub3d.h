@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 18:28:29 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:06:51 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,17 @@ void	init_player(t_mlx_data *data);
 void	init_textures(t_mlx_data *data);
 void	init_r(t_ray *r);
 
+//keys.c
+void	rotate_keys(t_mlx_data *data, double angle, int key);
+void	move_keys_horizontal(t_mlx_data *data, double speed, int key);
+void	move_keys_vertical(t_mlx_data *data, double speed, int key);
+int		move(int key, t_mlx_data *data);
+
 //game_utils.c
 int		close_window(void *param);
 void	init_ray_vars(t_ray *r, t_vec raydir);
 void	loop_ray(t_cube *cube, t_ray *r);
+void	add_player_values(t_mlx_data *data, t_cube *cube);
 
 //movement.c
 void	print_stick(t_mlx_data *data, t_vec raydir, double line_len, int color);
@@ -58,14 +65,12 @@ int		reset_buttons(int key, t_mlx_data *data);
 void	rotate(t_mlx_data *data);
 int		move(int key, t_mlx_data *data);
 int		my_loop(t_mlx_data *data);
+bool	check_collision(t_mlx_data *data, int flag, double sum);
+void	normalize_vector(double *x, double *y);
+void	rotate_vector(t_mlx_data *data, double theta);
 
 //rays.c
 void	create_rays(t_mlx_data *data, t_cube *cube);
-
-//parsing
-//parsing.c
-int		checker_file(char *file);
-int		parsing(t_cube *cube);
 
 //utils
 //prints.c
@@ -83,9 +88,15 @@ int		free_dp(char **dp);
 int		free_all(t_cube *cube);
 int		free_dp_int(int **dp);
 
+//parsing
+//parsing.c
+int		checker_file(char *file);
+int		parsing(t_cube *cube);
+
 // parsing
 //parsing.c
 int		parsing(t_cube *cube);
+bool	is_valid_char(char c);
 
 //get_info.c
 int		get_info(t_cube *cube);
@@ -103,6 +114,7 @@ int		check_is_xpm_2(char *path);
 int		update_pos_i(char *line, int pos_i, int flag);
 void	extract_num(char *line, int pos_i, char *num_s);
 void	flags(t_cube *cube, char flag, int i, char *num_s);
+void	checker_map(t_cube *cube);
 
 //parsing_utils.c
 void	skip_sapaces(char *line, int *pos_i);

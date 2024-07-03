@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:31:33 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 18:27:59 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:47:13 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,29 @@ void	loop_ray(t_cube *cube, t_ray *r)
 		r->prepwalldist = r->sidedist.x - r->deltadist.x;
 	else
 		r->prepwalldist = r->sidedist.y - r->deltadist.y;
+}
+
+void	add_player_values(t_mlx_data *data, t_cube *cube)
+{
+	if (cube->pos == 2)
+	{
+		data->p.dir.y = 0;
+		data->p.dir.x = 1;
+		data->p.plane.x = 0;
+		data->p.plane.y = 0.66;
+	}
+	else if (cube->pos == 4)
+	{
+		data->p.dir.y = 1;
+		data->p.dir.x = 0;
+		data->p.plane.x = -0.66;
+		data->p.plane.y = 0;
+	}
+	else if (cube->pos == 3)
+	{
+		data->p.dir.y = -1;
+		data->p.dir.x = 0;
+		data->p.plane.x = 0.66;
+		data->p.plane.y = 0;
+	}
 }

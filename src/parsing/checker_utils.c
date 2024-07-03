@@ -6,11 +6,29 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:59:17 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 17:50:13 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:39:02 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/cub3d.h"
+
+void	checker_map(t_cube *cube)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (cube->map[++i])
+	{
+		j = -1;
+		while (cube->map[i][++j])
+		{
+			if (is_valid_char(cube->map[i][j]) == false)
+				generic_exit("Map no correct chars");
+		}
+	}
+}
 
 void	flags(t_cube *cube, char flag, int i, char *num_s)
 {

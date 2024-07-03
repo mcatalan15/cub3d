@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/07/03 18:05:15 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:47:52 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,7 @@ void	add_player(t_mlx_data *data, t_cube *cube)
 		data->p.plane.x = 0;
 		data->p.plane.y = -0.66;
 	}
-	else if (cube->pos == 2)
-	{
-		data->p.dir.y = 0;
-		data->p.dir.x = 1;
-		data->p.plane.x = 0;
-		data->p.plane.y = 0.66;
-	}
-	else if (cube->pos == 4)
-	{
-		data->p.dir.y = 1;
-		data->p.dir.x = 0;
-		data->p.plane.x = -0.66;
-		data->p.plane.y = 0;
-	}
-	else if (cube->pos == 3)
-	{
-		data->p.dir.y = -1;
-		data->p.dir.x = 0;
-		data->p.plane.x = 0.66;
-		data->p.plane.y = 0;
-	}
+	add_player_values(data, cube);
 }
 
 void	print_block(t_mlx_data *data, int x, int y)

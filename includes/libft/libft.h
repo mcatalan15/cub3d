@@ -6,19 +6,15 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 19:09:06 by mcatalan@st       #+#    #+#             */
-/*   Updated: 2024/07/03 18:04:09 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 19:15:18 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifdef __linux__
-# define OPEN_MAX	FOPEN_MAX
-#endif
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # define BUFF_SIZE 10
 # define BUFFER_SIZE 1
-
+# define OPEN_MAX	FOPEN_MAX
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -95,7 +91,7 @@ int				ft_strcmpnks(char *s1, char *s2);
 int				ft_isnum(char c);
 
 // get_next_line.c
-char *get_next_line(int fd);
+char			*get_next_line(int fd);
 char			*readbuf(int fd, char *str);
 char			*n_line(char *str);
 char			*clean_storage(char *str);
