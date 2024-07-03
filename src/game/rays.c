@@ -3,45 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 12:55:31 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:58:44 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	init_r(t_ray *r)
-{
-	r->sidedist.x = 0;
-	r->sidedist.y = 0;
-	r->deltadist.x = 0;
-	r->deltadist.y = 0;
-	r->pos.x = 0;
-	r->pos.y = 0;
-	r->prepwalldist = 0;
-	r->mapX = 0;
-	r->mapY = 0;
-	r->stepX = 0;
-	r->stepY = 0;
-	r->side = 0;
-	r->hit = 0;
-}
-
 void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 {
-	// double	mag;
-	// t_vec	sum;
-
 	r->hit = 0;
 	r->pos.x = (data->p.pos.x - 100) / BLOCK;
 	r->pos.y = (data->p.pos.y - 100) / BLOCK;
-	r->mapX = (int)r->pos.x;
-	r->mapY = (int)r->pos.y;
-	// sum.x = 0;
-	// sum.y = 0;
-	// mag = sqrt(raydir.x * raydir.x + raydir.y * raydir.y);
+	r->map_x = (int)r->pos.x;
+	r->map_y = (int)r->pos.y;
 	if (!raydir.x)
 		r->deltadist.x = 1e30;
 	else
@@ -52,207 +29,108 @@ void	one_ray(t_mlx_data *data, t_cube *cube, t_vec raydir, t_ray *r)
 		r->deltadist.y = fabs((1 / raydir.y));
 	if (raydir.x < 0)
 	{
-		r->stepX = -1;
-		r->sidedist.x = (r->pos.x - r->mapX) * r->deltadist.x;
-		// sum.x = r->pos.x - r->mapX;
+		r->step_x = -1;
+		r->sidedist.x = (r->pos.x - r->map_x) * r->deltadist.x;
 	}
 	else
 	{
-		r->stepX = 1;
-		r->sidedist.x = (r->mapX + 1.0 - r->pos.x) * r->deltadist.x;
-		// sum.x = r->mapX + 1.0 - r->pos.x;
+		r->step_x = 1;
+		r->sidedist.x = (r->map_x + 1.0 - r->pos.x) * r->deltadist.x;
 	}
 	if (raydir.y < 0)
 	{
-		r->stepY = -1;
-		r->sidedist.y = (r->pos.y - r->mapY) * r->deltadist.y;
-		// sum.y = r->pos.y - r->mapY;
+		r->step_y = -1;
+		r->sidedist.y = (r->pos.y - r->map_y) * r->deltadist.y;
 	}
 	else
 	{
-		r->stepY = 1;
-		r->sidedist.y = (r->mapY + 1.0 - r->pos.y) * r->deltadist.y;
-		// sum.y = r->mapY + 1.0 - r->pos.y;
+		r->step_y = 1;
+		r->sidedist.y = (r->map_y + 1.0 - r->pos.y) * r->deltadist.y;
 	}
 	while (!r->hit)
 	{
 		if (r->sidedist.x < r->sidedist.y)
 		{
 			r->sidedist.x += r->deltadist.x;
-			r->mapX += r->stepX;
-			// sum.x += r->stepX;
+			r->map_x += r->step_x;
 			r->side = 0;
 		}
 		else
 		{
 			r->sidedist.y += r->deltadist.y;
-			r->mapY += r->stepY;
-			// sum.y += r->stepY;
+			r->map_y += r->step_y;
 			r->side = 1;
 		}
-		if (cube->map[r->mapX][r->mapY] == '1')
+		if (cube->map[r->map_x][r->map_y] == '1')
 			r->hit = 1;
 	}
 	if (r->side == 0)
-	{
 		r->prepwalldist = r->sidedist.x - r->deltadist.x;
-		// r->pos.x += sum.x - r->stepX;
-		// r->pos.y += sqrt(r->prepwalldist * r->prepwalldist - sum.x * sum.x) * r->stepY;
-	}
 	else
-	{
 		r->prepwalldist = r->sidedist.y - r->deltadist.y;
-		// r->pos.y += sum.y - r->stepY;
-		// r->pos.x += sqrt(r->prepwalldist * r->prepwalldist - sum.y * sum.y) * r->stepX;
-	}
-	// r->raylen = r->prepwalldist * BLOCK;
-	// print_stick(data, raydir, raylen, color);
 }
-
-// void create_rays(t_mlx_data *data, t_cube *cube, int color)
-// {
-//     int i = 0;
-//     double camerax;
-//     t_vec raydir;
-
-//     while (i < WIDTH)
-//     {
-//         camerax = 2 * i / (double)WIDTH - 1; // Normaliza el índice del rayo
-//         raydir.x = data->p.dir->x + data->p.plane.x * camerax;
-//         raydir.y = data->p.dir->y + data->p.plane.y * camerax;
-//         one_ray(data, cube, raydir, color);
-//         i++;
-//     }
-// }
-
-// int	calculate_color(t_texture *texture, t_ray *r, int j, t_draw d)
-// {
-// 	int	y;
-// 	int	x;
-// 	int	color;
-
-// 	if (r->side)
-// 		x = texture->width * (r->pos.x- (int)r->pos.x);
-// 	else
-// 		x = texture->width * (r->pos.y - (int) r->pos.y);
-// 	y = texture->height * ((float)(j - d.drawStart - (d.auxStart - d.drawStart)) / (d.auxEnd - d.auxStart));
-// 	color = (*(int *)(texture->addr + y * texture->line_len + x * (texture->bpp / 8)));
-// 	return (color);
-// }
-
-// int	get_color(t_texture *tex, t_ray *r, t_draw d, t_vec raydir, int	texY)
-// {
-// 	if (texY >= tex->height)
-// 		texY -= tex->height;
-// 	d.texX = (int)(d.wallX * (double)tex->width);
-// 	if (r->side == 0 && raydir.x > 0)
-// 		d.texX = tex->width - d.texX - 1;
-// 	if (r->side == 1 && raydir.y < 0)
-// 		d.texX = tex->width - d.texX - 1;
-// 	double step = 1.0 * tex->height / d.lineHeight;
-// 	d.texPos = (d.drawStart - HEIGHT / 2 + d.lineHeight / 2) * step;
-// 	// int texY = (int)d.texPos & (tex->height - 1);
-// 	d.texPos += step;
-// 	printf("height: %d, texX: %d, texY: %d\n",tex->height, d.texX, texY);
-// 	int	color = tex->addr[tex->height * texY + d.texX];
-// 	return (color);
-// }
 
 void	wall(t_mlx_data *data, t_ray *r, t_vec raydir, int i)
 {
 	t_draw	d;
-	// double	mag;
+	double	wall_x;
+	int		j;
 
-	// mag = sqrt(raydir.x * raydir.x + raydir.y * raydir.y);
-	d.lineHeight = (int)(HEIGHT / r->prepwalldist);
-	d.auxStart = -d.lineHeight / 2 + HEIGHT / 2;
-	d.auxEnd = d.lineHeight / 2 + HEIGHT / 2;
-
-	if (d.auxStart < 0)
-		d.drawStart = 0;
+	d.line_height = (int)(HEIGHT / r->prepwalldist);
+	d.aux_start = -d.line_height / 2 + HEIGHT / 2;
+	d.aux_end = d.line_height / 2 + HEIGHT / 2;
+	if (d.aux_start < 0)
+		d.draw_start = 0;
 	else
-		d.drawStart = d.auxStart;
-	if (d.auxEnd >= HEIGHT)
-		d.drawEnd = HEIGHT - 1;
+		d.draw_start = d.aux_start;
+	if (d.aux_end >= HEIGHT)
+		d.draw_end = HEIGHT - 1;
 	else
-		d.drawEnd = d.auxEnd;
-
-    // Coordenadas de la textura
-	double	wallX;
-	if (r->side == 0) // E-W
-		wallX = r->pos.y + r->prepwalldist * raydir.y;
-    else // N-S
-		wallX = r->pos.x + r->prepwalldist * raydir.x;
-	wallX -= floor((wallX));
-
-    // Coordenada X en la textura
-	int texX = (int)(wallX * (double)(data->n_tex->width));
+		d.draw_end = d.aux_end;
+	if (r->side == 0)
+		wall_x = r->pos.y + r->prepwalldist * raydir.y;
+	else
+		wall_x = r->pos.x + r->prepwalldist * raydir.x;
+	wall_x -= floor((wall_x));
+	r->tex_x = (int)(wall_x * (double)(data->n_tex->width));
 	if (r->side == 0 && raydir.x > 0)
-		texX = data->n_tex->width - texX - 1;
+		r->tex_x = data->n_tex->width - r->tex_x - 1;
 	if (r->side == 1 && raydir.y < 0)
-		texX = data->n_tex->width - texX - 1;
-
-	int j = -1;
+		r->tex_x = data->n_tex->width - r->tex_x - 1;
+	j = -1;
 	while (++j < HEIGHT)
-	// while (++j < 1)
 	{
-		if (j < d.drawStart)
-			my_pixel_put(&data->img, i, j, data->cube->f[0] << 16 | data->cube->f[1] << 8 | data->cube->f[2]);
-		else if (j >= d.drawStart && j <= d.drawEnd)
+		if (j < d.draw_start)
+			my_pixel_put(&data->img, i, j,
+				data->cube->c[0] << 16 | data->cube->c[1] << 8
+				| data->cube->c[2]);
+		else if (j >= d.draw_start && j <= d.draw_end)
 		{
-			// /////
-			// d.lineHeight = (int)(HEIGHT / r->prepwalldist);
-			// d.auxStart = -d.lineHeight / 2 + HEIGHT / 2;
-			// d.auxEnd = d.lineHeight / 2 + HEIGHT / 2;
-
-			// if (d.auxStart < 0)
-			// 	d.drawStart = 0;
-			// else
-			// 	d.drawStart = d.auxStart;
-			// if (d.auxEnd >= HEIGHT)
-			// 	d.drawEnd = HEIGHT - 1;
-			// else
-			// 	d.drawEnd = d.auxEnd;
-
-			// // Coordenadas de la textura
-			// double	wallX;
-			// if (r->side == 0) // E-W
-			// 	wallX = data->p.pos.y + r->prepwalldist * raydir.y;
-			// else // N-S
-			// 	wallX = data->p.pos.x + r->prepwalldist * raydir.x;
-			// wallX -= floor((wallX));
-
-			// // Coordenada X en la textura
-			// int texX = (int)(wallX * (double)(data->n_tex->width));
-			// if (r->side == 0 && raydir.x > 0)
-			// 	texX = data->n_tex->width - texX - 1;
-			// if (r->side == 1 && raydir.y < 0)
-			// 	texX = data->n_tex->width - texX - 1;
-			// /////
-			int d_y = j * 256 - HEIGHT * 128 + d.lineHeight * 128;
-			int texY = ((d_y * data->n_tex->height) / d.lineHeight) / 256;
-			int color;
+			r->d_y = j * 256 - HEIGHT * 128 + d.line_height * 128;
+			r->tex_y = ((r->d_y * data->n_tex->height) / d.line_height) / 256;
 			if (r->side == 0)
 			{
-				if (raydir.x > 0) // E
-					color = data->e_tex->addr[texY * data->e_tex->line_len / 4 + texX];
-				else // W
-					color = data->w_tex->addr[texY * data->w_tex->line_len / 4 + texX];
+				if (raydir.x > 0)
+					r->color = data->e_tex->addr[r->tex_y
+						* data->e_tex->line_len / 4 + r->tex_x];
+				else
+					r->color = data->w_tex->addr[r->tex_y
+						* data->w_tex->line_len / 4 + r->tex_x];
 			}
 			else
 			{
-                if (raydir.y > 0) // N
-					color = data->n_tex->addr[texY * data->n_tex->line_len / 4 + texX];
-                else // S
-					color = data->s_tex->addr[texY * data->s_tex->line_len / 4 + texX];
+				if (raydir.y > 0)
+					r->color = data->n_tex->addr[r->tex_y
+						* data->n_tex->line_len / 4 + r->tex_x];
+				else
+					r->color = data->s_tex->addr[r->tex_y
+						* data->s_tex->line_len / 4 + r->tex_x];
 			}
-			// printf("color: %d\n", color);
-			// printf("texY: %d\n", texY);
-			// printf("texX: %d\n", texX);
-			my_pixel_put(&data->img, i, j, color);
+			my_pixel_put(&data->img, i, j, r->color);
 		}
 		else
-			my_pixel_put(&data->img, i, j, data->cube->c[0] << 16 | data->cube->c[1] << 8 | data->cube->c[2]);
+			my_pixel_put(&data->img, i, j, data->cube->f[0] << 16
+				| data->cube->f[1] << 8 | data->cube->f[2]);
 	}
 }
 
@@ -275,8 +153,6 @@ void	create_rays(t_mlx_data *data, t_cube *cube)
 		raydir.y = data->p.dir.y + data->p.plane.y * camerax;
 		one_ray(data, cube, raydir, &r);
 		wall(data, &r, raydir, i);
-		// int lineHeight = (int)(HEIGHT / r.prepwalldist);
-		// printf("lineHeight: %d\n", lineHeight);
 	}
 }
 

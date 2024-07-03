@@ -6,7 +6,7 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/07/01 18:48:14 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/07/03 17:59:44 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRC_FILES =		src/main.c					\
 				src/parsing/map.c			\
 				src/parsing/map_utils.c		\
 				src/game/game.c				\
+				src/game/init_game.c		\
 				src/game/movement.c			\
 				src/game/rays.c				\
 				src/game/game_utils.c		\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:18 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 12:11:20 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:54:53 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,22 @@ typedef struct s_player		t_player;
 typedef struct s_ray		t_ray;
 typedef struct s_texture	t_texture;
 typedef struct s_draw		t_draw;
-// typedef struct s_map	t_map;
 
 struct	s_cube
 {
-	char	**map; //from .cub just the map
-	char	**file; //.cub file saved
-	char	*n_text; //noth path texture
-	char	*s_text; //south path texture
-	char	*w_text; //west path texture
-	char	*e_text; //east path texture
-	int		f[3]; //floor color 0,0,0 -> 255,255,255
-	int		c[3]; //ceiling color 0,0,0 -> 255,255,255
-	int		pos; //flag start position 1 = N,2 = S,3 = W, 4=E
-	int		map_h; //map max height
-	int		map_w; //map max width
-	int		player_y; //player pos_y
-	int		player_x; //player pos_x
+	char	**map;
+	char	**file;
+	char	*n_text;
+	char	*s_text;
+	char	*w_text;
+	char	*e_text;
+	int		f[3];
+	int		c[3];
+	int		pos;
+	int		map_h;
+	int		map_w;
+	int		player_y;
+	int		player_x;
 };
 
 struct s_img
@@ -100,12 +99,16 @@ struct s_ray
 	t_vec	pos;
 	double	prepwalldist;
 	double	raylen;
-	int		mapX;
-	int		mapY;
-	int		stepX;
-	int		stepY;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
 	int		side;
 	int		hit;
+	int		tex_x;
+	int		d_y;
+	int		tex_y;
+	int		color;
 };
 
 struct s_texture
@@ -121,14 +124,13 @@ struct s_texture
 
 struct s_draw
 {
-	int 	drawStart;
-	int		drawEnd;
-	int		auxStart;
-	int		auxEnd;
-	int		lineHeight;
-	double	texPos;
-	int		texX;
-	int		wallX;
+	int		draw_start;
+	int		draw_end;
+	int		aux_start;
+	int		aux_end;
+	int		line_height;
+	int		tex_x;
+	int		wall_x;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/28 12:14:30 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:55:11 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int		open_file(char *file, t_cube *cube);
 //game
 //game.c
 void	game(t_mlx_data *data, t_cube *cube);
+
+//init_game.c
+void	init_game(t_mlx_data *data);
+void	init_player(t_mlx_data *data);
+void	init_textures(t_mlx_data *data);
+void	init_r(t_ray *r);
 
 //movement.c
 void	print_stick(t_mlx_data *data, t_vec raydir, double line_len, int color);

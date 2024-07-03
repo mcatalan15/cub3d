@@ -6,9 +6,8 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:31:33 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/21 19:31:38 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 17:51:27 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
