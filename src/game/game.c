@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:58:09 by jpaul-kr          #+#    #+#             */
-/*   Updated: 2024/07/03 18:47:52 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/04 12:22:19 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	game(t_mlx_data *data, t_cube *cube)
 		1.3 Player movements--------------------------OK
 			1.3.1 Rotate player---------------------------------OK
 			1.3.2 Move player (with direction)------------------OK
-			1.3.3 Map colision----------------------------------Ok
+			1.3.3 Map colision----------------------------------OK
 		1.4 Move player (with direction)--------------OK
 		1.5 Print Rays (FOV)--------------------------OK
 			1.5.1 Print one ray---------------------------------OK
@@ -129,13 +129,13 @@ void	game(t_mlx_data *data, t_cube *cube)
 			1.5.3 Print ray with horizontal coliision-----------OK
 			1.5.4 Print rays in FOV-----------------------------OK
 	2. Game 3D------------
-		2.1 Raycasting--------------------------------
-		2.2 Print 3D walls----------------------------
-		2.3 Print floor & ceiling---------------------
-		2.4 Print sprites & textures------------------
+		2.1 Raycasting--------------------------------OK
+		2.2 Print 3D walls----------------------------OK
+		2.3 Print floor & ceiling---------------------OK
+		2.4 Print sprites & textures------------------OK
 	3. Correct & test-----
-		3.1 Correct leaks-----------------------------
-		3.2 Test Norminette---------------------------
-		3.3 Change textures---------------------------
+		3.1 Correct leaks-----------------------------OK
+		3.2 Test Norminette---------------------------OK
+		3.3 Change textures---------------------------OK
 		3.4 Change sprites----------------------------
 */

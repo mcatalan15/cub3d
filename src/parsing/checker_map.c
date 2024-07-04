@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:05:55 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 17:47:46 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:55:16 by jpaul-kr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ int	checker_map_extension(char *path)
 
 int	checker_0(t_cube *cube, int i, int j)
 {
-	if (cube->map[i][j + 1] == ' ')
+	if (j + 1 >= cube->map_w || cube->map[i][j + 1] == ' ')
 		return (1);
-	else if (cube->map[i][j - 1] == ' ')
+	if (j - 1 < 0 || cube->map[i][j - 1] == ' ')
 		return (1);
-	else if (cube->map[i + 1][j] == ' ')
+	if (i + 1 >= cube->map_h || cube->map[i + 1][j] == ' ')
 		return (1);
-	else if (cube->map[i - 1][j] == ' ')
+	if (i - 1 < 0 || cube->map[i - 1][j] == ' ')
 		return (1);
-	else if (j == (cube->map_w - 1) || j == 0)
+	if (j == (cube->map_w - 1) || j == 0)
 		return (1);
 	return (0);
 }
