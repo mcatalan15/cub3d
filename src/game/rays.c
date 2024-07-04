@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:34:05 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/04 11:32:50 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/07/04 16:06:37 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ void	create_wall(t_mlx_data *data, t_ray *r, t_vec raydir, t_draw d)
 	if (r->side == 1)
 	{
 		if (raydir.y > 0)
-			r->color = data->e_tex->addr[r->tex_y
-				* data->e_tex->line_len / 4 + r->tex_x];
-		else
-		{
 			r->color = data->w_tex->addr[r->tex_y
 				* data->w_tex->line_len / 4 + r->tex_x];
+		else
+		{
+			r->color = data->e_tex->addr[r->tex_y
+				* data->e_tex->line_len / 4 + r->tex_x];
 		}
 	}
 	else
 	{
 		if (raydir.x > 0)
-			r->color = data->s_tex->addr[r->tex_y
-				* data->s_tex->line_len / 4 + r->tex_x];
-		else
 			r->color = data->n_tex->addr[r->tex_y
 				* data->n_tex->line_len / 4 + r->tex_x];
+		else
+			r->color = data->s_tex->addr[r->tex_y
+				* data->s_tex->line_len / 4 + r->tex_x];
 	}
 }
 

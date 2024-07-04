@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
+#    By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/07/04 11:28:16 by jpaul-kr         ###   ########.fr        #
+#    Updated: 2024/07/04 15:06:41 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ SRC_FILES =		src/main.c					\
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # Executable name
-TARGET = cub3d
+TARGET = cub3D
 
 # Libraries
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm #-lz

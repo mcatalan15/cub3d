@@ -1,5 +1,5 @@
-   WE                            graphic/textures/wolf1.xpm
-         NO      graphic/textures/wolf2.xpm   
+   WE                            graphic/textures/blue_brick.xpm
+         NO      graphic/textures/stone_wall.xpm   
 
 
 
@@ -7,7 +7,7 @@ SO graphic/textures/hitler.xpm
 
 F      17,    38,     64
 
-EA graphic/textures/wolf3.xpm
+EA graphic/textures/red_brick.xpm
 
 
 

@@ -1,7 +1,7 @@
-NO graphic/textures/blue.xpm
-SO graphic/textures/green.xpm
-WE graphic/textures/pink.xpm
-EA graphic/textures/purple.xpm
+NO graphic/textures/blue_brick.xpm
+SO graphic/textures/red_brick.xpm
+WE graphic/textures/stone_wall.xpm
+EA graphic/textures/wood_wall.xpm
 
 F 255,229,211
 C 211,252,255

@@ -1,10 +1,10 @@
 F 139,99,58
 C 171,154,137
 
-NO graphic/textures/wolf4.xpm
+NO graphic/textures/wood_wall.xpm
 SO graphic/textures/hitler.xpm
-WE graphic/textures/wolf1.xpm
-EA graphic/textures/wolf3.xpm
+WE graphic/textures/blue_brick.xpm
+EA graphic/textures/red_brick.xpm
 
 1111111111111111111
 1001001001001001001
