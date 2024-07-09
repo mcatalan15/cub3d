@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpaul-kr <jpaul-kr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:18:28 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/04 12:36:41 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:26:49 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	check_total_vals(t_cube *cube)
 int	checker_vals(t_cube *cube)
 {
 	if (check_total_vals(cube) != 6)
-		generic_exit("Map values not valid. Check F or C");
+		generic_exit("Map values not valid. Check textures, F and C");
 	if (check_xpm(cube))
 		generic_exit("Files not found or must be in a .xpm format");
 	return (0);

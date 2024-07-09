@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:55:48 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 17:50:43 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:24:08 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 
 int	get_info_2(t_cube *cube, int x, int j, int i)
 {
-	if (cube->file[i][j] == 'W')
+	if (cube->file[i][j] == 'W' && cube->file[i][j + 1] == 'E')
 	{
 		cube->w_text = clean_line(cube->file[i], j);
 		x++;
 	}
-	if (cube->file[i][j] == 'E')
+	if (cube->file[i][j] == 'E' && cube->file[i][j + 1] == 'A')
 	{
 		cube->e_text = clean_line(cube->file[i], j);
 		x++;
@@ -100,12 +100,12 @@ int	get_info(t_cube *cube)
 		j = 0;
 		while (ft_isspace(cube->file[i][j]))
 			j++;
-		if (cube->file[i][j] == 'N')
+		if (cube->file[i][j] == 'N' && cube->file[i][j + 1] == 'O')
 		{
 			cube->n_text = clean_line(cube->file[i], j);
 			x++;
 		}
-		if (cube->file[i][j] == 'S')
+		if (cube->file[i][j] == 'S' && cube->file[i][j + 1] == 'O')
 		{
 			cube->s_text = clean_line(cube->file[i], j);
 			x++;
