@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 19:06:51 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:17:39 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		free_dp_int(int **dp);
 int		checker_file(char *file);
 int		parsing(t_cube *cube);
 
-// parsing
+//parsing
 //parsing.c
 int		parsing(t_cube *cube);
 bool	is_valid_char(char c);
@@ -108,6 +108,10 @@ int		checker_0(t_cube *cube, int i, int j);
 //checker.c
 int		checker_vals(t_cube *cube);
 int		checker_map_extension(char *path);
+
+//is_valid_map.c
+bool	is_valid_map(t_cube *cube);
+int		recursive(t_cube *cube, int x, int y, char **visited);
 
 //checker_utils.c
 int		check_is_xpm_2(char *path);
