@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:13:29 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/10 10:28:22 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:46:09 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ bool	is_valid_map(t_cube *cube)
 		visited[i] = malloc(sizeof(char) * cube->map_w);
 		if (!visited[i])
 			malloc_err(1);
+		ft_bzero(visited[i], sizeof(char) * cube->map_w);
 		i++;
 	}
 	res = recursive(cube, cube->player_x, cube->player_y, visited);
