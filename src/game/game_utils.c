@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 19:31:33 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 18:47:13 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:53:29 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ void	loop_ray(t_cube *cube, t_ray *r)
 			r->hit = 1;
 	}
 	if (r->side == 0)
-		r->prepwalldist = r->sidedist.x - r->deltadist.x;
+		r->prepwalldist = fabs(r->sidedist.x - r->deltadist.x);
 	else
-		r->prepwalldist = r->sidedist.y - r->deltadist.y;
+		r->prepwalldist = fabs(r->sidedist.y - r->deltadist.y);
+	if (r->prepwalldist < 0.03)
+		r->prepwalldist = 0.03;
 }
 
 void	add_player_values(t_mlx_data *data, t_cube *cube)
