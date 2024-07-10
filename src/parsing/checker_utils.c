@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:59:17 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/03 18:39:02 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:24:17 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	update_pos_i(char *line, int pos_i, int flag)
 	return (pos_i);
 }
 
-int	check_is_xpm_2(char *path)
+int	check_is_xpm(char *path)
 {
 	size_t		path_len;
 	size_t		ext_len;

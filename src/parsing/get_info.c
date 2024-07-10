@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_info.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:55:48 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/09 16:24:08 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:23:21 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parse_number(char *line, int *pos_i, char *num_s)
 	*pos_i = update_pos_i(line, *pos_i, 2);
 }
 
-void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
+void	clean_line_f_c(t_cube *cube, char *line, int pos_i, char flag)
 {
 	char	*num_s;
 	int		i;
@@ -62,7 +62,7 @@ void	clear_line2(t_cube *cube, char *line, int pos_i, char flag)
 	free(num_s);
 }
 
-int	get_info_2(t_cube *cube, int x, int j, int i)
+int	get_info_others(t_cube *cube, int x, int j, int i)
 {
 	if (cube->file[i][j] == 'W' && cube->file[i][j + 1] == 'E')
 	{
@@ -76,12 +76,12 @@ int	get_info_2(t_cube *cube, int x, int j, int i)
 	}
 	if (cube->file[i][j] == 'C')
 	{
-		clear_line2(cube, cube->file[i], j, 'f');
+		clean_line_f_c(cube, cube->file[i], j, 'f');
 		x++;
 	}
 	if (cube->file[i][j] == 'F')
 	{
-		clear_line2(cube, cube->file[i], j, 'c');
+		clean_line_f_c(cube, cube->file[i], j, 'c');
 		x++;
 	}
 	return (x);
@@ -110,7 +110,7 @@ int	get_info(t_cube *cube)
 			cube->s_text = clean_line(cube->file[i], j);
 			x++;
 		}
-		x = get_info_2(cube, x, j, i);
+		x = get_info_others(cube, x, j, i);
 	}
 	return (i);
 }

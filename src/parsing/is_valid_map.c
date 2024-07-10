@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 18:13:29 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/09 18:25:05 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:28:22 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "./../includes/cub3d.h"
 
 int	is_playable(t_cube *cube, int x, int y)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/09 18:17:39 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:24:12 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ bool	is_valid_map(t_cube *cube);
 int		recursive(t_cube *cube, int x, int y, char **visited);
 
 //checker_utils.c
-int		check_is_xpm_2(char *path);
+int		check_is_xpm(char *path);
 int		update_pos_i(char *line, int pos_i, int flag);
 void	extract_num(char *line, int pos_i, char *num_s);
 void	flags(t_cube *cube, char flag, int i, char *num_s);

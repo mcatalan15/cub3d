@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 11:18:28 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/09 16:26:49 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:24:17 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ int	check_path_exist(char *path)
 	return (FAILURE);
 }
 
-int	check_xpm(t_cube *cube)
+int	filter_xpm(t_cube *cube)
 {
 	int	i;
 
 	i = 0;
-	if (!check_is_xpm_2(cube->n_text) && !check_path_exist(cube->n_text))
+	if (!check_is_xpm(cube->n_text) && !check_path_exist(cube->n_text))
 		i++;
-	if (!check_is_xpm_2(cube->s_text) && !check_path_exist(cube->s_text))
+	if (!check_is_xpm(cube->s_text) && !check_path_exist(cube->s_text))
 		i++;
-	if (!check_is_xpm_2(cube->w_text) && !check_path_exist(cube->w_text))
+	if (!check_is_xpm(cube->w_text) && !check_path_exist(cube->w_text))
 		i++;
-	if (!check_is_xpm_2(cube->e_text) && !check_path_exist(cube->e_text))
+	if (!check_is_xpm(cube->e_text) && !check_path_exist(cube->e_text))
 		i++;
 	if (i == 4)
 		return (SUCCESS);
@@ -83,7 +83,7 @@ int	checker_vals(t_cube *cube)
 {
 	if (check_total_vals(cube) != 6)
 		generic_exit("Map values not valid. Check textures, F and C");
-	if (check_xpm(cube))
+	if (filter_xpm(cube))
 		generic_exit("Files not found or must be in a .xpm format");
 	return (0);
 }
