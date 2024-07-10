@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:13 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/07/10 10:24:12 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:16:04 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 //our libs
 # include "./libft/libft.h"
-# include "./minilibx_macos/mlx.h"
+# include "./minilibx-linux/mlx.h"
 
 //.h files
 # include "definitions.h"

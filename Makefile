@@ -6,7 +6,7 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/07/09 18:22:40 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/07/10 19:12:32 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ RESET = \033[0m
 SRC_DIR = src
 OBJ_DIR = obj
 LIBFT_DIR = ./includes/libft
-# MLX_DIR = ./includes/minilibx_macos
 MLX_DIR = ./includes/minilibx-linux
 
 # Source files and corresponding object files
