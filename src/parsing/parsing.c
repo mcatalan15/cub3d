@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:34:26 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 10:05:17 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:38:57 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@ bool	is_valid_char(char c)
 		return (true);
 	else
 		return (false);
-}
-
-void	checker_map(t_cube *cube)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (cube->map[++i])
-	{
-		j = -1;
-		while (cube->map[i][++j])
-		{
-			if (is_valid_char(cube->map[i][j]) == false)
-				generic_exit("Map no correct chars");
-		}
-	}
 }
 
 bool	ft_pos(char c)
@@ -109,6 +91,5 @@ int	parsing(t_cube *cube)
 	map_parsing(cube, pos_map);
 	checker_map(cube);
 	copy_map(cube);
-	print_struct(cube);
 	return (0);
 }

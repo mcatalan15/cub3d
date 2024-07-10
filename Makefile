@@ -6,14 +6,14 @@
 #    By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 11:11:59 by mcatalan          #+#    #+#              #
-#    Updated: 2024/06/19 11:25:59 by mcatalan         ###   ########.fr        #
+#    Updated: 2024/07/09 18:22:40 by mcatalan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-# GDBFLAG = -g
-GDBFLAG = -fsanitize=address -g
+GDBFLAG = -g
+# GDBFLAG = -fsanitize=address -g
 
 # Colors
 RED = \033[0;31m
@@ -43,13 +43,18 @@ SRC_FILES =		src/main.c					\
 				src/parsing/parsing_utils.c	\
 				src/parsing/map.c			\
 				src/parsing/map_utils.c		\
+				src/parsing/is_valid_map.c	\
 				src/game/game.c				\
+				src/game/init_game.c		\
 				src/game/movement.c			\
+				src/game/rays.c				\
+				src/game/game_utils.c		\
+				src/game/keys.c				\
 
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 # Executable name
-TARGET = cub3d
+TARGET = cub3D
 
 # Libraries
 LIBS = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx_Linux -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm #-lz

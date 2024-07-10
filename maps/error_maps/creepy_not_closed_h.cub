@@ -1,7 +1,7 @@
-NO graphic/textures/wolf1.xpm
-EA graphic/textures/wolf2.xpm
-SO graphic/textures/wolf3.xpm
-WE graphic/textures/wolf4.xpm
+NO graphic/textures/blue_brick.xpm
+EA graphic/textures/stone_wall.xpm
+SO graphic/textures/red_brick.xpm
+WE graphic/textures/wood_wall.xpm
 
 C 35,19,73
 F 15,6,40

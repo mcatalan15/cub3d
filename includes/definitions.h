@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:16 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 14:05:50 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:52:19 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define DEFINITIONS_H
 
 // Params
-#define HEIGHT 2000
-#define WIDTH 3000
-#define BLOCK 50
+# define HEIGHT 1080
+# define WIDTH 1920
+# define BLOCK 50
 
 // Colors
 # define RED "\033[0;31m"
@@ -27,6 +27,12 @@
 # define CYAN "\033[0;36m"
 # define WHITE "\033[0;37m"
 # define RST "\033[0m"
+
+// RGB COLORS
+# define R 0xFF0000
+# define G 0x00FF00
+# define M 0xFF00FF
+# define Y 0xFFFF00
 
 //Keys
 # define W_KEY 119

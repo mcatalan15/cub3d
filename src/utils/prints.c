@@ -6,7 +6,7 @@
 /*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:13:27 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 11:09:43 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:42:11 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,33 @@ void	print_dp_no_enter(char **file)
 	printf("\n");
 }
 
-void	print_struct(t_cube *cube)
-{
-	int	i;
+// void	print_struct(t_cube *cube)
+// {
+// 	int	i;
 
-	i = -1;
-	printf(YLW"FILE\n");
-	print_dp(cube->file);
-	if (cube->map)
-	{
-		printf("MAP\n");
-		print_dp(cube->map);
-	}
-	else
-		printf("NO map\n ");
-	printf("n_text: %s\n", cube->n_text);
-	printf("s_text: %s\n", cube->s_text);
-	printf("w_text: %s\n", cube->w_text);
-	printf("e_text: %s\n", cube->e_text);
-	i = -1;
-	while (++i < 3)
-		printf("f[%d]: %d\n", i, cube->f[i]);
-	i = -1;
-	while (++i < 3)
-		printf("c[%d]: %d\n", i, cube->c[i]);
-	printf("pos: %d\n", cube->pos);
-	printf("player pos_x: %d\n", cube->player_x);
-	printf("player pos_y: %d\n", cube->player_y);
-	printf("map_h: %d\n", cube->map_h);
-	printf("map_w: %d\n"RST, cube->map_w);
-}
+// 	i = -1;
+// 	printf(YLW"FILE\n");
+// 	print_dp(cube->file);
+// 	if (cube->map)
+// 	{
+// 		printf("MAP\n");
+// 		print_dp(cube->map);
+// 	}
+// 	else
+// 		printf("NO map\n ");
+// 	printf("n_text: %s\n", cube->n_text);
+// 	printf("s_text: %s\n", cube->s_text);
+// 	printf("w_text: %s\n", cube->w_text);
+// 	printf("e_text: %s\n", cube->e_text);
+// 	i = -1;
+// 	while (++i < 3)
+// 		printf("f[%d]: %d\n", i, cube->f[i]);
+// 	i = -1;
+// 	while (++i < 3)
+// 		printf("c[%d]: %d\n", i, cube->c[i]);
+// 	printf("pos: %d\n", cube->pos);
+// 	printf("player pos_x: %d\n", cube->player_x);
+// 	printf("player pos_y: %d\n", cube->player_y);
+// 	printf("map_h: %d\n", cube->map_h);
+// 	printf("map_w: %d\n"RST, cube->map_w);
+// }

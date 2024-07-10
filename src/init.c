@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan@student.42barcelona.com <mcata    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 11:32:41 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/10 13:04:45 by jpaul-kr         ###   ########.fr       */
+/*   Updated: 2024/07/03 18:37:15 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ int	line_counter(char *file)
 	return (i);
 }
 
+int	error_opening(void)
+{
+	perror("Error opening the file");
+	return (1);
+}
+
 int	open_file(char *file, t_cube *cube)
 {
 	int		fd;
@@ -46,13 +52,14 @@ int	open_file(char *file, t_cube *cube)
 		malloc_err(1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		perror("Error opening the file");
-		return (1);
-	}
+		return (error_opening());
 	i = -1;
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line)
+	{
 		cube->file[++i] = line;
+		line = get_next_line(fd);
+	}
 	cube->file[i + 1] = NULL;
 	close(fd);
 	return (0);

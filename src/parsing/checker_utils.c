@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:59:17 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/18 17:50:13 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:24:17 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/cub3d.h"
+
+void	checker_map(t_cube *cube)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (cube->map[++i])
+	{
+		j = -1;
+		while (cube->map[i][++j])
+		{
+			if (is_valid_char(cube->map[i][j]) == false)
+				generic_exit("Map no correct chars");
+		}
+	}
+}
 
 void	flags(t_cube *cube, char flag, int i, char *num_s)
 {
@@ -63,7 +81,7 @@ int	update_pos_i(char *line, int pos_i, int flag)
 	return (pos_i);
 }
 
-int	check_is_xpm_2(char *path)
+int	check_is_xpm(char *path)
 {
 	size_t		path_len;
 	size_t		ext_len;
