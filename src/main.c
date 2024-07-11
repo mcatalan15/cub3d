@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcatalan <mcatalan@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: mcatalan <mcatalan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 10:37:09 by mcatalan          #+#    #+#             */
-/*   Updated: 2024/06/19 14:18:46 by mcatalan         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:52:10 by mcatalan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	cub3d(char *str)
 
 	if (checker_map_extension(str))
 	{
-		printf(RED"ERROR:\n\tMap not valid. must be .cub\n"RST);
+		printf(RED"ERROR:\n\tMap not valid. Path must be .cub\n"RST);
 		exit(1);
 	}
 	init(&cube);
