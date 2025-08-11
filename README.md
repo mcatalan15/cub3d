@@ -83,3 +83,8 @@ cub3D/
 - Wall collision detection (bonus)
 
 This project demonstrates strong skills in C programming, mathematical algorithms, graphics programming, and game development fundamentals. The ray-casting implementation provides a performant 3D rendering solution without relying on complex 3D libraries.
+
+## 📧 Contact Us
+This project was a team effort, and my awesome mates at 42 Barcelona helped make it happen! Reach out to us for questions, collabs, or just to chat about coding! 😸
+- **Jon Paul Kruger**: [jpaul-kr (GitHub)](https://github.com/jpaul-kr) | [jpaul-kr@student.42barcelona.com](mailto:jpaul-kr@student.42barcelona.com)
+- **Marc Catalán Sánchez**: [mcatalan15 (GitHub)](https://github.com/mcatalan15) | [mcatalan@student.42barcelona.com](mailto:mcatalan@student.42barcelona.com)
